@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<com.demo.view.NoScrollViewListView
+    android:id="@+id/slv_frag_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:dividerHeight="10dp"
+    android:divider="@color/transparent">
+
+</com.demo.view.NoScrollViewListView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/im_left_topbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@mipmap/top_xiangzuojiantou" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="我的游乐圈"
+            android:layout_centerInParent="true"
+            android:textColor="@color/text_black"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/bt_yuanjiao_lan"
+            android:gravity="center"
+            android:text="写游记"
+            android:textColor="#fff"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eff2f7" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/my_recreation_youji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/wd_ylqyouji_true"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="精彩游记"
+                android:textColor="@color/orange" />
+
+            <TextView
+                android:id="@+id/my_recreation_youjixian"
+                android:layout_width="90dp"
+                android:layout_height="2dp"
+                android:background="@color/orange" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="#eff2f7" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/my_recreation_gonglue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/wd_ylqgonglue_false"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="视频攻略"
+                android:textColor="@color/text_black" />
+
+            <TextView
+                android:id="@+id/my_recreation_gongluexian"
+                android:layout_width="90dp"
+                android:layout_height="2dp"
+                android:background="@color/orange"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="#eff2f7" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/my_recreation_pingjia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/wd_ylqpingjia_false"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="景区评价"
+                android:textColor="@color/text_black" />
+
+            <TextView
+                android:id="@+id/my_recreation_pingjiaxian"
+                android:layout_width="90dp"
+                android:layout_height="2dp"
+                android:background="@color/orange"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E4EC" />
+    <FrameLayout
+        android:id="@+id/fl_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></FrameLayout>
+
+
+</LinearLayout>

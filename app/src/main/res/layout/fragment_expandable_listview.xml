@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_wudingdan"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/sc_dingdan"/>
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您还没有相关的订单"/>
+    </LinearLayout>
+    <com.demo.view.myListView.XExpandableListView
+        android:id="@+id/el_ExpandableListView"
+        android:divider="@null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.demo.view.myListView.XExpandableListView>
+</LinearLayout>

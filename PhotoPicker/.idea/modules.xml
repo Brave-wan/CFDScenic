@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../HvlxAndroid20.iml" filepath="$PROJECT_DIR$/../HvlxAndroid20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PhotoPicker.iml" filepath="$PROJECT_DIR$/PhotoPicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../app/app.iml" filepath="$PROJECT_DIR$/../app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../libvolley/libvolley.iml" filepath="$PROJECT_DIR$/../libvolley/libvolley.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../uk_photoview_library/uk_photoview_library.iml" filepath="$PROJECT_DIR$/../uk_photoview_library/uk_photoview_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../vitamio/vitamio.iml" filepath="$PROJECT_DIR$/../vitamio/vitamio.iml" />
+    </modules>
+  </component>
+</project>

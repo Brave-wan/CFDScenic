@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <com.demo.view.MyTopBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_centerTv="兑换记录"
+        app:tb_leftImClick="true"
+        app:tb_leftImVisibility="true"
+        app:tb_rightTvVisibility="false" />
+
+    <ListView
+        android:id="@+id/lv_exchangeRecord"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>

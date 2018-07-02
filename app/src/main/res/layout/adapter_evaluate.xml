@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E4EC" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ylq_pingjia" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我对“" />
+
+        <TextView
+            android:id="@+id/tv_ScenicSpot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="曹妃甸"
+            android:maxLength="10"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="”发布的评论：" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eff2f7" />
+
+
+    <GridView
+        android:id="@+id/gv_imageview"
+        android:numColumns="5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:paddingTop="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_comment_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
+        android:text="嘻嘻嘻哈哈哈"
+        android:maxLines="2"
+        android:textColor="@color/text_ShallowBlack" />
+
+    <TextView
+        android:id="@+id/tv_comment_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:gravity="right"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:text="2016-12-01"
+        android:textSize="12dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="#E0E4EC" />
+</LinearLayout>

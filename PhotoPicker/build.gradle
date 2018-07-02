@@ -1,0 +1,58 @@
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:3.0.0-beta7'
+//    classpath 'com.android.tools.build:gradle:3.0.1'
+  }
+}
+
+apply plugin: 'com.android.library'
+
+repositories {
+  //从中央库里面获取依赖
+  mavenCentral()
+
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
+  google()
+}
+android {
+  compileSdkVersion 23
+  buildToolsVersion '26.0.2'
+  resourcePrefix "picker_"
+
+  defaultConfig {
+    minSdkVersion 9
+    targetSdkVersion 23
+    versionCode 12
+    versionName "0.2.9"
+
+
+  }
+  dexOptions {
+    incremental true
+    javaMaxHeapSize "4g"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+dependencies {
+  compile fileTree(include: ['*.jar'], dir: 'libs')
+  compile 'com.android.support:support-v4:23.4.0'
+
+  compile 'com.android.support:design:23.1.1'
+  compile 'com.nineoldandroids:library:2.4.0'
+  compile 'com.github.bumptech.glide:glide:3.6.1'
+
+ /* compile 'com.android.support:appcompat-v7:23.4.0'*/
+}

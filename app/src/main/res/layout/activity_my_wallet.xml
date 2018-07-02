@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <com.demo.view.MyTopBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_centerTv="我的钱包"
+        app:tb_leftImClick="true"
+        app:tb_leftImVisibility="true"
+        app:tb_rightTvVisibility="false" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/my_Wallet_qianbao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/wd_qianbao_qianbaotrue"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="我的钱包"
+                android:textColor="@color/orange" />
+
+            <TextView
+                android:id="@+id/my_Wallet_qianbaoxian"
+                android:layout_width="90dp"
+                android:layout_height="1dp"
+                android:background="@color/orange" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="2dp"
+            android:layout_gravity="center"
+            android:layout_height="20dp"
+            android:background="#eff2f7" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/my_Wallet_jifen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/wd_qianbao_jifenfalse"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="我的积分"
+                android:textColor="@color/text_black" />
+
+            <TextView
+                android:id="@+id/my_Wallet_jifenxian"
+                android:layout_width="90dp"
+                android:layout_height="1dp"
+                android:visibility="invisible"
+                android:background="@color/orange" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_my_wallet_fragment"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+
+
+</LinearLayout>

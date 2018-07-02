@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beijing"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.demo.view.MyTopBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tb_centerTv="周边"
+            app:tb_leftImClick="true"
+            app:tb_leftImVisibility="true"
+            app:tb_rightTvVisibility="false"
+            />
+
+        <FrameLayout
+            android:id="@+id/frag_arround_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></com.amap.api.maps.MapView>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#fff"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:scrollbars="none">
+
+        <RadioGroup
+            android:id="@+id/rg_arround_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_map_jingdian"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/rb_scenic_spot_cheng"
+                android:gravity="center"
+                android:text="景点"
+                android:textColor="@drawable/periphery_rbtext_all_selected" />
+
+            <RadioButton
+                android:id="@+id/rb_map_jiudian"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/rb_hotel_cheng"
+                android:gravity="center"
+                android:text="酒店"
+                android:textColor="@drawable/periphery_rbtext_all_selected" />
+
+            <RadioButton
+                android:id="@+id/rb_map_fandian"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/rb_fandian_cheng"
+                android:gravity="center"
+                android:text="饭店"
+                android:textColor="@drawable/periphery_rbtext_all_selected" />
+
+            <RadioButton
+                android:id="@+id/rb_map_xiaochi"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/rb_snack_cheng"
+                android:gravity="center"
+                android:text="小吃"
+                android:textColor="@drawable/periphery_rbtext_all_selected" />
+
+            <RadioButton
+                android:id="@+id/rb_map_techan"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/rb_specialty_cheng"
+                android:gravity="center"
+                android:text="特产"
+                android:textColor="@drawable/periphery_rbtext_all_selected" />
+
+            <RadioButton
+                android:id="@+id/rb_map_xishoujian"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/rb_restroom_cheng"
+                android:gravity="center"
+                android:text="洗手间"
+                android:textColor="@drawable/periphery_rbtext_all_selected" />
+
+            <RadioButton
+                android:id="@+id/rb_map_tingchechang"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/rb_parking_cheng"
+                android:gravity="center"
+                android:text="停车场"
+                android:textColor="@drawable/periphery_rbtext_all_selected" />
+
+            <RadioButton
+                android:id="@+id/rb_map_chongzhi"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="@drawable/rb_parking_cheng"
+                android:gravity="center"
+                android:text="充值"
+                android:textColor="@drawable/periphery_rbtext_all_selected" />
+        </RadioGroup>
+
+    </HorizontalScrollView>
+</LinearLayout>

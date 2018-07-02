@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beijing"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_main_search"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/beijing"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_aty_shop_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@mipmap/top_xiangzuojiantou" />
+
+        <LinearLayout
+            android:id="@+id/ll_shop_search"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@mipmap/sousuokuang"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/et_aty_shop_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:hint="搜索店铺内商品"
+                android:singleLine="true"
+                android:textSize="14dp"
+                android:imeOptions="actionSearch"
+                android:gravity="center_vertical"/>
+
+            <ImageView
+                android:id="@+id/iv_aty_shop_yunyin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/yuyinshubie" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/iv_aty_shop_gouwuche"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/gouwuchecheng"
+
+                />
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/sv_shop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/iv_aty_shop_rightback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_aty_shop_beijing"
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/dianpubeijing" />
+
+                <ImageView
+                    android:id="@+id/iv_aty_shop_icon"
+                    android:layout_width="87dp"
+                    android:layout_height="80dp"
+                    android:layout_alignBottom="@id/iv_aty_shop_beijing"
+                    android:layout_marginLeft="20dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/zhanwei"
+                    android:background="@mipmap/baibianshop"
+                    android:padding="2dp"/>
+
+                <TextView
+                    android:id="@+id/tv_aty_shop_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/iv_aty_shop_beijing"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/iv_aty_shop_icon"
+                    android:singleLine="true"
+                    android:text="曹妃甸特色小吃店,欢迎您的光临"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignBottom="@id/iv_aty_shop_beijing"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="41dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/xiangyoujiantou" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_aty_shop_sale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_aty_shop_sale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="销量"
+                        android:textColor="@color/ligntyellow"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:background="@color/line"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_aty_shop_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_aty_shop_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="价格"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_aty_shop_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:src="@mipmap/xiahui" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/frag_shop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+    <!-- <com.demo.view.NoScrollGridView
+         android:id="@+id/sgv_aty_shop_gridview"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:numColumns="2"
+         android:verticalSpacing="10dp"
+         android:horizontalSpacing="10dp"
+         android:padding="10dp">
+
+     </com.demo.view.NoScrollGridView>-->
+</LinearLayout>

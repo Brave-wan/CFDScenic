@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beijing"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.demo.view.MyTopBar
+            android:id="@+id/view_topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tb_centerTv="购物车"
+            app:tb_leftImClick="true"
+            app:tb_leftImVisibility="true"
+            app:tb_rightTv="编辑"
+            app:tb_rightTvVisibility="true" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+            <ImageView
+                android:src="@mipmap/gouwuche_kong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="购物车还是空的\n去挑选几件中意的商品吧！" />
+
+        </LinearLayout>
+
+        <ExpandableListView
+            android:id="@+id/lv_ShoppingCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:childDivider="#00000000"
+            android:divider="#00000000"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#fff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp">
+
+        <com.demo.view.MyRadioButton
+            android:id="@+id/view_all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:rb_Display_Status="false"
+            android:visibility="gone"
+            app:rb_TextView="全选"
+            app:rb_True_ImageView="@mipmap/yuan_duigou_true"
+            app:rb_false_ImageView="@mipmap/yuan_duigou_false" />
+
+        <LinearLayout
+            android:id="@+id/ll_Settlement"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="合计："
+                android:textColor="@color/text_black"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_totalMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥0.0"
+                android:textColor="@color/orange"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="不含配送费"
+                android:textColor="@color/text_gray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_Settlement"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="结算（0）"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_delete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_Favorites"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="移到收藏夹"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_delete"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:background="@color/orange"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

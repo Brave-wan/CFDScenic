@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //线性item
+    <declare-styleable name="MyLinearLayoutItem">
+        <attr name="leftImageVisibility" format="boolean" />
+        <attr name="leftImage" format="reference" />
+        <attr name="leftText" format="string" />
+        <attr name="bottomLine" format="boolean" />
+    </declare-styleable>
+
+    //topbar
+    <declare-styleable name="MyTopBar">
+        <attr name="tb_leftImVisibility" format="boolean" />
+        <attr name="tb_leftIm" format="reference" />
+        <attr name="tb_centerTv" format="string" />
+        <attr name="tb_rightTvVisibility" format="boolean" />
+        <attr name="tb_rightTv" format="string" />
+        <attr name="tb_rightImVisibility" format="boolean" />
+        <attr name="tb_rightIm" format="string" />
+        <attr name="tb_leftImClick" format="boolean" />
+        <attr name="tb_bottomLine" format="boolean" />
+    </declare-styleable>
+    //MyRadioButton
+    <declare-styleable name="MyRadioButton">
+        <attr name="rb_True_ImageView" format="reference" />
+        <attr name="rb_false_ImageView" format="reference" />
+        <attr name="rb_TextView" format="string" />
+        <attr name="rb_Display_Status" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="NumberPicker">
+        <attr name="value" format="float"></attr>
+        <attr name="interval" format="float"></attr>
+        <attr name="max" format="float"></attr>
+        <attr name="min" format="float"></attr>
+        <attr name="number_mode">
+            <enum name="mode_integer" value="0" />
+            <enum name="mode_float" value="1" />
+        </attr>
+    </declare-styleable>
+    //圆形imageview
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+    //轮播图
+    <declare-styleable name="Banner">
+        <attr name="default_image" format="reference" />
+        <attr name="delay_time" format="dimension" />
+        <attr name="is_auto_play" format="boolean" />
+        <attr name="title_background" format="color|reference" />
+        <attr name="title_textcolor" format="color" />
+        <attr name="title_textsize" format="dimension" />
+        <attr name="title_height" format="dimension" />
+        <attr name="indicator_width" format="dimension" />
+        <attr name="indicator_height" format="dimension" />
+        <attr name="indicator_margin" format="dimension" />
+        <attr name="indicator_drawable_selected" format="reference" />
+        <attr name="indicator_drawable_unselected" format="reference" />
+        <!--<attr name="indicator_animator" format="reference" />-->
+        <!--<attr name="indicator_animator_reverse" format="reference" />-->
+    </declare-styleable>
+    <declare-styleable name="roundimageview">
+        <attr name="border_thickness" format="dimension"></attr>
+        <attr name="border_inside_color" format="color"></attr>
+        <attr name="border_outside_color" format="color"></attr>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+
+
+    <com.demo.view.MyTopBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_centerTv="设置"
+        app:tb_leftImClick="true"
+        app:tb_leftImVisibility="true"
+        app:tb_rightTvVisibility="false"/>
+
+
+    <com.demo.view.MyLinearLayoutItem
+        android:id="@+id/view_guanyuwomen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottomLine="true"
+        app:leftImage="@mipmap/wd1_lv2"
+        app:leftImageVisibility="false"
+        app:leftText="关于我们" />
+    <com.demo.view.MyLinearLayoutItem
+        android:id="@+id/view_yijianfankui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottomLine="true"
+        app:leftImage="@mipmap/wd1_lv2"
+        app:leftImageVisibility="false"
+        app:leftText="意见反馈" />
+    <com.demo.view.MyLinearLayoutItem
+        android:id="@+id/view_xiugaimima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bottomLine="true"
+        app:leftImage="@mipmap/wd1_lv2"
+        app:leftImageVisibility="false"
+        app:leftText="修改密码" />
+
+    <Button
+        android:id="@+id/bt_tuichu"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="退出当前账号"
+        android:textSize="17sp"
+        android:textColor="#fff"
+        android:background="@mipmap/wd1_lantiao"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

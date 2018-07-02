@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <com.demo.view.RoundImageView
+                android:id="@+id/view_touxiang"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/ceshi_touxiang1" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_black"
+                android:text=""
+                android:singleLine="true"
+                android:layout_marginLeft="10dp"/>
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@mipmap/ylq_shizhong" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:textColor="@color/text_gray"
+                android:text="        "
+                android:singleLine="true"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_shipin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <VideoView
+                android:id="@+id/mVideoView"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                />
+            <ImageView
+                android:id="@+id/iv_image_video"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"/>
+
+            <ImageView
+                android:id="@+id/iv_play_video"
+                android:layout_gravity="center"
+                android:background="@mipmap/bofang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_play_time"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="#90000000"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="13sp"
+                android:text="00:00" />
+            <ImageView
+                android:id="@+id/deletedelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/delete"
+                android:layout_gravity="right|top"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="19dp"
+                android:visibility="gone"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_black"
+            android:text="" />
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:maxLines="7"
+            android:textColor="@color/text_gray"
+            android:text="" />
+        <TextView
+            android:id="@+id/tv_More"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/blue"
+            android:layout_marginBottom="10dp"
+            android:text="...展开更多" />
+        <include layout="@layout/adapter_ylq_bottom" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

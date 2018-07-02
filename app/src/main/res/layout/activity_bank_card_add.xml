@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+
+    <com.demo.view.MyTopBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_centerTv="银行卡信息"
+        app:tb_leftImClick="true"
+        app:tb_leftImVisibility="true"
+        app:tb_rightTvVisibility="false" />
+
+    <EditText
+        android:id="@+id/et_realname"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:paddingLeft="15dp"
+        android:maxLength="5"
+        android:background="@drawable/shurukuang"
+        android:textColorHint="@color/grayHint"
+        android:hint="请输入持卡人姓名" />
+
+    <EditText
+        android:id="@+id/et_idcard"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:maxLength="18"
+        android:inputType="number"
+        android:digits="0123456789xX"
+        android:background="@drawable/shurukuang"
+        android:textColorHint="@color/grayHint"
+        android:paddingLeft="15dp"
+        android:hint="请输入身份证信息" />
+    <EditText
+        android:id="@+id/et_bankname"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shurukuang"
+        android:textColor="@color/text_black"
+        android:hint="银行名称"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:textColorHint="@color/grayHint"
+        android:paddingLeft="15dp"
+        />
+    <EditText
+        android:id="@+id/et_bankcode"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:maxLength="19"
+        android:inputType="number"
+        android:background="@drawable/shurukuang"
+        android:textColorHint="@color/grayHint"
+        android:paddingLeft="15dp"
+        android:hint="请输入银行卡卡号" />
+
+
+
+
+    <EditText
+        android:id="@+id/et_bankcode2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shurukuang"
+        android:textColorHint="@color/grayHint"
+        android:paddingLeft="15dp"
+        android:maxLength="19"
+        android:inputType="number"
+        android:hint="请再次输入银行卡卡号" />
+
+    <EditText
+        android:id="@+id/et_type"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shurukuang"
+        android:textColorHint="@color/grayHint"
+        android:paddingLeft="15dp"
+        android:maxLength="3"
+        android:hint="请输入银行卡类型（储蓄卡或信用卡等）" />
+
+    <Button
+        android:id="@+id/bt_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/wd1_lantiao"
+        android:text="确认"
+        android:textColor="#fff"
+        android:textSize="17sp" />
+
+</LinearLayout>

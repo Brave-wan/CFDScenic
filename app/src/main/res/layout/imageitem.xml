@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/item_grida_image"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" >
+    </ImageView>
+<ImageView
+    android:id="@+id/item_shanchu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@mipmap/shanchu"
+    android:layout_alignParentTop="true"
+    android:layout_alignRight="@+id/item_grida_image"
+    android:layout_alignEnd="@+id/item_grida_image"
+    android:visibility="gone"/>
+</RelativeLayout>

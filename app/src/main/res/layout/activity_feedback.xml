@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+
+    <com.demo.view.MyTopBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_centerTv="意见反馈"
+        app:tb_leftImClick="true"
+        app:tb_leftImVisibility="true"
+        app:tb_rightTvVisibility="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColor="@color/text_black"
+        android:text="欢迎您提出宝贵的建议和意见，您留下的每个字都将用来改善我们的软件。再次感谢您关注我们。" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shurukuang"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_decribe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:layout_margin="10dp"
+            android:background="#fff"
+            android:gravity="top"
+            android:textSize="15sp"
+            android:textColorHint="@color/grayHint"
+            android:hint="我的意见..." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shurukuang"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:text="邮箱"
+            android:textColor="@color/text_black"
+             />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="#fff"
+            android:textSize="15sp"
+            android:layout_marginRight="5dp"
+            android:textColorHint="@color/grayHint"
+            android:hint="请输入您的邮箱(选填)" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_tijiao"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/wd1_lantiao"
+        android:text="确认提交"
+        android:textColor="#fff"
+        android:textSize="17sp" />
+
+</LinearLayout>

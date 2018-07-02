@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beijing">
+    <com.demo.view.MyTopBar
+        android:id="@+id/bar_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_centerTv="搜索终点"
+        app:tb_leftImClick="true"
+        app:tb_leftImVisibility="true"
+        app:tb_rightTvVisibility="false"/>
+
+      <AutoCompleteTextView
+       android:id="@+id/input_edittext"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center_vertical"
+       android:inputType="text|textAutoComplete"
+       android:background="@color/white"
+       android:singleLine="true"
+       android:hint="请输入关键字"
+       android:text=""
+       android:textColor="@color/black"
+       android:textSize="14sp"
+       android:padding="10dp"
+          android:imeOptions="actionSearch"  />
+    <ListView
+        android:id="@+id/lv_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    </ListView>
+
+</LinearLayout>

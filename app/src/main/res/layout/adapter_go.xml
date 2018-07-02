@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+       <!-- android:background="@mipmap/ceshi_fengjing"-->
+        <RelativeLayout
+            android:id="@+id/ll_image"
+            android:layout_width="match_parent"
+            android:layout_height="155dp"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_imagebackgro"
+                android:layout_width="match_parent"
+                android:layout_height="155dp"
+                android:scaleType="fitXY"
+                />
+            <ImageView
+                android:id="@+id/iv_Prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#50000000"
+                android:padding="10dp"
+                android:text="十一黄金周，曹妃甸湿地两大景点8.5折盛装来袭！"
+                android:textColor="#fff"
+                android:layout_alignParentBottom="true"
+                android:singleLine="true"
+                android:maxLength="20"
+                android:ellipsize="end"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@mipmap/cheng_dingwei" />
+
+            <TextView
+                android:id="@+id/tv_ScenicSpot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="活动景点："
+                android:textColor="@color/text_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            >
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="13dp"
+                android:src="@mipmap/cheng_shizhong" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="活动时间："
+                android:textColor="@color/text_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_marginBottom="10dp"
+            >
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="13dp"
+                android:src="@mipmap/cheng_renshu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="已购人数："
+                android:textColor="@color/text_black" />
+
+            <TextView
+                android:id="@+id/tv_Purchase"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="20人"
+                android:textColor="@color/orange" />
+
+            <TextView
+                android:id="@+id/tv_End"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(活动截止人数：50人)"
+                android:textColor="@color/text_gray" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="right"
+        android:layout_marginTop="110dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/yql_chengyuan"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_present"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            android:text="380" />
+
+        <TextView
+            android:id="@+id/tv_primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_gray"
+            android:text="400" />
+    </LinearLayout>
+
+</FrameLayout>

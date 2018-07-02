@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll_tupian_ylq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <com.demo.view.RoundImageView
+                android:id="@+id/view_touxiangT_ylq"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="15dp"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/tv_usernameT_ylq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="New Text" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@mipmap/ylq_shizhong" />
+
+            <TextView
+                android:id="@+id/tv_dateT_ylq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:singleLine="true"
+                android:text="New Text"
+                android:textColor="@color/text_gray" />
+
+        </LinearLayout>
+        <!--图片-->
+        <FrameLayout
+            android:id="@+id/fl_tujie_ylq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_imageT_ylq"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/zhanwei" />
+
+            <TextView
+                android:id="@+id/tv_tujiylq_ylq"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#90000000"
+                android:gravity="center"
+                android:text="图集"
+                android:textColor="#fff"
+                android:textSize="13sp" />
+        </FrameLayout>
+        <!--视频-->
+        <FrameLayout
+            android:id="@+id/fl_shipin_ylq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <VideoView
+                android:id="@+id/mVideoView_ylq"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <ImageView
+                android:id="@+id/iv_image_video_ylq"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/iv_image_video_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/bofang" />
+
+            <TextView
+                android:id="@+id/tv_minute_play"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#90000000"
+                android:gravity="center"
+                android:text="00:00"
+                android:textColor="#fff"
+                android:textSize="13sp" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_titleT_ylq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="曹妃甸旅游湿地学"
+            android:textColor="@color/text_black" />
+
+        <TextView
+            android:id="@+id/tv_contentT_ylq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:maxLines="7"
+            android:text="New Text" />
+
+        <TextView
+            android:id="@+id/tv_MoreT_ylq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:text="...展开更多"
+            android:textColor="@color/blue" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/view_include"
+        layout="@layout/adapter_ylq_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

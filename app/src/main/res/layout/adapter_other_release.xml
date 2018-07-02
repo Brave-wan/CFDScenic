@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E4EC" />
+    <!--<LinearLayout
+        android:id="@+id/ll_tupian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/fl_tujie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ceshi_beijing" />
+
+            <TextView
+                android:id="@+id/tv_tujie"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#90000000"
+                android:gravity="center"
+                android:text="图解"
+                android:textColor="#fff"
+                android:textSize="13sp" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_titleT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="曹妃甸旅游湿地学"
+            android:textColor="@color/text_black" />
+
+        <TextView
+            android:id="@+id/tv_contentT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:maxLines="7"
+            android:text="New Text" />
+
+        <TextView
+            android:id="@+id/tv_MoreT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:text="...展开更多"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/blue" />
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:id="@+id/ll_shipin_release"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/fl_tujie_release"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_pic_release"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/zhanwei"/>
+            <!--android:background="@mipmap/ceshi_beijing"-->
+            <TextView
+                android:id="@+id/tv_tujie_release"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#90000000"
+                android:gravity="center"
+                android:text="图集"
+                android:textColor="#fff"
+                android:textSize="13sp" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fl_shipin_release"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+            <VideoView
+                android:id="@+id/mVideoView_release"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:visibility="visible"
+                />
+            <ImageView
+                android:id="@+id/iv_beijing_release"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"/>
+            <ImageView
+                android:id="@+id/iv_play_release"
+                android:layout_gravity="center"
+                android:background="@mipmap/bofang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_fenzhong_release"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="#90000000"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="13sp"
+                android:text="00:00" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_titleS_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_black"
+            android:text="曹妃甸" />
+        <TextView
+            android:id="@+id/tv_contentS_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:maxLines="7"
+            android:textColor="@color/text_gray"
+            android:text="New Text" />
+        <TextView
+            android:id="@+id/tv_MoreS_release"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/blue"
+            android:layout_marginBottom="10dp"
+            android:text="...展开更多" />
+    </LinearLayout>
+
+    <include layout="@layout/adapter_ylq_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="#E0E4EC" />
+</LinearLayout>

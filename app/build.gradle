@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        applicationId "com.demo.demo.myapplication"
+        minSdkVersion 18
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android {
+        useLibrary 'org.apache.http.legacy'
+    }
+    sourceSets.main.jniLibs.srcDirs = ['libs']
+
+    dexOptions {
+        preDexLibraries = false
+        javaMaxHeapSize "4g"
+    }
+}
+
+////Error:Execution failed for task ':app:javaPreCompileDebug'.
+//> Annotation processors must be explicitly declared now.  The following dependencies on the compile classpath are found to contain annotation processor.  Please add them to the annotationProcessor configuration.
+//- butterknife-7.0.1.jar (com.jakewharton:butterknife:7.0.1)
+//Alternatively, set android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true to continue with previous behavior.  Note that this option is deprecated and will be removed in the future.
+//        See https://developer.android.com/r/tools/annotation-processor-error-message.html for more details.
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.google.zxing:core:3.2.1'
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.3@aar'
+    compile 'cn.bingoogolapple:bga-zxing:1.1.3@aar'
+    compile project(':Publicmethod')
+    compile files('libs/xUtils-2.6.14.jar')
+    compile files('libs/org.apache.http.legacy.jar')
+    compile files('libs/Sunflower.jar')
+    compile files('libs/Msc.jar')
+    compile files('libs/universal-image-loader-1.9.2-SNAPSHOT-with-sources.jar')
+    compile project(':PhotoPicker')
+    compile files('libs/okhttp-3.2.0.jar')
+    compile files('libs/okhttputils-2_6_1.jar')
+    compile files('libs/okio-1.8.0.jar')
+    compile files('libs/jpush-android-2.2.0.jar')
+    compile files('libs/AMap3DMap_4.0.1_AMapNavi_1.9.3_AMapLocation_3.0.0_20161014.jar')
+    compile files('libs/AMap_Search_V3.6.0_20161110.jar')
+    compile files('libs/IDpsdkCore.jar')
+    compile files('libs/IPlaySDK.jar')
+    compile files('libs/jsoup-1.6.1.jar')
+}

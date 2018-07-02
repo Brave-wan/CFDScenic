@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll_context"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_commodity"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/zhanwei" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_commodityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="曹妃甸休闲度假商品"
+                android:textColor="@color/text_black" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_present"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥无"
+                    android:textColor="@color/orange" />
+
+                <TextView
+                    android:id="@+id/tv_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
+                    android:text="￥无"
+                    android:textColor="@color/text_gray" />
+
+                <TextView
+                    android:id="@+id/tv_Distribution"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="配送费：wu"
+                    android:textColor="@color/text_gray" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="总额："
+                    android:textColor="@color/text_black" />
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="150"
+                    android:textColor="@color/orange" />
+
+                <TextView
+                    android:id="@+id/tv_Number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
+                    android:text="X2"
+                    android:textColor="@color/text_gray" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/xiangyoujiantou" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eff2f7" />
+
+    <LinearLayout
+        android:id="@+id/ll_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#fff"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_quxiao"
+                android:layout_width="80dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/bt_yuanjiao_lanbian"
+                android:gravity="center"
+                android:text="取消订单"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/tv_quzhifu"
+                android:layout_width="80dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/bt_yuanjiao_lan"
+                android:gravity="center"
+                android:text="去支付"
+                android:textColor="#fff" />
+
+            <TextView
+                android:id="@+id/tv_shenqing"
+                android:layout_width="80dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/bt_yuanjiao_lanbian"
+                android:gravity="center"
+                android:text="申请退款"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/tv_querenwancheng"
+                android:layout_width="80dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/bt_yuanjiao_lan"
+                android:gravity="center"
+                android:text="确认完成"
+                android:textColor="#fff" />
+
+            <TextView
+                android:id="@+id/tv_querenshouhuo"
+                android:layout_width="80dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/bt_yuanjiao_lan"
+                android:gravity="center"
+                android:text="确认收货"
+                android:textColor="#fff" />
+
+            <TextView
+                android:id="@+id/tv_fahuozhong"
+                android:layout_width="80dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/huiyuanjiao"
+                android:gravity="center"
+                android:text="发货中"
+                android:textColor="#fff" />
+
+            <TextView
+                android:id="@+id/tv_jiaoyiwancheng"
+                android:layout_width="80dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/huiyuanjiao"
+                android:gravity="center"
+                android:text="交易完成"
+                android:textColor="#fff" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="#eff2f7" />
+    </LinearLayout>
+</LinearLayout>

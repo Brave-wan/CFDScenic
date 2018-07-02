@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bannerApp="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/background">
+
+        <ImageView
+            android:id="@+id/iv_amusement"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@mipmap/ylq_banner" />
+
+        <com.demo.view.NoScrollGridView
+            android:id="@+id/gd_amusement"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="2" />
+
+
+    </LinearLayout>
+</LinearLayout>

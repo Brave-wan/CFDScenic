@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beijing">
+    <com.demo.view.MyTopBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_centerTv="选择日期"
+        app:tb_leftImClick="true"
+        app:tb_leftImVisibility="true"
+        app:tb_rightTvVisibility="false"
+        />
+    <ImageView
+        android:id="@+id/iv_aty_chosedate"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:src="@mipmap/zhanwei"
+        android:scaleType="fitXY"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <LinearLayout
+            android:id="@+id/ll_aty_chosedate_jiudian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/iv_aty_chosedate_jiudian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/jiudian"
+                />
+            <TextView
+                android:id="@+id/tv_aty_chosedate_jiudian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="酒店"
+                android:textSize="15dp"
+                android:textColor="@color/ligntyellow"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="25dp"
+            android:background="@color/line"
+            android:layout_gravity="center"></LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_aty_chosedate_fandian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/iv_aty_chosedate_fandian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/fandianhui"
+                />
+            <TextView
+                android:id="@+id/tv_aty_chosedate_fandian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="饭店"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/frag_chosedate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+</LinearLayout>

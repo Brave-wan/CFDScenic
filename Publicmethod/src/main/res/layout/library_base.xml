@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lib_bg_all"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/lib_base_fl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/lib_title_bg">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:textSize="19sp"
+            android:gravity="center"
+            android:textColor="@color/lib_title_color"
+            android:text="@string/lib_title"
+            android:id="@+id/lib_base_tv_title" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/lib_back_click_style"
+            android:src="@drawable/title_back"
+            android:id="@+id/lib_base_ib_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/lib_title_color"
+            android:textSize="19sp"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:onClick="register"
+            android:visibility="gone"
+            android:layout_marginRight="20dp"
+            android:text="注册"
+            android:id="@+id/lib_base_register" />
+    </FrameLayout>
+    <TextView
+        android:id="@+id/lib_base_tv_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EEEEEE"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/lib_base_ly">
+    </LinearLayout>
+</LinearLayout>

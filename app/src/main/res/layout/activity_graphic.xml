@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beijing"
+    android:orientation="vertical">
+    <com.demo.view.MyTopBar
+        android:id="@+id/view_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_centerTv="共0张图片"
+        app:tb_leftImClick="true"
+        app:tb_leftImVisibility="true"
+        app:tb_rightTvVisibility="false"
+        />
+
+
+
+
+    <GridView
+        android:id="@+id/gv_graphic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:listSelector="#ffffff"
+        android:numColumns="2"/>
+
+</LinearLayout>

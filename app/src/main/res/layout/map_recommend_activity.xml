@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<com.amap.api.maps.MapView
+    android:id="@+id/map_recommend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+</com.amap.api.maps.MapView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/search"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="55dp"/>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/white">
+        <LinearLayout
+            android:id="@+id/ll_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@mipmap/yuanjiao"
+                android:text="推荐路线"
+                android:textSize="16dp"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@mipmap/yuanjiao"
+            android:gravity="center"
+            android:text="搜索终点"
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_navi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:background="@mipmap/yuanjiao"
+            android:gravity="center"
+            android:text="开始导航"
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

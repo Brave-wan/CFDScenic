@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <LinearLayout
+        android:id="@+id/ll_myll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.demo.view.MyRadioButton
+            android:id="@+id/mrv_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:rb_Display_Status="false"
+            app:rb_TextView="欢乐渔谷"
+            android:layout_marginTop="5dp"
+            app:rb_True_ImageView="@mipmap/bt_cheng_yuan_true"
+            app:rb_false_ImageView="@mipmap/bt_cheng_yuan_false"
+            />
+    </LinearLayout>
+</LinearLayout>

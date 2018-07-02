@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="blue">#4bc4fb</color>
+    <color name="gray">#eff2f7</color>
+    <color name="search">#c9c8c8</color>
+    <color name="theme">#cecece</color>
+    <color name="beijing">#FFEFF2F7</color>
+    <color name="white">#ffffff</color>
+    <color name="yellow">#FFAF40</color>
+    <color name="ligntyellow">#ff5203</color>
+    <color name="black">#333333</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="line">#e4e4e4</color>
+    <color name="text_black">#333333</color>
+    <color name="text_gray">#999999</color>
+    <color name="background">#FFEFF2F7</color>
+    <color name="orange">#FF5400</color>
+    <color name="text_ShallowBlack">#666666</color>
+    <color name="green">#23cd77</color>
+    <color name="pink">#ff787a</color>
+    <color name="signInHint">#9893ad</color>
+    <color name="grayHint">#c9c8c8</color>
+    <color name="navpage">#FFE1E8EB</color>
+    <color name="lightgrey">#ff888888</color>
+    <color name="see">#50ffffff</color>
+    <color name="zXingColor">#ffffff</color>
+    <color name="colorPrimaryDarkTrans">#CCf57257</color>
+    <color name="mapline">#4bc4fb</color>
+</resources>

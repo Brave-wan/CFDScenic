@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+
+
+    <com.demo.view.MyTopBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tb_centerTv="联系手机"
+        app:tb_leftImClick="true"
+        app:tb_leftImVisibility="true"
+        app:tb_rightTvVisibility="false"/>
+
+    <EditText
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shurukuang"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:hint="输入11位手机号"
+        android:paddingLeft="15dp"
+        android:textColorHint="@color/grayHint"
+        android:inputType="number"
+        android:maxLength="11"
+        android:id="@+id/editText4" />
+
+    <Button
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="确认"
+        android:textSize="17sp"
+        android:textColor="#fff"
+        android:id="@+id/button2"
+        android:background="@mipmap/wd1_lantiao"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

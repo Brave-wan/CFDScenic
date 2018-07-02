@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.demo.demo.myapplication">
+
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+    <!--用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!--连接网络权限，用于执行云端语音能力 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <!--读取网络信息状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--获取当前wifi状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--允许程序改变网络连接状态 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <!--读取手机信息权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!--读取联系人权限，上传联系人需要用到此权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!--外存储写权限，构建语法需要用到此权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--外存储读权限，构建语法需要用到此权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!--配置权限，用来记录应用配置信息 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <!--支付宝支付-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--分享权限-->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <!-- 蓝牙分享所需的权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <!-- Required -->
+    <permission
+        android:name="com.demo.demo.myapplication.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <!-- Required -->
+    <uses-permission android:name="com.demo.demo.myapplication.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+
+
+    <application
+        android:name="com.demo.fragment.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme">
+
+        <!-- Required SDK 核心功能-->
+        <!-- option since 2.0.5 可配置PushService，DaemonService,PushReceiver,AlarmReceiver的android:process参数 将JPush相关组件设置为一个独立进程 -->
+        <!-- 如：android:process=":remote" -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter >
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+                <category android:name="com.demo.demo.myapplication"/>
+            </intent-filter>
+        </service>
+
+        <!-- Required -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true" >
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <category android:name="com.demo.demo.myapplication"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <!-- Required SDK核心功能-->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.demo.demo.myapplication" />
+            </intent-filter>
+        </activity>
+        <!-- Required SDK核心功能-->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+        <!-- Required SDK核心功能-->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+
+        <!-- User defined. 用户自定义的广播接收器-->
+        <receiver
+            android:name="com.demo.fragment.MyReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <!--Required 用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <!--Required 用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <!--Required 用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <!--Required 用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <!--Optional 用户接受Rich Push Javascript 回调函数的intent-->
+                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" />
+                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="com.demo.demo.myapplication" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required. For publish channel feature -->
+        <!-- JPUSH_CHANNEL 是为了方便开发者统计APK分发渠道。-->
+        <!-- 例如: -->
+        <!-- 发到 Google Play 的APK可以设置为 google-play; -->
+        <!-- 发到其他市场的 APK 可以设置为 xxx-market。 -->
+        <!-- 目前这个渠道统计功能的报表还未开放。-->
+        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
+        <!-- Required. AppKey copied from Portal -->
+        <meta-data android:name="JPUSH_APPKEY" android:value="febf07816117a8ec5e2eda58"/>
+
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="e531947ea78cb87d5628067d6178c422"/>
+        <service android:name="com.amap.api.location.APSService"></service>
+
+
+
+        <activity android:name="com.demo.fragment.MainActivity">
+        </activity>
+        <activity
+            android:name="com.demo.fragment.WelconmeAct"
+            android:enabled="true"
+            android:label="@string/app_name"
+
+            android:theme="@android:style/Theme.Light.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.demo.fragment.LeadPageActivity"/>
+        <activity android:name="com.demo.view.seeImage.ImagePagerActivity" />
+        <activity android:name="com.demo.Zxing.Activity_Zxing"/>
+        <activity android:name="com.demo.my.activity.Activity_SignIn"/>
+        <activity android:name="com.demo.my.activity.Activity_Register"/>
+        <activity android:name="com.demo.my.activity.Activity_MemberClause"/>
+        <activity android:name="com.demo.my.activity.Activity_BackPassword1"/>
+        <activity android:name="com.demo.my.activity.Activity_BackPassword2"/>
+        <activity android:name="com.demo.my.activity.Activity_PersonalData"/>
+        <activity android:name="com.demo.my.activity.Activity_NickName"/>
+        <activity android:name="com.demo.my.activity.Activity_ContactPhone"/>
+        <activity android:name="com.demo.my.activity.Activity_set"/>
+        <activity android:name="com.demo.my.activity.Activity_ModifyPassword"/>
+        <activity android:name="com.demo.my.activity.Activity_About"/>
+        <activity android:name="com.demo.my.activity.Activity_Feedback"/>
+        <activity android:name="com.demo.my.activity.Activity_ReceiptAddress"/>
+        <activity android:name="com.demo.my.activity.Activity_NewReceiptAddress"/>
+        <activity android:name="com.demo.my.activity.Activity_EditReceiptAddress"/>
+        <activity android:name="com.demo.my.activity.Activity_MyOrder"/>
+        <activity android:name="com.demo.my.activity.Activity_MyTicket"/>
+        <activity android:name="com.demo.my.activity.Activity_MyWallet"/>
+        <activity android:name="com.demo.my.activity.Activity_MyWalletRecharge"/>
+        <activity android:name="com.demo.my.activity.Activity_MyWalletTixian"/>
+        <activity android:name="com.demo.my.activity.Activity_Exchange"/>
+        <activity android:name="com.demo.my.activity.Activity_ExchangeRecord"/>
+        <activity android:name="com.demo.my.activity.Activity_BankCard"/>
+        <activity android:name="com.demo.my.activity.Activity_BankCardAdd"/>
+        <activity android:name="com.demo.my.activity.Activity_PaymentPassword"/>
+        <activity android:name="com.demo.my.activity.Activity_Reset"/>
+        <activity android:name="com.demo.my.activity.Activity_Identity"/>
+        <activity android:name="com.demo.my.activity.Activity_MyCollection"/>
+        <activity android:name="com.demo.my.activity.Activity_Recreation"/>
+        <activity android:name="com.demo.my.activity.Activity_News"/>
+        <activity android:name="com.demo.my.activity.Activity_RefundOrder"/>
+        <activity android:name="com.demo.my.activity.Activity_logistics"/>
+        <activity android:name="com.demo.amusement.activity.Activity_ScenicActivities"/>
+        <activity android:name="com.demo.amusement.activity.Activity_WriteBlogs"/>
+        <activity android:name="com.demo.amusement.activity.Activity_VideoStrategy"/>
+        <activity android:name="com.demo.amusement.activity.Activity_WonderfulTravels"/>
+        <activity android:name="com.demo.amusement.activity.Activity_DetailedList"/>
+        <activity android:name="com.demo.amusement.activity.MyPlay"/>
+        <activity android:name="com.demo.my.activity.Activity_SetPaymentPassword"/>
+        <activity android:name="com.demo.amusement.activity.Activity_ActivityDetailsTj"/>
+        <activity android:name="com.demo.amusement.activity.Activity_ActivityDetailsJb"/>
+        <activity android:name="com.demo.scenicspot.activity.Activity_ScenicspotGraphic"/>
+        <activity android:name="com.demo.my.activity.Activity_AllComments_ylq"/>
+        <activity android:name="com.demo.amusement.activity.Activity_OtherInformation"/>
+        <activity android:name="com.demo.my.activity.Activity_ToEvaluate"/>
+        <activity android:name="com.demo.my.activity.Activity_RechargeOk"/>
+        <activity android:name="com.demo.my.activity.Activity_ExchangeDetails"/>
+        <activity android:name="com.demo.my.activity.Activity_ExchangeOkKeepsake"/>
+        <activity android:name="com.demo.my.activity.Activity_ExchangeOkTicket"/>
+        <activity android:name="com.demo.my.activity.Activity_PersonalData2"/>
+        <activity android:name="com.demo.my.activity.Activity_ExchangeResultesKeepsake"/>
+        <activity android:name="com.demo.my.activity.Activity_ExchangeResultesTicket"/>
+        <activity android:name="com.demo.my.activity.Activity_PaymentOrder"/>
+        <activity android:name="com.demo.my.activity.Activity_OrderDetailsKeepsake"/>
+        <activity android:name="com.demo.my.activity.Activity_OrderDetailsTicket"/>
+        <activity android:name="com.demo.my.activity.Activity_RefundDetails_fd"/>
+        <activity android:name="com.demo.my.activity.Activity_RefundDetails_jd"/>
+        <activity android:name="com.demo.my.activity.Activity_RefundDetails_sp"/>
+        <activity android:name="com.demo.my.activity.Activity_MyTicketDetails"/>
+        <activity android:name="com.demo.my.activity.Activity_OrderDetailsJd"/>
+        <activity android:name="com.demo.my.activity.Activity_OrderDetailsFdDp"/>
+        <activity android:name="com.demo.my.activity.Activity_OrderDetailsFdTc"/>
+        <activity android:name="com.demo.my.activity.Activity_OrderDetailsSp"/>
+        <activity android:name="com.demo.my.activity.Activity_ApplyRefund"/>
+        <activity android:name="com.demo.my.activity.Activity_MessageDetails"/>
+        <activity android:name="com.demo.my.activity.Activity_ShoppingCart"/>
+        <activity android:name="com.demo.my.activity.Activity_ConfirmOrder"/>
+        <activity android:name="com.demo.my.activity.Activity_CartPaymentOrder"/>
+        <activity android:name="com.demo.my.activity.Activity_CartPaymentResult"/>
+        <activity android:name="com.demo.my.activity.Activity_AllComments_wdylq"/>
+        <activity android:name="com.demo.my.activity.Activity_SeeImage" android:theme="@style/TranslucentTheme"  />
+        <activity android:name="com.demo.amusement.activity.Activity_AmusementGraphic"/>
+        <activity android:name="com.demo.my.activity.Activity_OrderPaymentOrder"/>
+        <activity android:name="com.demo.mall.activity.ShopSearchActivity"/>
+        <activity android:name="com.demo.monitor.RealPlayActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.MapSearchActivity"/>
+        <!--景区-->
+        <activity android:name="com.demo.scenicspot.activity.ScienceSpotActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.ScienceMoreActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.NewsMustknowActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.SureOrderActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.ChosePaywayActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.WebViewActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.ScenicSpotSearchActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.ArroundActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.LookBigPictureActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.PlanActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.BriefIntroductionActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.PayResultActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.UserCommentActivity"/>
+        <activity android:name="com.demo.fragment.BaseActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.MapGuideActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.MaprecommendationActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.MapTwoPointActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.MapSearchLineActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.MapRecommendLineActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.VirtualTourActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.SeeAroundActivity"/>
+        <!--商城-->
+        <activity android:name="com.demo.mall.activity.SpecialActivity"/>
+        <activity android:name="com.demo.mall.activity.ShopActivity"/>
+        <activity android:name="com.demo.mall.activity.ShopMessageActivity"/>
+        <activity android:name="com.demo.mall.activity.CategoryActivity"/>
+        <activity android:name="com.demo.mall.activity.SnackActivity"/>
+        <activity android:name="com.demo.mall.activity.RestaurantActivity"/>
+        <activity android:name="com.demo.mall.activity.HotelActivity"/>
+        <activity android:name="com.demo.mall.activity.ChoseDateActivity"  android:theme="@android:style/Theme.Holo.Light.NoActionBar"/>
+        <activity android:name="com.demo.mall.activity.RestaurantMoreActivity"/>
+        <activity android:name="com.demo.mall.activity.RestaurantMessageActivity"/>
+        <activity android:name="com.demo.mall.activity.HotelMoreActivity"/>
+        <activity android:name="com.demo.mall.activity.HotelSureOrderActivity"/>
+        <activity android:name="com.demo.mall.activity.PackageSureOrderActivity"/>
+        <activity android:name="com.demo.mall.activity.SingleSureOrderActivity"/>
+        <activity android:name="com.demo.mall.activity.PackageMoreActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.NewsDetailsActivity"/>
+
+        <activity android:name="com.demo.mall.activity.PurchaseDetailsActivity"/>
+        <activity android:name="com.demo.mall.activity.ChoossePaymentJdActivity"/>
+        <activity android:name="com.demo.mall.activity.PaymentResultJdActivity"/>
+        <activity android:name="com.demo.mall.activity.ChoossePaymentFdDpActivity"/>
+        <activity android:name="com.demo.mall.activity.PaymentResultFdDpActivity"/>
+        <activity android:name="com.demo.mall.activity.ChoossePaymentFdTcActivity"/>
+        <activity android:name="com.demo.mall.activity.PaymentResultFdTcActivity"/>
+        <activity android:name="com.demo.mall.activity.ConfirmOrderTcActivity"/>
+        <activity android:name="com.demo.mall.activity.PaymentOrderTcActivity"/>
+        <activity android:name="com.demo.mall.activity.PaymentResultTcActivity"/>
+        <activity android:name="com.demo.mall.activity.MallSearchActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.WatchBridActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.InvesActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.ShidiActivity"/>
+        <activity android:name="com.demo.scenicspot.activity.RootActivity"/>
+        <activity android:name="com.demo.Zxing.PaymentOrderZxing"/>
+
+        <activity android:name="com.demo.view.permission.PermissionsActivity"/>
+        <!--微信支付，支付宝支付-->
+        <activity android:name="com.demo.alipay.PayDemoActivity"/>
+        <activity android:name=".wxapi.WXPayEntryActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wx4c05486c196ff0d5"/>
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.demo.chat.AppRegister">
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+
+        <!--微信分享回调 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+
+            <intent-filter>
+                <data android:scheme="tencent1105582731" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="tencentwx4c05486c196ff0d5" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- 调用新浪原生SDK，需要注册的回调activity -->
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="me.iwf.photopicker.PhotoPagerActivity"/>
+        <activity android:name="me.iwf.photopicker.PhotoPickerActivity"/>
+        <activity android:name="com.demo.monitor.TestDpsdkCoreActivity"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+<TextView
+    android:id="@+id/tv_adp_packagemore_food"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="鱼豆腐，"
+    android:textColor="@color/black"
+    android:textSize="12dp"/>
+    <TextView
+        android:id="@+id/tv_adp_packagemore_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1份，"
+        android:textColor="@color/black"
+        android:textSize="12dp"/>
+    <TextView
+        android:id="@+id/tv_adp_packagemore_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="55元"
+        android:textColor="@color/black"
+        android:textSize="12dp"/>
+</LinearLayout>

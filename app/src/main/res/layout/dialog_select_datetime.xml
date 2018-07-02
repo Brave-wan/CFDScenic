@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:background="#F5F5F5"
+        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/pickerview_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:background="@mipmap/bt_yuanjiao_lan"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#fff"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="选择时间"
+            android:textColor="#808080"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/pickerview_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginRight="15dp"
+            android:background="@mipmap/bt_yuanjiao_lan"
+            android:gravity="center"
+            android:text="确认"
+            android:textColor="#fff"
+            android:textSize="13sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <com.demo.view.PickerView
+            android:id="@+id/pickerview_year"
+            android:layout_width="0dp"
+            android:layout_height="230dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="2" />
+        <com.demo.view.PickerView
+            android:id="@+id/pickerview_month"
+            android:layout_width="0dp"
+            android:layout_height="230dp"
+            android:layout_weight="1" />
+        <com.demo.view.PickerView
+            android:id="@+id/pickerview_day"
+            android:layout_width="0dp"
+            android:layout_height="230dp"
+            android:layout_weight="1" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+       <!-- <com.demo.view.PickerView
+            android:id="@+id/pickerview_h"
+            android:layout_width="0dp"
+            android:layout_height="230dp"
+            android:layout_weight="1" />
+        <com.demo.view.PickerView
+            android:id="@+id/pickerview_m"
+            android:layout_width="0dp"
+            android:layout_height="230dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />-->
+    </LinearLayout>
+</LinearLayout>

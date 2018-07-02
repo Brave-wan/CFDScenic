@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">智慧湿地游</string>
+    <string name="txt_info">苹果公司在美国旧金山召开2014年度全球开发者大会。在全球开发者大会之前，就有预测称此次苹果会有一些硬件产品亮相，甚至是iWatch智能手表、iPhone 6，因为健康管理应用HealthKit铁定发布。实际上，开场库克所提到的两件事均与硬件无关，分别是iOS 8与Mac OS X两部分，除此之外还发布了全新编程语言Swift。
+原文出自【比特网】，转载请保留原文链接：http://it.chinabyte.com/370/12971870.shtml苹果公司在美国旧金山召开2014年度全球开发者大会。在全球开发者大会之前，就有预测称此次苹果会有一些硬件产品亮相，甚至是iWatch智能手表、iPhone 6，因为健康管理应用HealthKit铁定发布。实际上，开场库克所提到的两件事均与硬件无关，分别是iOS 8与Mac OS X两部分，除此之外还发布了全新编程语言Swift。
+原文出自【比特网】，转载请保留原文链接：http://it.chinabyte.com/370/12971870.shtml苹果公司在美国旧金山召开2014年度全球开发者大会。在全球开发者大会之前，就有预测称此次苹果会有一些硬件产品亮相，甚至是iWatch智能手表、iPhone 6，因为健康管理应用HealthKit铁定发布。实际上，开场库克所提到的两件事均与硬件无关，分别是iOS 8与Mac OS X两部分，除此之外还发布了全新编程语言Swift。
+原文出自【比特网】，转载请保留原文链接：http://it.chinabyte.com/370/12971870.shtml</string>
+    <string name="pay_by_wx_title">通过微信支付</string>
+    <string name="pay_by_wxap">服务器端签名微信支付</string>
+    <string name="check_pay">检查微信版本是否支持支付</string>
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="app_tip">提示</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="help">帮助</string>
+    <string name="string_help_text">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。\n\n最后点击两次后退按钮，即可返回。</string>
+    <string name="quit">退出</string>
+    <string name="settings">设置</string>
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+    <string name="address_shang">请填写收货地址</string>
+    <string name="address_xia">请点击选择收货地址</string>
+    <string name="app_id">输入您讯飞的appid</string>
+</resources>
