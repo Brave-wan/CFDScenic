@@ -4,14 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CFDScenic.iml" filepath="$PROJECT_DIR$/CFDScenic.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" filepath="$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" filepath="$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/Publicmethod/Publicmethod.iml" filepath="$PROJECT_DIR$/Publicmethod/Publicmethod.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Publicmethod/Publicmethod.iml" filepath="$PROJECT_DIR$/Publicmethod/Publicmethod.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Publicmethod/SanMiaolibrary.iml" filepath="$PROJECT_DIR$/Publicmethod/SanMiaolibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/caofeidian.iml" filepath="$PROJECT_DIR$/caofeidian.iml" />
-      <module fileurl="file://$PROJECT_DIR$/trunk.iml" filepath="$PROJECT_DIR$/trunk.iml" />
     </modules>
   </component>
 </project>

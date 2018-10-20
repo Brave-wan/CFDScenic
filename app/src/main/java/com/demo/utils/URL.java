@@ -7,7 +7,7 @@ import com.demo.mall.bean.MallSearchBean;
  */
 public class URL {
 //    public static final String IP = "https://www.cfdzhsd.com/cfdScenic/";
-    public static final String IP = "http://10.15.208.101:8080/cfdScenic/";
+    public static final String IP = "http://47.104.238.102:8080/cfdScenic/";
     //public static final String IP = "http://192.168.1.149/cfdScenic/";
     //public static final String IP = "http://59.110.61.137/cfdScenic/";
     //public static final String IP = "http://139.129.167.224:88/cfdScenic/";

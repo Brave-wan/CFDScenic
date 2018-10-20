@@ -10,6 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
@@ -22,6 +26,8 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.demo.demo.myapplication.R;
 import com.demo.fragment.MyApplication;
+import com.demo.monitor.present.TestDpsdkCorePresent;
+import com.demo.monitor.view.ITestDpsdkCoreView;
 import com.demo.utils.ToastUtil;
 import com.demo.utils.URL;
 import com.demo.view.permission.PermissionsActivity;
@@ -47,7 +53,9 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -56,7 +64,7 @@ import butterknife.ButterKnife;
 /**
  * 作者：sonnerly on 2016/11/22 0022 16:57
  */
-public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClickListener {
+public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClickListener, AMapLocationListener,ITestDpsdkCoreView {
     @Bind(R.id.map_monitor_point)
     MapView mapMonitorPoint;
     String ip = "192.168.1.195";
@@ -65,6 +73,8 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     String password = "dahua2006";
     private MyApplication mAPP = MyApplication.get();
     private AMap aMap;
+    public AMapLocationClient mlocationClient;
+    public AMapLocationClientOption mLocationOption = null;
     PermissionsChecker mPermissionsChecker;
     ArrayList<Marker> saveMarkerList = new ArrayList<Marker>();
     private GroupListManager mGroupListManager = null;
@@ -72,20 +82,23 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     private TreeNode root = null;
     MonitorBean monitorBean = null;
     Intent intent = new Intent();
-//    getshexiangtouid
+    private TestDpsdkCorePresent present;
+
+    //    getshexiangtouid
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.monitor_point_activity);
         ButterKnife.bind(this);
+        present=new TestDpsdkCorePresent(this,this);
         mAPP.initApp();
+        initMap();
         mGroupListManager = GroupListManager.getInstance();
         getip();
         mPermissionsChecker = new PermissionsChecker(this);
         mapMonitorPoint.onCreate(savedInstanceState);// 此方法必须重写
         if (aMap == null) {
             aMap = mapMonitorPoint.getMap();
-//            setUpMap();
             aMap.getUiSettings().setScaleControlsEnabled(true);//显示比例尺控件
         }
 
@@ -97,36 +110,53 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
 
             @Override
             public void onCameraChangeFinish(CameraPosition cameraPosition) {
-                if(aMap.getCameraPosition().zoom>15.6f)  aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
+                if (aMap.getCameraPosition().zoom > 15.6f)
+                    aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
             }
         });
 
         aMap.setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
             @Override
             public void onMapLoaded() {
-                if(aMap.getCameraPosition().zoom>15.6f)  aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
+                if (aMap.getCameraPosition().zoom > 15.6f)
+                    aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
             }
         });
         aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.205725,
                 118.361903), 14));//设置中心点 //118.361903,39.205725
         Addground();
         aMap.setOnMarkerClickListener(this);
-        initGet();
+        present.initGet();
 //         getGroupList();
+    }
+
+    private void initMap() {
+        mlocationClient = new AMapLocationClient(this);
+        //初始化定位参数
+        mLocationOption = new AMapLocationClientOption();
+        mlocationClient.setLocationListener(this);
+        //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置定位间隔,单位毫秒,默认为2000ms
+        mLocationOption.setInterval(2000);
+        //设置定位参数
+        mlocationClient.setLocationOption(mLocationOption);
+        mlocationClient.startLocation();
     }
 
     private int[] R_map1 = {R.drawable.lpcniu_0
             , R.drawable.lpcniu_1, R.drawable.lpcniu_2, R.drawable.lpcniu_3, R.drawable.lpcniu_4
     };
-    private int[] R_map2 = { R.drawable.lpcniu_5, R.drawable.lpcniu_6,
+    private int[] R_map2 = {R.drawable.lpcniu_5, R.drawable.lpcniu_6,
             R.drawable.lpcniu_7, R.drawable.lpcniu_8, R.drawable.lpcniu_9};
+
     /**
      * 添加瓦片图层
      **/
     public void Addground() {
 
 
-        for (int i = 0; i <R_map1.length; i++) {
+        for (int i = 0; i < R_map1.length; i++) {
 //            LatLngBounds bounds = new LatLngBounds.Builder()
 //                    .include(new LatLng(39.26975243, 118.41303362 - ((19 - i) * 0.00489666)))     5  0.019586626000000003
 //                    .include(new LatLng(39.15506772 + (0.11468471 / 2), 118.31510049 + (i * 0.00489666))).build();  10  0.010337393333333333
@@ -140,7 +170,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
 
         }
 
-        for (int i = 0; i <R_map2.length; i++) {
+        for (int i = 0; i < R_map2.length; i++) {
 
             LatLngBounds bounds = new LatLngBounds.Builder()
                     .include(new LatLng(39.26975243 - (0.11468471 / 2), 118.41303362 - ((4 - i) * 0.019586626000000003)))
@@ -150,59 +180,12 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
                             .fromResource(R_map2[i]))
                     .positionFromBounds(bounds));
         }
-
-
     }
 
-    private void initGet() {
-        RequestParams params = new RequestParams();
-        HttpUtils http = new HttpUtils();
-        http.configResponseTextCharset(HTTP.UTF_8);
-        http.configCurrentHttpCacheExpiry(0 * 1000);
-        http.send(HttpRequest.HttpMethod.GET, URL.realTime, params,
-                new RequestCallBack<String>() {
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
-                        Log.i("1111", responseInfo.result);
-                        try {
-                            monitorBean = new Gson().fromJson(responseInfo.result, MonitorBean.class);
-                            int i = monitorBean.getHeader().getStatus();
-                            if (i == 0) {
-                                if (monitorBean.getData() != null) {
-                                    for (int index = 0; index < monitorBean.getData().getRows().size(); index++) {
-                                        if (!monitorBean.getData().getRows().equals("")) {
-                                            MarkerOptions markerOptions = new MarkerOptions();
-                                            Double accuracy = Double.parseDouble(monitorBean.getData().getRows().get(index).getX_point());
-                                            Double latitude = Double.parseDouble(monitorBean.getData().getRows().get(index).getY_point());
-                                            markerOptions.position(new LatLng(latitude, accuracy));
-                                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.datouzhen));
-//                                            markerOptions.title(monitorBean.getData().get(index).getName());
-
-                                            Marker marker = aMap.addMarker(markerOptions);
-                                            saveMarkerList.add(marker);
-
-                                        }
-                                    }
-
-                                }
-                            } else {
-                                ToastUtil.show(getApplicationContext(), monitorBean.getHeader().getMsg());
-                            }
-                        } catch (Exception e) {
-                            ToastUtil.show(TestDpsdkCoreActivity.this, e.getMessage());
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(HttpException e, String s) {
-                        ToastUtil.show(TestDpsdkCoreActivity.this, e.getMessage());
-                    }
-                });
-    }
-
-    /**获取登录ip地址**/
-    public  void getip(){
+    /**
+     * 获取登录ip地址
+     **/
+    public void getip() {
         HttpUtils http = new HttpUtils();
         http.configResponseTextCharset(HTTP.UTF_8);
         http.configCurrentHttpCacheExpiry(0 * 1000);
@@ -213,14 +196,14 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
 
                         try {
 //                            monitorBean = new Gson().fromJson(responseInfo.result, MonitorBean.class);
-                            JSONObject jsonObject=new JSONObject(responseInfo.result);
-                            JSONObject head=jsonObject.getJSONObject("header");
+                            JSONObject jsonObject = new JSONObject(responseInfo.result);
+                            JSONObject head = jsonObject.getJSONObject("header");
                             int i = head.getInt("status");
                             if (i == 0) {
                                 ip = jsonObject.getJSONObject("data").getString("ip");
-                                port=jsonObject.getJSONObject("data").getString("port_number");
-                                user=jsonObject.getJSONObject("data").getString("user");
-                                password=jsonObject.getJSONObject("data").getString("password");
+                                port = jsonObject.getJSONObject("data").getString("port_number");
+                                user = jsonObject.getJSONObject("data").getString("user");
+                                password = jsonObject.getJSONObject("data").getString("password");
                                 new LoginTask().execute();
                             } else {
                                 ToastUtil.show(getApplicationContext(), head.getString("msg"));
@@ -273,12 +256,12 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
 
     }
 
-        GroupListGetTask.IOnSuccessListener mIOnSuccessListener = new GroupListGetTask.IOnSuccessListener() {
+    GroupListGetTask.IOnSuccessListener mIOnSuccessListener = new GroupListGetTask.IOnSuccessListener() {
         @Override
         public void onSuccess(final boolean success, final int errCode) {
             if (success) {
                 root = mGroupListManager.getRootNode();
-                Log.e("root",root+"");
+                Log.e("root", root + "");
 //                        if (root != null) {
 //                            mGroupListAdapter.clearDate();
 //                            mGroupListAdapter.addNode(root);
@@ -291,7 +274,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
 //                        }
                 //updateSelectChannels();
             } else {
-                ToastUtil.show(TestDpsdkCoreActivity.this, "获取组织列表失败，异常代码："+errCode);
+                ToastUtil.show(TestDpsdkCoreActivity.this, "获取组织列表失败，异常代码：" + errCode);
             }
 
 //            mHandler.post(new Runnable() {
@@ -341,7 +324,6 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     }
 
 
-
     private void startPermissionsActivity() {
         PermissionsActivity.startActivityForResult(this, REQUEST_CODE, PERMISSIONS);
     }
@@ -353,39 +335,39 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
         intent = new Intent(TestDpsdkCoreActivity.this, RealPlayActivity.class);
         double latitude = marker.getPosition().latitude;
         double longitude = marker.getPosition().longitude;
-        int pos=0;
-        for (int i=0;i<monitorBean.getData().getRows().size();i++){
-            double latitude1=0,longitude1=0;
-            String aa="",bb="";
+        int pos = 0;
+        for (int i = 0; i < monitorBean.getData().getRows().size(); i++) {
+            double latitude1 = 0, longitude1 = 0;
+            String aa = "", bb = "";
             try {
-                latitude1=Double.parseDouble(monitorBean.getData().getRows().get(i).getY_point());
-                longitude1=Double.parseDouble(monitorBean.getData().getRows().get(i).getX_point());
-                DecimalFormat df   = new DecimalFormat("######0.000000");
-                aa= df.format(latitude1);
-                bb=df.format(longitude1);
-            }catch (Exception e){
+                latitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getY_point());
+                longitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getX_point());
+                DecimalFormat df = new DecimalFormat("######0.000000");
+                aa = df.format(latitude1);
+                bb = df.format(longitude1);
+            } catch (Exception e) {
 
             }
 
-            if(latitude==Double.parseDouble(aa)&&Double.parseDouble(bb)==longitude){
-                pos=i;
+            if (latitude == Double.parseDouble(aa) && Double.parseDouble(bb) == longitude) {
+                pos = i;
                 break;
             }
         }
 
-        if(root==null){
-            ToastUtil.show(TestDpsdkCoreActivity.this,"未知异常");
+        if (root == null) {
+            ToastUtil.show(TestDpsdkCoreActivity.this, "未知异常");
             return false;
         }
         String channelId = null;
-          for(int ii=0;ii<root.getChildren().size();ii++){
-              if(root.getChildren().get(ii).getValue().equals(monitorBean.getData().getRows().get(pos).getCode())){
-                  channelId= root.getChildren().get(ii).getChildren().get(0).getValue();
+        for (int ii = 0; ii < root.getChildren().size(); ii++) {
+            if (root.getChildren().get(ii).getValue().equals(monitorBean.getData().getRows().get(pos).getCode())) {
+                channelId = root.getChildren().get(ii).getChildren().get(0).getValue();
 
-              }
-          }
-        if(channelId==null){
-            ToastUtil.show(TestDpsdkCoreActivity.this,"未找到摄像头");
+            }
+        }
+        if (channelId == null) {
+            ToastUtil.show(TestDpsdkCoreActivity.this, "未找到摄像头");
             return false;
         }
 
@@ -395,6 +377,49 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
         startActivity(intent);
         return false;
     }
+
+    @Override
+    public void onLocationChanged(AMapLocation amapLocation) {
+        if (amapLocation != null) {
+            if (amapLocation.getErrorCode() == 0) {
+                //定位成功回调信息，设置相关消息
+                amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
+                amapLocation.getLatitude();//获取纬度
+                amapLocation.getLongitude();//获取经度
+                amapLocation.getAccuracy();//获取精度信息
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date(amapLocation.getTime());
+                df.format(date);//定位时间
+                Log.e("AmapError","location Error, ErrCode:"
+                        + amapLocation.getLatitude() + ", errInfo:"
+                        + amapLocation.getLongitude());
+            } else {
+                //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                Log.e("AmapError","location Error, ErrCode:"
+                        + amapLocation.getErrorCode() + ", errInfo:"
+                        + amapLocation.getErrorInfo());
+            }
+        }
+    }
+
+    @Override
+    public void OnMonitorBean(MonitorBean monitorBean) {
+        for (int index = 0; index < monitorBean.getData().getRows().size(); index++) {
+            if (!monitorBean.getData().getRows().equals("")) {
+                MarkerOptions markerOptions = new MarkerOptions();
+                Double accuracy = Double.parseDouble(monitorBean.getData().getRows().get(index).getX_point());
+                Double latitude = Double.parseDouble(monitorBean.getData().getRows().get(index).getY_point());
+                markerOptions.position(new LatLng(latitude, accuracy));
+                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.datouzhen));
+//                                            markerOptions.title(monitorBean.getData().get(index).getName());
+
+                Marker marker = aMap.addMarker(markerOptions);
+                saveMarkerList.add(marker);
+
+            }
+        }
+    }
+
 
     public class LoginTask extends AsyncTask<Void, Integer, Integer> {
 
@@ -427,40 +452,11 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
                 IDpsdkCore.DPSDK_SetCompressType(mAPP.getDpsdkCreatHandle(), 0);
                 mAPP.setLoginHandler(1);
                 getGroupList();
-//                 jumpToItemListActivity();
-//                intent.setClass(TestDpsdkCoreActivity.this, RealPlayActivity.class);
-//
-//                double latitude = marker.getPosition().latitude;
-//                double longitude = marker.getPosition().longitude;
-//                int pos=0;
-//                for (int i=0;i<monitorBean.getData().getRows().size();i++){
-//                    double latitude1=0,longitude1=0;
-//                    String aa="",bb="";
-//                    try {
-//                        latitude1=Double.parseDouble(monitorBean.getData().getRows().get(i).getY_point());
-//                        longitude1=Double.parseDouble(monitorBean.getData().getRows().get(i).getX_point());
-//                        DecimalFormat df   = new DecimalFormat("######0.000000");
-//                        aa= df.format(latitude1);
-//                        bb=df.format(longitude1);
-//                    }catch (Exception e){
-//
-//                    }
-//
-//                    if(latitude==Double.parseDouble(aa)&&longitude==Double.parseDouble(bb)){
-//                        pos=i;
-//                        break;
-//                    }
-//                }
-//                intent.putExtra("name", monitorBean.getData().getRows().get(pos).getName());
-//                intent.putExtra("conn", monitorBean.getData().getRows().get(pos).getContent());
-//                startActivity(intent);
+
             } else {
                 Log.d("DpsdkLogin failed:", result + "");
                 Toast.makeText(getApplicationContext(), "login failed" + result, Toast.LENGTH_SHORT).show();
                 mAPP.setLoginHandler(0);
-
-                //m_loginHandle = 0;
-                //jumpToContentListActivity();
             }
         }
 
@@ -504,14 +500,24 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     protected void onDestroy() {
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
-
-
         Logout();
-
 //        IDpsdkCore.DPSDK_Destroy(mAPP.getDpsdkCreatHandle());
 //        mapMonitorPoint.onDestroy();
-
+        destroyLocation();
     }
+
+    private void destroyLocation(){
+        if (null != mlocationClient) {
+            /**
+             * 如果AMapLocationClient是在当前Activity实例化的，
+             * 在Activity的onDestroy中一定要执行AMapLocationClient的onDestroy
+             */
+            mlocationClient.onDestroy();
+            mlocationClient = null;
+            mLocationOption = null;
+        }
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -532,5 +538,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
             mAPP.setLoginHandler(0);
         }
     }
+
+
 
 }
