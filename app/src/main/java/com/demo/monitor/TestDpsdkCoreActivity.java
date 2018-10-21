@@ -461,12 +461,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
         }
 
     }
-//    public void jumpToItemListActivity()
-//    {
 
-    //intent.setClass(this, ItemListActivity.class);
-//        startActivityForResult(intent, 2);
-//    }
     private void saveLoginInfo() {
         SharedPreferences sp = getSharedPreferences("LOGININFO", 0);
         SharedPreferences.Editor ed = sp.edit();
