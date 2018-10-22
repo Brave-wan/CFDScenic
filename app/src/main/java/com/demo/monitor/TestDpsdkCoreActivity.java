@@ -26,6 +26,7 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.demo.demo.myapplication.R;
 import com.demo.fragment.MyApplication;
+import com.demo.monitor.bean.VideoListBean;
 import com.demo.monitor.present.TestDpsdkCorePresent;
 import com.demo.monitor.view.ITestDpsdkCoreView;
 import com.demo.utils.ToastUtil;
@@ -64,7 +65,7 @@ import butterknife.ButterKnife;
 /**
  * 作者：sonnerly on 2016/11/22 0022 16:57
  */
-public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClickListener, AMapLocationListener,ITestDpsdkCoreView {
+public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClickListener, AMapLocationListener, ITestDpsdkCoreView {
     @Bind(R.id.map_monitor_point)
     MapView mapMonitorPoint;
     String ip = "192.168.1.195";
@@ -90,7 +91,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.monitor_point_activity);
         ButterKnife.bind(this);
-        present=new TestDpsdkCorePresent(this,this);
+        present = new TestDpsdkCorePresent(this, this);
         mAPP.initApp();
         initMap();
         mGroupListManager = GroupListManager.getInstance();
@@ -126,8 +127,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
                 118.361903), 14));//设置中心点 //118.361903,39.205725
         Addground();
         aMap.setOnMarkerClickListener(this);
-        present.initGet();
-//         getGroupList();
+        present.getVideoList();
     }
 
     private void initMap() {
@@ -390,12 +390,12 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date(amapLocation.getTime());
                 df.format(date);//定位时间
-                Log.e("AmapError","location Error, ErrCode:"
+                Log.e("AmapError", "location Error, ErrCode:"
                         + amapLocation.getLatitude() + ", errInfo:"
                         + amapLocation.getLongitude());
             } else {
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                Log.e("AmapError","location Error, ErrCode:"
+                Log.e("AmapError", "location Error, ErrCode:"
                         + amapLocation.getErrorCode() + ", errInfo:"
                         + amapLocation.getErrorInfo());
             }
@@ -403,20 +403,16 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     }
 
     @Override
-    public void OnMonitorBean(MonitorBean monitorBean) {
-        for (int index = 0; index < monitorBean.getData().getRows().size(); index++) {
-            if (!monitorBean.getData().getRows().equals("")) {
-                MarkerOptions markerOptions = new MarkerOptions();
-                Double accuracy = Double.parseDouble(monitorBean.getData().getRows().get(index).getX_point());
-                Double latitude = Double.parseDouble(monitorBean.getData().getRows().get(index).getY_point());
-                markerOptions.position(new LatLng(latitude, accuracy));
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.datouzhen));
-//                                            markerOptions.title(monitorBean.getData().get(index).getName());
-
-                Marker marker = aMap.addMarker(markerOptions);
-                saveMarkerList.add(marker);
-
-            }
+    public void OnMonitorBean(VideoListBean monitorBean) {
+        for (int index = 0; index < monitorBean.getData().size(); index++) {
+            VideoListBean.DataBean dataBean = monitorBean.getData().get(index);
+            MarkerOptions markerOptions = new MarkerOptions();
+//            Double accuracy = Double.parseDouble(String.valueOf(dataBean.getPosition_x()));
+//            Double latitude = Double.parseDouble(String.valueOf(dataBean.getPosition_y()));
+            markerOptions.position(new LatLng(39.288892,118.473355));
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.datouzhen));
+            Marker marker = aMap.addMarker(markerOptions);
+            saveMarkerList.add(marker);
         }
     }
 
@@ -501,7 +497,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
         destroyLocation();
     }
 
-    private void destroyLocation(){
+    private void destroyLocation() {
         if (null != mlocationClient) {
             /**
              * 如果AMapLocationClient是在当前Activity实例化的，
@@ -533,7 +529,6 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
             mAPP.setLoginHandler(0);
         }
     }
-
 
 
 }

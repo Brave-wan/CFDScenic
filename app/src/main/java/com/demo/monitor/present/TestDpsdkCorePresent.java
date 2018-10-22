@@ -3,13 +3,8 @@ package com.demo.monitor.present;
 import android.content.Context;
 import android.util.Log;
 
-import com.amap.api.maps.model.BitmapDescriptorFactory;
-import com.amap.api.maps.model.LatLng;
-import com.amap.api.maps.model.Marker;
-import com.amap.api.maps.model.MarkerOptions;
-import com.demo.demo.myapplication.R;
 import com.demo.monitor.MonitorBean;
-import com.demo.monitor.TestDpsdkCoreActivity;
+import com.demo.monitor.bean.VideoListBean;
 import com.demo.monitor.view.ITestDpsdkCoreView;
 import com.demo.utils.ToastUtil;
 import com.demo.utils.URL;
@@ -46,6 +41,37 @@ public class TestDpsdkCorePresent {
                         Log.i("1111", responseInfo.result);
                         try {
                             MonitorBean monitorBean = new Gson().fromJson(responseInfo.result, MonitorBean.class);
+                            int i = monitorBean.getHeader().getStatus();
+                            if (i == 0&&view!=null) {
+//                                view.OnMonitorBean(monitorBean);
+                            } else {
+                                ToastUtil.show(mContext, monitorBean.getHeader().getMsg());
+                            }
+                        } catch (Exception e) {
+                            ToastUtil.show(mContext, e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(HttpException e, String s) {
+                        ToastUtil.show(mContext, e.getMessage());
+                    }
+                });
+    }
+
+
+    public void getVideoList() {
+        RequestParams params = new RequestParams();
+        HttpUtils http = new HttpUtils();
+        http.configResponseTextCharset(HTTP.UTF_8);
+        http.configCurrentHttpCacheExpiry(0 * 1000);
+        http.send(HttpRequest.HttpMethod.POST, URL.videoList, params,
+                new RequestCallBack<String>() {
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        Log.i("1111", responseInfo.result);
+                        try {
+                            VideoListBean monitorBean = new Gson().fromJson(responseInfo.result, VideoListBean.class);
                             int i = monitorBean.getHeader().getStatus();
                             if (i == 0&&view!=null) {
                                 view.OnMonitorBean(monitorBean);

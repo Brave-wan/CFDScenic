@@ -1,7 +1,7 @@
 package com.demo.monitor.view;
 
-import com.demo.monitor.MonitorBean;
+import com.demo.monitor.bean.VideoListBean;
 
 public interface ITestDpsdkCoreView {
-    void OnMonitorBean(MonitorBean monitorBean);
+    void OnMonitorBean(VideoListBean monitorBean);
 }

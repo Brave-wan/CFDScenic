@@ -278,6 +278,9 @@ public class URL {
     public static final String getAlipay=IP+"shopUser/getAlipayInfo";
     //监控
     public static final String realTime=IP+"monitorPoint/getAllMonitor";
+
+    //监控
+    public static final String videoList=IP+"monitorVideos/getCamerasEx";
     //我的游乐圈-删除
     public static final String deleteMycircle=IP+"interFace/PlayCircle/deleteMyTravelLog";
     //获取大华摄像头ip地址
