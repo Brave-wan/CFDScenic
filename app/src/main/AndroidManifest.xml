@@ -417,6 +417,7 @@
         <activity android:name="me.iwf.photopicker.PhotoPagerActivity"/>
         <activity android:name="me.iwf.photopicker.PhotoPickerActivity"/>
         <activity android:name="com.demo.monitor.TestDpsdkCoreActivity"/>
+        <activity android:name="com.demo.monitor.HKPlayActivity"/>
     </application>
 
 </manifest>

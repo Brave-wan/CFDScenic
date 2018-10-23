@@ -95,7 +95,6 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
         mAPP.initApp();
         initMap();
         mGroupListManager = GroupListManager.getInstance();
-        getip();
         mPermissionsChecker = new PermissionsChecker(this);
         mapMonitorPoint.onCreate(savedInstanceState);// 此方法必须重写
         if (aMap == null) {
@@ -182,131 +181,9 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
         }
     }
 
-    /**
-     * 获取登录ip地址
-     **/
-    public void getip() {
-        HttpUtils http = new HttpUtils();
-        http.configResponseTextCharset(HTTP.UTF_8);
-        http.configCurrentHttpCacheExpiry(0 * 1000);
-        http.send(HttpRequest.HttpMethod.GET, URL.getshexiangtouid, null,
-                new RequestCallBack<String>() {
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
 
-                        try {
-//                            monitorBean = new Gson().fromJson(responseInfo.result, MonitorBean.class);
-                            JSONObject jsonObject = new JSONObject(responseInfo.result);
-                            JSONObject head = jsonObject.getJSONObject("header");
-                            int i = head.getInt("status");
-                            if (i == 0) {
-                                ip = jsonObject.getJSONObject("data").getString("ip");
-                                port = jsonObject.getJSONObject("data").getString("port_number");
-                                user = jsonObject.getJSONObject("data").getString("user");
-                                password = jsonObject.getJSONObject("data").getString("password");
-                                new LoginTask().execute();
-                            } else {
-                                ToastUtil.show(getApplicationContext(), head.getString("msg"));
-                            }
-                        } catch (Exception e) {
-                            ToastUtil.show(TestDpsdkCoreActivity.this, e.getMessage());
-                        }
 
-                    }
 
-                    @Override
-                    public void onFailure(HttpException e, String s) {
-                        ToastUtil.show(TestDpsdkCoreActivity.this, e.getMessage());
-                    }
-                });
-
-    }
-
-    /**
-     * <p>
-     * 获取组织列表
-     * </p>
-     *
-     * @author fangzhihua 2014-5-12 上午9:56:14
-     */
-    private void getGroupList() {
-        root = mGroupListManager.getRootNode();
-        if (root == null) {
-//            mWattingPb.setVisibility(View.VISIBLE);
-        }
-
-        if (mGroupListManager.getTask() != null) {
-//            mGroupListManager.setGroupListGetListener(mIOnSuccessListener);
-        }
-        if (mGroupListManager.isFinish() && root != null) {
-            if (root.getChildren().size() == 0) {
-                mGroupListManager.startGroupListGetTask();
-            }
-            Log.i("mmmmmm", "getGroupList finished---" + root.getChildren().size());
-//            sendMessage(mHandler, MSG_GROUPLIST_UPDATELIST, 0, 0);
-            return;
-        } else if (root == null) {
-            if (mGroupListManager.getTask() == null) {
-                // 获取组织树任务
-                Log.i("mmmmmm", "开始 执行GroupListGetTask");
-                mGroupListManager.startGroupListGetTask();
-                mGroupListManager.setGroupListGetListener(mIOnSuccessListener);
-            }
-        }
-
-    }
-
-    GroupListGetTask.IOnSuccessListener mIOnSuccessListener = new GroupListGetTask.IOnSuccessListener() {
-        @Override
-        public void onSuccess(final boolean success, final int errCode) {
-            if (success) {
-                root = mGroupListManager.getRootNode();
-                Log.e("root", root + "");
-//                        if (root != null) {
-//                            mGroupListAdapter.clearDate();
-//                            mGroupListAdapter.addNode(root);
-//                            // 设置默认展开级别
-//                            mGroupListAdapter.setExpandLevel(1);
-//                            mGroupListAdapter.notifyDataSetChanged();
-//                        } else {
-//                            mGroupListAdapter.clearDate();
-//                            mGroupListAdapter.notifyDataSetChanged();
-//                        }
-                //updateSelectChannels();
-            } else {
-                ToastUtil.show(TestDpsdkCoreActivity.this, "获取组织列表失败，异常代码：" + errCode);
-            }
-
-//            mHandler.post(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    // 清空任务
-//                    mGroupListManager.setTask(null);
-//
-//
-//                    if (success) {
-//                        root = mGroupListManager.getRootNode();
-//                        Log.e("root",root+"");
-//                        if (root != null) {
-//                            mGroupListAdapter.clearDate();
-//                            mGroupListAdapter.addNode(root);
-//                            // 设置默认展开级别
-//                            mGroupListAdapter.setExpandLevel(1);
-//                            mGroupListAdapter.notifyDataSetChanged();
-//                        } else {
-//                            mGroupListAdapter.clearDate();
-//                            mGroupListAdapter.notifyDataSetChanged();
-//                        }
-//                        updateSelectChannels();
-//                    } else {
-//                        ToastUtil.show(TestDpsdkCoreActivity.this, "获取组织列表失败，异常代码："+errCode);
-//                    }
-//
-//                }
-//            });
-        }
-    };
     // 所需权限
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
@@ -332,48 +209,50 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     public boolean onMarkerClick(Marker marker) {
 //        new LoginTask(marker).execute();
 
-        intent = new Intent(TestDpsdkCoreActivity.this, RealPlayActivity.class);
-        double latitude = marker.getPosition().latitude;
-        double longitude = marker.getPosition().longitude;
-        int pos = 0;
-        for (int i = 0; i < monitorBean.getData().getRows().size(); i++) {
-            double latitude1 = 0, longitude1 = 0;
-            String aa = "", bb = "";
-            try {
-                latitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getY_point());
-                longitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getX_point());
-                DecimalFormat df = new DecimalFormat("######0.000000");
-                aa = df.format(latitude1);
-                bb = df.format(longitude1);
-            } catch (Exception e) {
+        intent = new Intent(TestDpsdkCoreActivity.this, HKPlayActivity.class);
+//        double latitude = marker.getPosition().latitude;
+//        double longitude = marker.getPosition().longitude;
+//        int pos = 0;
+//        for (int i = 0; i < monitorBean.getData().getRows().size(); i++) {
+//            double latitude1 = 0, longitude1 = 0;
+//            String aa = "", bb = "";
+//            try {
+//                latitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getY_point());
+//                longitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getX_point());
+//                DecimalFormat df = new DecimalFormat("######0.000000");
+//                aa = df.format(latitude1);
+//                bb = df.format(longitude1);
+//            } catch (Exception e) {
+//
+//            }
+//
+//            if (latitude == Double.parseDouble(aa) && Double.parseDouble(bb) == longitude) {
+//                pos = i;
+//                break;
+//            }
+//        }
+//
+//        if (root == null) {
+//            ToastUtil.show(TestDpsdkCoreActivity.this, "未知异常");
+//            return false;
+//        }
+//        String channelId = null;
+//        for (int ii = 0; ii < root.getChildren().size(); ii++) {
+//            if (root.getChildren().get(ii).getValue().equals(monitorBean.getData().getRows().get(pos).getCode())) {
+//                channelId = root.getChildren().get(ii).getChildren().get(0).getValue();
+//
+//            }
+//        }
+//        if (channelId == null) {
+//            ToastUtil.show(TestDpsdkCoreActivity.this, "未找到摄像头");
+//            return false;
+//        }
 
-            }
-
-            if (latitude == Double.parseDouble(aa) && Double.parseDouble(bb) == longitude) {
-                pos = i;
-                break;
-            }
-        }
-
-        if (root == null) {
-            ToastUtil.show(TestDpsdkCoreActivity.this, "未知异常");
-            return false;
-        }
-        String channelId = null;
-        for (int ii = 0; ii < root.getChildren().size(); ii++) {
-            if (root.getChildren().get(ii).getValue().equals(monitorBean.getData().getRows().get(pos).getCode())) {
-                channelId = root.getChildren().get(ii).getChildren().get(0).getValue();
-
-            }
-        }
-        if (channelId == null) {
-            ToastUtil.show(TestDpsdkCoreActivity.this, "未找到摄像头");
-            return false;
-        }
-
-        intent.putExtra("channelId", channelId);
-        intent.putExtra("name", monitorBean.getData().getRows().get(pos).getName());
-        intent.putExtra("conn", monitorBean.getData().getRows().get(pos).getContent());
+//        intent.putExtra("channelId", channelId);
+        String url="http://120.211.5.27:6713/mag/hls/3e594b1eb9824ae2bdd9c3de7b1ca01b/1/live.m3u8";
+        String name="曹妃典";
+        intent.putExtra("name", name);
+        intent.putExtra("conn",url);
         startActivity(intent);
         return false;
     }
@@ -409,7 +288,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
             MarkerOptions markerOptions = new MarkerOptions();
 //            Double accuracy = Double.parseDouble(String.valueOf(dataBean.getPosition_x()));
 //            Double latitude = Double.parseDouble(String.valueOf(dataBean.getPosition_y()));
-            markerOptions.position(new LatLng(39.288892,118.473355));
+            markerOptions.position(new LatLng(39.288892, 118.473355));
             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.datouzhen));
             Marker marker = aMap.addMarker(markerOptions);
             saveMarkerList.add(marker);
@@ -417,46 +296,6 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     }
 
 
-    public class LoginTask extends AsyncTask<Void, Integer, Integer> {
-
-
-        @Override
-        protected Integer doInBackground(Void... arg0) {               //在此处处理UI会导致异常
-//			if (mloginHandle != 0) {
-//	    		IDpsdkCore.DPSDK_Logout(m_loginHandle, 30000);
-//        		m_loginHandle = 0;
-//	    	}
-            Login_Info_t loginInfo = new Login_Info_t();
-            Integer error = Integer.valueOf(0);
-            loginInfo.szIp = ip.getBytes();
-            String strPort = port.trim();
-            loginInfo.nPort = Integer.parseInt(strPort);
-            loginInfo.szUsername = user.getBytes();
-            loginInfo.szPassword = password.getBytes();
-            loginInfo.nProtocol = 2;
-//            saveLoginInfo();
-            int nRet = IDpsdkCore.DPSDK_Login(mAPP.getDpsdkCreatHandle(), loginInfo, 30000);
-            return nRet;
-        }
-
-        @Override
-        protected void onPostExecute(Integer result) {
-
-            super.onPostExecute(result);
-            if (result == 0) {
-                Log.d("DpsdkLogin success:", result + "");
-                IDpsdkCore.DPSDK_SetCompressType(mAPP.getDpsdkCreatHandle(), 0);
-                mAPP.setLoginHandler(1);
-                getGroupList();
-
-            } else {
-                Log.d("DpsdkLogin failed:", result + "");
-                Toast.makeText(getApplicationContext(), "login failed" + result, Toast.LENGTH_SHORT).show();
-                mAPP.setLoginHandler(0);
-            }
-        }
-
-    }
 
     private void saveLoginInfo() {
         SharedPreferences sp = getSharedPreferences("LOGININFO", 0);
