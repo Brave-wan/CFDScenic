@@ -1,12 +1,16 @@
 package com.demo.monitor;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -34,6 +38,7 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
 
     String name;
     String connect;
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +47,9 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_hk_play);
         initView();
         hk_play_back.setOnClickListener(this);
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("正在解析视频,请稍后");
+        dialog.show();
     }
 
     public void initVideos(String url) {
@@ -52,7 +60,24 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(HKPlayActivity.this, "播放完成了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HKPlayActivity.this, "视频解析失败，请重试!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
+            }
+        });
+        videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+            @Override
+            public boolean onInfo(MediaPlayer mediaPlayer, int what, int extra) {
+                if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
+                } else {
+                    dialog.dismiss();
+                }
+                return true;
             }
         });
     }
