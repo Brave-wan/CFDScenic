@@ -291,4 +291,6 @@ public class URL {
     public static final String threeInclude=IP+"/background/advertisingPage/getAdvertisingPageById";
     //活动景区3张图片
     public static final String threePic=IP+"advertisement/getCarouselImg";
+    //获取摄像头视频流
+    public static final  String monitorVideos=IP+"monitorVideos/getHLSPreview";
 }

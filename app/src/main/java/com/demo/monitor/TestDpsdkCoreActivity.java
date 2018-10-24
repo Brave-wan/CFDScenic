@@ -182,8 +182,6 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     }
 
 
-
-
     // 所需权限
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
@@ -208,51 +206,11 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     @Override
     public boolean onMarkerClick(Marker marker) {
 //        new LoginTask(marker).execute();
-
         intent = new Intent(TestDpsdkCoreActivity.this, HKPlayActivity.class);
-//        double latitude = marker.getPosition().latitude;
-//        double longitude = marker.getPosition().longitude;
-//        int pos = 0;
-//        for (int i = 0; i < monitorBean.getData().getRows().size(); i++) {
-//            double latitude1 = 0, longitude1 = 0;
-//            String aa = "", bb = "";
-//            try {
-//                latitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getY_point());
-//                longitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getX_point());
-//                DecimalFormat df = new DecimalFormat("######0.000000");
-//                aa = df.format(latitude1);
-//                bb = df.format(longitude1);
-//            } catch (Exception e) {
-//
-//            }
-//
-//            if (latitude == Double.parseDouble(aa) && Double.parseDouble(bb) == longitude) {
-//                pos = i;
-//                break;
-//            }
-//        }
-//
-//        if (root == null) {
-//            ToastUtil.show(TestDpsdkCoreActivity.this, "未知异常");
-//            return false;
-//        }
-//        String channelId = null;
-//        for (int ii = 0; ii < root.getChildren().size(); ii++) {
-//            if (root.getChildren().get(ii).getValue().equals(monitorBean.getData().getRows().get(pos).getCode())) {
-//                channelId = root.getChildren().get(ii).getChildren().get(0).getValue();
-//
-//            }
-//        }
-//        if (channelId == null) {
-//            ToastUtil.show(TestDpsdkCoreActivity.this, "未找到摄像头");
-//            return false;
-//        }
-
-//        intent.putExtra("channelId", channelId);
-        String url="http://120.211.5.27:6713/mag/hls/3e594b1eb9824ae2bdd9c3de7b1ca01b/1/live.m3u8";
-        String name="曹妃典";
+        String url = "http://120.211.5.27:6713/mag/hls/3e594b1eb9824ae2bdd9c3de7b1ca01b/1/live.m3u8";
+        String name = "曹妃典";
         intent.putExtra("name", name);
-        intent.putExtra("conn",url);
+        intent.putExtra("conn", url);
         startActivity(intent);
         return false;
     }
@@ -294,7 +252,6 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
             saveMarkerList.add(marker);
         }
     }
-
 
 
     private void saveLoginInfo() {
