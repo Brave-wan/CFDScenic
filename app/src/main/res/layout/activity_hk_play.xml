@@ -17,6 +17,7 @@
             android:padding="5dp"
             android:src="@drawable/title_back" />
 
+
         <TextView
             android:id="@+id/tx_play_title"
             android:layout_width="wrap_content"
