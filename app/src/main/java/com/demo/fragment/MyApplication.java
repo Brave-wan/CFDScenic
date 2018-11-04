@@ -22,6 +22,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.demo.demo.myapplication.R;
+import com.tencent.smtt.sdk.QbSdk;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -137,90 +138,21 @@ public class MyApplication extends Application {
                 Log.v("fDPSDKStatusCallback", "nStatus = " + nStatus);
             }
         });
+        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                // TODO Auto-generated method stub
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+                Log.d("app", " onViewInitFinished is " + arg0);
+            }
 
-//        //设置设备拨号监听器
-//        ret = IDpsdkCore.DPSDK_SetRingCallback(m_ReValue.nReturnValue, new fDPSDKRingInfoCallBack() {
-//
-//            @Override
-//            public void invoke(int nPDLLHandle, RingInfo_t param) {
-//                //获取拨号信息
-//                Log.e(TAG, "fDPSDKRingInfoCallBack RingInfo_t info"
-//                        +"      callId : "+ param.callId);
-//
-//                //界面跳转
-//                Intent intent = new Intent(MyApplication.this, AutoVtActivity.class);
-//                Bundle bundle = new Bundle();
-//
-//                bundle.putByteArray("szUserId", param.szUserId);
-//                bundle.putInt("callId", param.callId);
-//                bundle.putInt("dlgId", param.dlgId);
-//                bundle.putInt("tid", param.tid);
-//
-//                intent.putExtras(bundle);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);      //若在不同的进程需要添加flag,
-//                startActivity(intent);
-//            }
-//        });
-//
-//        //设置可视对讲呼叫邀请参数回调
-//        ret = IDpsdkCore.DPSDK_SetVtCallInviteCallback(m_ReValue.nReturnValue, new fDPSDKInviteVtCallParamCallBack() {
-//
-//            @Override
-//            public void invoke(int nPDLLHandle, InviteVtCallParam_t param) {
-//
-//                //通过设备呼叫号码，查找设备id，再查找设备的编码通道
-//                String strcallnum = new String(param.szUserId).trim();
-//
-//                List<Device_Info_Ex_t> devlist = GroupListManager.getInstance().getDeviceExList();
-//                List<Enc_Channel_Info_Ex_t> channellist;
-//                Device_Info_Ex_t deviceInfoEx;
-//                byte[] szId = new byte[dpsdk_constant_value.DPSDK_CORE_DEV_ID_LEN];
-//                Enc_Channel_Info_Ex_t encChannelInfoEx = new Enc_Channel_Info_Ex_t();
-//                String channelname = "";
-//
-//                for (int i = 0; i < devlist.size(); i++) {
-//                    deviceInfoEx = devlist.get(i);
-//                    String szCallNum = new String(deviceInfoEx.szCallNum).trim();
-//                    if (deviceInfoEx != null && strcallnum.equals(szCallNum)) { //匹配设备呼叫号码
-//                        //channellist = GroupListManager.getInstance().getChannelsByDeviceId(deviceInfoEx.szId);  //通过设备id查找编码通道
-//
-////						if(channellist != null && channellist.size()>0){
-////							encChannelInfoEx = channellist.get(0);   //取编码通道中的第一个
-////						}
-//                        byte[] bt = (new String(deviceInfoEx.szId).trim() + "$1$0$0").getBytes();
-//                        System.arraycopy(bt, 0, szId, 0, bt.length);
-//
-//                        channelname = new String(szId).trim();
-//                        Log.e(TAG, "****************channelid****************" + "           " + channelname);
-//                    }
-//                }
-//
-//                //界面跳转
-//                Intent intent = new Intent(AppApplication.this, AutoVtActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putByteArray("szUserId", param.szUserId);
-//                bundle.putInt("audioType", param.audioType);
-//                bundle.putInt("audioBit", param.audioBit);
-//                bundle.putInt("sampleRate", param.sampleRate);
-//                bundle.putByteArray("rtpServIP", param.rtpServIP);
-//                bundle.putInt("rtpAPort", param.rtpAPort);
-//                bundle.putInt("rtpVPort", param.rtpVPort);
-//                bundle.putInt("nCallType", param.nCallType);
-//                bundle.putInt("tid", param.tid);
-//                bundle.putInt("callId", param.callId);
-//                bundle.putInt("dlgId", param.dlgId);
-//
-////				bundle.putByteArray("channelid", encChannelInfoEx.szId);
-////				bundle.putByteArray("channelname", encChannelInfoEx.szName);
-//                bundle.putByteArray("channelid", szId);
-//                bundle.putByteArray("channelname", szId);
-//
-//                intent.putExtras(bundle);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);      //若在不同的进程需要添加flag,
-//                startActivity(intent);
-//
-//            }
-//        });
+            @Override
+            public void onCoreInitFinished() {
+                // TODO Auto-generated method stub
+            }
+        };
+        //x5内核初始化接口
+        QbSdk.initX5Environment(getApplicationContext(),  cb);
     }
 
 

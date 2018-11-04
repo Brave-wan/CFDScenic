@@ -29,7 +29,7 @@
             android:textSize="18sp" />
     </RelativeLayout>
 
-    <VideoView
+    <com.demo.view.CustomVideoView
         android:id="@+id/big_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

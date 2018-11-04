@@ -209,9 +209,12 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
         intent = new Intent(TestDpsdkCoreActivity.this, HKPlayActivity.class);
         String url = "http://120.211.5.27:6713/mag/hls/3e594b1eb9824ae2bdd9c3de7b1ca01b/1/live.m3u8";
         String name = "曹妃典";
-        intent.putExtra("name", name);
-        intent.putExtra("conn", url);
-        startActivity(intent);
+        VideoListBean.DataBean bean = (VideoListBean.DataBean) marker.getObject();
+        if (bean != null) {
+            intent.putExtra("id", bean.getCameraUuid());
+            intent.putExtra("name", bean.getCameraName());
+            startActivity(intent);
+        }
         return false;
     }
 
@@ -244,11 +247,12 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
         for (int index = 0; index < monitorBean.getData().size(); index++) {
             VideoListBean.DataBean dataBean = monitorBean.getData().get(index);
             MarkerOptions markerOptions = new MarkerOptions();
-//            Double accuracy = Double.parseDouble(String.valueOf(dataBean.getPosition_x()));
-//            Double latitude = Double.parseDouble(String.valueOf(dataBean.getPosition_y()));
-            markerOptions.position(new LatLng(39.288892, 118.473355));
+            Double accuracy = Double.parseDouble(String.valueOf(dataBean.getPosition_x()));
+            Double latitude = Double.parseDouble(String.valueOf(dataBean.getPosition_y()));
+            markerOptions.position(new LatLng(accuracy, latitude));
             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.datouzhen));
             Marker marker = aMap.addMarker(markerOptions);
+            marker.setObject(dataBean);
             saveMarkerList.add(marker);
         }
     }

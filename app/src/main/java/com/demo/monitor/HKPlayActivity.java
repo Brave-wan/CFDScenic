@@ -21,6 +21,7 @@ import com.demo.demo.myapplication.R;
 import com.demo.monitor.bean.MonitorVideosBean;
 import com.demo.utils.ToastUtil;
 import com.demo.utils.URL;
+import com.demo.view.CustomVideoView;
 import com.google.gson.Gson;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -32,18 +33,17 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import org.apache.http.protocol.HTTP;
 
 public class HKPlayActivity extends Activity implements View.OnClickListener {
-    VideoView videoView;
+    CustomVideoView videoView;
     ImageView hk_play_back;
     TextView tx_play_title;
 
     String name;
-    String connect;
+    String id;
     ProgressDialog dialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_hk_play);
         initView();
         hk_play_back.setOnClickListener(this);
@@ -53,7 +53,7 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
     }
 
     public void initVideos(String url) {
-        videoView.setMediaController(new MediaController(this));
+//        videoView.setMediaController(new MediaController(this));
         videoView.setVideoURI(Uri.parse(url));
         videoView.start();
 
@@ -70,6 +70,7 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
                 mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
             }
         });
+
         videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
             @Override
             public boolean onInfo(MediaPlayer mediaPlayer, int what, int extra) {
@@ -84,9 +85,9 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
 
     private void initView() {
         name = getIntent().getStringExtra("name");
-        connect = getIntent().getStringExtra("conn");
+        id = getIntent().getStringExtra("id");
         hk_play_back = (ImageView) findViewById(R.id.hk_play_back);
-        videoView = (VideoView) findViewById(R.id.big_screen);
+        videoView = (CustomVideoView) findViewById(R.id.big_screen);
         tx_play_title = (TextView) findViewById(R.id.tx_play_title);
         tx_play_title.setText(name);
         getMonitorVideos();
@@ -94,7 +95,7 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
 
     public void getMonitorVideos() {
         RequestParams params = new RequestParams();
-        params.addBodyParameter("cameraUuid", "c1aca375df204c109e040c5ec824020d");
+        params.addBodyParameter("cameraUuid", id);
         HttpUtils http = new HttpUtils();
         http.configResponseTextCharset(HTTP.UTF_8);
         http.configCurrentHttpCacheExpiry(0 * 1000);
@@ -107,7 +108,7 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
                             MonitorVideosBean monitorBean = new Gson().fromJson(responseInfo.result, MonitorVideosBean.class);
                             int i = monitorBean.getHeader().getStatus();
                             if (i == 0) {
-                                initVideos(monitorBean.getData().getUrl());
+                                initVideos(monitorBean.getData());
                             } else {
                                 ToastUtil.show(HKPlayActivity.this, monitorBean.getHeader().getMsg());
                             }

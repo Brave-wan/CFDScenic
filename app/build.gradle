@@ -30,6 +30,22 @@ android {
         preDexLibraries = false
         javaMaxHeapSize "4g"
     }
+
+    signingConfigs {
+        debug {
+            keyAlias 'caofeidian'
+            keyPassword '123456'
+            storeFile file('./keystory/caofeidian.jks')
+            storePassword '123456'
+        }
+
+        release {
+            keyAlias 'caofeidian'
+            keyPassword '123456'
+            storeFile file('./keystory/caofeidian.jks')
+            storePassword '123456'
+        }
+    }
 }
 
 dependencies {
@@ -56,4 +72,5 @@ dependencies {
     compile files('libs/IDpsdkCore.jar')
     compile files('libs/IPlaySDK.jar')
     compile files('libs/jsoup-1.6.1.jar')
+    compile 'com.tencent.sonic:sdk:3.0.0'
 }

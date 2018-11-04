@@ -4,18 +4,18 @@ public class MonitorVideosBean {
 
 
     /**
-     * data : {"url":"http://47.104.238.102:6713/mag/hls/c1aca375df204c109e040c5ec824020d/1/live.m3u8"}
+     * data : rtsp://120.211.5.27:8124/pag://192.168.5.151:7302:c1aca375df204c109e040c5ec824020d:0:SUB:TCP
      * header : {"msg":"成功","status":0}
      */
 
-    private DataBean data;
+    private String data;
     private HeaderBean header;
 
-    public DataBean getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(DataBean data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -25,22 +25,6 @@ public class MonitorVideosBean {
 
     public void setHeader(HeaderBean header) {
         this.header = header;
-    }
-
-    public static class DataBean {
-        /**
-         * url : http://47.104.238.102:6713/mag/hls/c1aca375df204c109e040c5ec824020d/1/live.m3u8
-         */
-
-        private String url;
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
     }
 
     public static class HeaderBean {

@@ -29,19 +29,34 @@ import butterknife.ButterKnife;
 public class VirtualTourActivity extends Activity {
     @Bind(R.id.webView_tour)
     WebView webViewTour;
+    WebSettings webSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_virtualtour);
         ButterKnife.bind(this);
+        webSettings = webViewTour.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        //自动加载图片
+        webSettings.setLoadsImagesAutomatically(true);
+        webSettings.setBuiltInZoomControls(true);
+        //自动缩放
+        webSettings.setSupportZoom(true);
+        //设置webview的插件转状态
+        webSettings.setPluginState(WebSettings.PluginState.ON);
+        //允许与js交互
+        //设置默认的字符编码
+        webSettings.setDefaultTextEncodingName("utf-8");
         getTour();
     }
+
     private void getTour() {
         RequestParams params = new RequestParams();
         params.addQueryStringParameter("type", 2 + "");
         HttpUtils http = new HttpUtils();
-        http.configCurrentHttpCacheExpiry(0*1000);//设置缓存时间
+        http.configCurrentHttpCacheExpiry(0 * 1000);//设置缓存时间
         http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
         http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
         http.send(HttpRequest.HttpMethod.GET, URL.getPlanningOrIntroduce, params,
