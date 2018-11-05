@@ -49,6 +49,13 @@ public class VirtualTourActivity extends Activity {
         //允许与js交互
         //设置默认的字符编码
         webSettings.setDefaultTextEncodingName("utf-8");
+        webViewTour.setWebViewClient(new WebViewClient(){
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+
         getTour();
     }
 
@@ -82,8 +89,8 @@ public class VirtualTourActivity extends Activity {
                                 WebSettings settings = webViewTour.getSettings();
                                 settings.setJavaScriptEnabled(true);
 
-                                webViewTour.loadUrl(getPlanningOrIntroduceBean.getData());
-
+//                                webViewTour.loadUrl(getPlanningOrIntroduceBean.getData());
+                                webViewTour.loadUrl("https://720yun.com/t/793jeOhvza8");
                                 webViewTour.setWebViewClient(new WebViewClient() {
                                     @Override
                                     public boolean shouldOverrideUrlLoading(WebView view, String url) {

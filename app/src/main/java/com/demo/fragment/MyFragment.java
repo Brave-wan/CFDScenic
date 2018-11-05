@@ -133,12 +133,6 @@ public class MyFragment extends Fragment {
         badgeView_wsy.setTargetView(ivWeishiyong);
         badgeView_wsy.setTextSize(7);
         badgeView_wsy.setBadgeGravity(Gravity.TOP | Gravity.RIGHT);
-
-        //获取信息
-       /* if (SpUtil.getString(getActivity(), SpName.token, "").equals("")) {
-        } else {
-            getDatum();
-        }*/
         return view;
     }
 
