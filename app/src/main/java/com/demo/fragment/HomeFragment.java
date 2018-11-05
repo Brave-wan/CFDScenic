@@ -3,6 +3,7 @@ package com.demo.fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -149,7 +150,7 @@ public class HomeFragment extends Fragment {
     HomeSeienceListViewadapter homeSeienceListViewadapter;
     Intent intent = new Intent();
     //2个广告位
-    TwoImgBean twoImgBean=new TwoImgBean();
+    TwoImgBean twoImgBean = new TwoImgBean();
 
     private int height;
 
@@ -206,11 +207,11 @@ public class HomeFragment extends Fragment {
                     intent.setClass(getActivity(), WatchBridActivity.class);//观鸟景区
                     intent.putExtra("id", carouselImgBean.getData().get(position - 1).getLink_id() + "");
                     startActivity(intent);
-                }else if (carouselImgBean.getData().get(position - 1).getAdvertisement_type() == 8) {
+                } else if (carouselImgBean.getData().get(position - 1).getAdvertisement_type() == 8) {
                     intent.setClass(getActivity(), ShidiActivity.class);//湿地保护
                     intent.putExtra("id", carouselImgBean.getData().get(position - 1).getLink_id() + "");
                     startActivity(intent);
-                }else if (carouselImgBean.getData().get(position - 1).getAdvertisement_type() == 9) {
+                } else if (carouselImgBean.getData().get(position - 1).getAdvertisement_type() == 9) {
                     intent.setClass(getActivity(), InvesActivity.class);//招商信息
                     intent.putExtra("id", carouselImgBean.getData().get(position - 1).getLink_id() + "");
                     startActivity(intent);
@@ -234,8 +235,13 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
                         break;
                     case 2://虚拟游
-                        intent.setClass(getActivity(), VirtualTourActivity.class);
+//                        intent.setClass(getActivity(), VirtualTourActivity.class);
+//                        startActivity(intent);
+                        //34c1fb9d5fb73db9800143babcdeb153
+                        Uri uri = Uri.parse("https://720yun.com/t/793jeOhvza8");
+                        intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
+//                        finish();
                         break;
                     case 3://商城特产
                         intent.setClass(getActivity(), SpecialActivity.class);
@@ -277,7 +283,7 @@ public class HomeFragment extends Fragment {
         etSousuo.setFocusableInTouchMode(true);
         etSousuo.requestFocus();
 
-       //为您推荐你商品
+        //为您推荐你商品
         ivHomfragGvGood.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -335,7 +341,7 @@ public class HomeFragment extends Fragment {
 
 
     //R.id.iv_leyuan, R.id.iv_migong, R.id.iv_baohuqu,
-    @OnClick({R.id.ll_shopping, R.id.iv_jiudian, R.id.iv_techan, R.id.iv_fandian, R.id.iv_xiaochi, R.id.ll_home_frag, R.id.gouwuche, R.id.saoyisao, R.id.et_sousuo,R.id.tv_jdgd})
+    @OnClick({R.id.ll_shopping, R.id.iv_jiudian, R.id.iv_techan, R.id.iv_fandian, R.id.iv_xiaochi, R.id.ll_home_frag, R.id.gouwuche, R.id.saoyisao, R.id.et_sousuo, R.id.tv_jdgd})
     public void onClick(View view) {
         switch (view.getId()) {
 
@@ -596,7 +602,7 @@ public class HomeFragment extends Fragment {
                                 }
                                 if (twoImgBean.getData().get(1) == null || twoImgBean.getData().get(1).equals("")) {
 
-                                }else{
+                                } else {
                                     ImageLoader.getInstance().displayImage(twoImgBean.getData().get(1).getImg_url(), ivHomfragShidi);
                                 }
                             } else {
