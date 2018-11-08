@@ -108,7 +108,7 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
                             MonitorVideosBean monitorBean = new Gson().fromJson(responseInfo.result, MonitorVideosBean.class);
                             int i = monitorBean.getHeader().getStatus();
                             if (i == 0) {
-                                initVideos(monitorBean.getData());
+                                initVideos(monitorBean.getData().getUrl());
                             } else {
                                 ToastUtil.show(HKPlayActivity.this, monitorBean.getHeader().getMsg());
                             }
