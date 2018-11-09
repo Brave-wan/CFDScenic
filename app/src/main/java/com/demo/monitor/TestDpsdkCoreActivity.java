@@ -156,9 +156,6 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
 
 
         for (int i = 0; i < R_map1.length; i++) {
-//            LatLngBounds bounds = new LatLngBounds.Builder()
-//                    .include(new LatLng(39.26975243, 118.41303362 - ((19 - i) * 0.00489666)))     5  0.019586626000000003
-//                    .include(new LatLng(39.15506772 + (0.11468471 / 2), 118.31510049 + (i * 0.00489666))).build();  10  0.010337393333333333
             LatLngBounds bounds = new LatLngBounds.Builder()
                     .include(new LatLng(39.26975243, 118.41303362 - ((4 - i) * 0.019586626000000003)))
                     .include(new LatLng(39.15506772 + (0.11468471 / 2), 118.31510049 + (i * 0.019586626000000003))).build();
@@ -166,11 +163,9 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
                     .image(BitmapDescriptorFactory
                             .fromResource(R_map1[i]))
                     .positionFromBounds(bounds));
-
         }
 
         for (int i = 0; i < R_map2.length; i++) {
-
             LatLngBounds bounds = new LatLngBounds.Builder()
                     .include(new LatLng(39.26975243 - (0.11468471 / 2), 118.41303362 - ((4 - i) * 0.019586626000000003)))
                     .include(new LatLng(39.15506772, 118.31510049 + (i * 0.019586626000000003))).build();
@@ -207,8 +202,6 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
     public boolean onMarkerClick(Marker marker) {
 //        new LoginTask(marker).execute();
         intent = new Intent(TestDpsdkCoreActivity.this, HKPlayActivity.class);
-        String url = "http://120.211.5.27:6713/mag/hls/3e594b1eb9824ae2bdd9c3de7b1ca01b/1/live.m3u8";
-        String name = "曹妃典";
         VideoListBean.DataBean bean = (VideoListBean.DataBean) marker.getObject();
         if (bean != null) {
             intent.putExtra("id", bean.getCameraUuid());
@@ -249,7 +242,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
             MarkerOptions markerOptions = new MarkerOptions();
             Double accuracy = Double.parseDouble(String.valueOf(dataBean.getPosition_x()));
             Double latitude = Double.parseDouble(String.valueOf(dataBean.getPosition_y()));
-            markerOptions.position(new LatLng(accuracy, latitude));
+            markerOptions.position(new LatLng(latitude,accuracy));
             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.datouzhen));
             Marker marker = aMap.addMarker(markerOptions);
             marker.setObject(dataBean);

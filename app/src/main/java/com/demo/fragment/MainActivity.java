@@ -51,7 +51,7 @@ public class MainActivity extends FragmentActivity {
 
     int a = 0;
 
-    public static int index=0;
+    public static int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +73,8 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (index == 1){
-            index=0;
+        if (index == 1) {
+            index = 0;
             jump_home();
         }
     }
@@ -161,7 +161,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     //登录去首页
-    public void jump_home(){
+    public void jump_home() {
         rb_home.setChecked(true);
         if (homefragment == null) {
             homefragment = new HomeFragment();
@@ -210,7 +210,7 @@ public class MainActivity extends FragmentActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN) {
             if ((System.currentTimeMillis() - exitTime) > 2000) {
-                ToastUtil.show(getApplicationContext(),"再按一次退出程序");
+                ToastUtil.show(getApplicationContext(), "再按一次退出程序");
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();
@@ -220,6 +220,7 @@ public class MainActivity extends FragmentActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 //        super.onSaveInstanceState(outState);

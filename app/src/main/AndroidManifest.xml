@@ -272,6 +272,7 @@
         <activity android:name="com.demo.my.activity.Activity_OrderDetailsTicket" />
         <activity android:name="com.demo.my.activity.Activity_RefundDetails_fd" />
         <activity android:name="com.demo.my.activity.Activity_RefundDetails_jd" />
+        <activity android:name="com.demo.monitor.VideoListActivity" />
         <activity android:name="com.demo.my.activity.Activity_RefundDetails_sp" />
         <activity android:name="com.demo.my.activity.Activity_MyTicketDetails" />
         <activity android:name="com.demo.my.activity.Activity_OrderDetailsJd" />
@@ -419,8 +420,9 @@
         <activity android:name="me.iwf.photopicker.PhotoPagerActivity" />
         <activity android:name="me.iwf.photopicker.PhotoPickerActivity" />
         <activity android:name="com.demo.monitor.TestDpsdkCoreActivity" />
-        <activity android:name="com.demo.monitor.HKPlayActivity"
-           android:screenOrientation="landscape" />
+        <activity
+            android:name="com.demo.monitor.HKPlayActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

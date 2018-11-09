@@ -23,42 +23,10 @@ public class TestDpsdkCorePresent {
     private Context mContext;
     private ITestDpsdkCoreView view;
 
-    public TestDpsdkCorePresent(Context mContext,ITestDpsdkCoreView view) {
+    public TestDpsdkCorePresent(Context mContext, ITestDpsdkCoreView view) {
         this.mContext = mContext;
-        this.view=view;
+        this.view = view;
     }
-
-
-    public void initGet() {
-        RequestParams params = new RequestParams();
-        HttpUtils http = new HttpUtils();
-        http.configResponseTextCharset(HTTP.UTF_8);
-        http.configCurrentHttpCacheExpiry(0 * 1000);
-        http.send(HttpRequest.HttpMethod.GET, URL.realTime, params,
-                new RequestCallBack<String>() {
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
-                        Log.i("1111", responseInfo.result);
-                        try {
-                            MonitorBean monitorBean = new Gson().fromJson(responseInfo.result, MonitorBean.class);
-                            int i = monitorBean.getHeader().getStatus();
-                            if (i == 0&&view!=null) {
-//                                view.OnMonitorBean(monitorBean);
-                            } else {
-                                ToastUtil.show(mContext, monitorBean.getHeader().getMsg());
-                            }
-                        } catch (Exception e) {
-                            ToastUtil.show(mContext, e.getMessage());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(HttpException e, String s) {
-                        ToastUtil.show(mContext, e.getMessage());
-                    }
-                });
-    }
-
 
     public void getVideoList() {
         RequestParams params = new RequestParams();
@@ -73,7 +41,7 @@ public class TestDpsdkCorePresent {
                         try {
                             VideoListBean monitorBean = new Gson().fromJson(responseInfo.result, VideoListBean.class);
                             int i = monitorBean.getHeader().getStatus();
-                            if (i == 0&&view!=null) {
+                            if (i == 0 && view != null) {
                                 view.OnMonitorBean(monitorBean);
                             } else {
                                 ToastUtil.show(mContext, monitorBean.getHeader().getMsg());

@@ -175,14 +175,16 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
 
             @Override
             public void onCameraChangeFinish(CameraPosition cameraPosition) {
-                if(aMap.getCameraPosition().zoom>15.6f)  aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
+                if (aMap.getCameraPosition().zoom > 15.6f)
+                    aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
             }
         });
 
         aMap.setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
             @Override
             public void onMapLoaded() {
-                if(aMap.getCameraPosition().zoom>15.6f)  aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
+                if (aMap.getCameraPosition().zoom > 15.6f)
+                    aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
             }
         });
     }
@@ -269,46 +271,6 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
                     }
                 });
 
-//        RequestParams params = new RequestParams();
-//        params.addQueryStringParameter("page", 1 + "");
-//        params.addQueryStringParameter("rows", 10 + "");
-//        HttpUtils http = new HttpUtils();
-//        http.configResponseTextCharset(HTTP.UTF_8);
-//        http.configCurrentHttpCacheExpiry(0 * 1000);
-//        http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
-//        http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
-//        http.send(HttpRequest.HttpMethod.GET, URL.getScenceRecommend, params,
-//                new RequestCallBack<String>() {
-//                    @Override
-//                    public void onSuccess(ResponseInfo<String> responseInfo) {
-//                        String s = responseInfo.result;//0不是景点 1播报
-//                        Log.i("hhhhhhhh", s);
-//                        try {
-//                            AnviRecommendBean    anviRecommendBean = new Gson().fromJson(responseInfo.result, AnviRecommendBean.class);
-//                            int i = anviRecommendBean.getHeader().getStatus();
-//                            if (i == 0) {
-//                                list.addAll(anviRecommendBean.getData().getRows().get(2).getListData());
-////                                adapter.notifyDataSetChanged();
-//                                //分页
-////                                onLoad();
-////                                if (anviRecommendBean.getData().getRows().size() < 10) {
-////                                    judge_Refresh = false;
-////                                    lvReline.setFooterTextView("已加载显示完全部内容");
-////                                }
-//                            } else {
-//                                ToastUtil.show(getApplicationContext(), anviRecommendBean.getHeader().getMsg());
-//                            }
-//                        } catch (Exception e) {
-//                            ToastUtil.show(getApplicationContext(), "解析数据错误");
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(HttpException e, String s) {
-//                        ToastUtil.show(getApplicationContext(), e.getMessage());
-//                    }
-//                });
     }
 
     /**
@@ -328,9 +290,9 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
                             int i = head.getInt("status");
                             if (i == 0) {
                                 ip = jsonObject.getJSONObject("data").getString("ip");
-                                port=jsonObject.getJSONObject("data").getString("port_number");
-                                user=jsonObject.getJSONObject("data").getString("user");
-                                password=jsonObject.getJSONObject("data").getString("password");
+                                port = jsonObject.getJSONObject("data").getString("port_number");
+                                user = jsonObject.getJSONObject("data").getString("user");
+                                password = jsonObject.getJSONObject("data").getString("password");
                                 new LoginTask().execute();
                             } else {
 //                                ToastUtil.show(MaprecommendationActivity.this, head.getString("msg"));
@@ -495,31 +457,13 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
      * 设置一些amap的属性
      */
     private void setUpMap() {
-        // 自定义系统定位小蓝点
-//        MyLocationStyle myLocationStyle = new MyLocationStyle();
-//        myLocationStyle.myLocationIcon(BitmapDescriptorFactory
-//                .fromResource(R.mipmap.start));// 设置小蓝点的图标 R.mipmap.j_datouzhen
-//        myLocationStyle.strokeColor(Color.BLACK);// 设置圆形的边框颜色
-//        myLocationStyle.radiusFillColor(Color.argb(100, 75, 196, 251));// 设置圆形的填充颜色
-//        myLocationStyle.strokeWidth(Color.argb(100, 75, 196, 251));
-//        // myLocationStyle.anchor(int,int)//设置小蓝点的锚点
-//        myLocationStyle.strokeWidth(1.0f);// 设置圆形的边框粗细
-//        aMap.setMyLocationStyle(myLocationStyle);
-//        aMap.moveCamera(CameraUpdateFactory.zoomTo(16));//放大
-//        aMap.setLocationSource(this);// 设置定位监听
-//        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
-//        aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
-
-
-        // aMap.setMyLocationType()
-
         aMap.setLocationSource(this);// 设置定位监听
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         // 设置定位的类型为定位模式 ，可以由定位、跟随或地图根据面向方向旋转几种
         aMap.setMyLocationType(AMap.LOCATION_TYPE_LOCATE);
 
-        aMap.moveCamera(CameraUpdateFactory.zoomTo(16));
+        aMap.moveCamera(CameraUpdateFactory.zoomTo(13));
         aMap.setOnMarkerClickListener(this);
 
         //自定义infowindows
@@ -594,52 +538,31 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
         aMap.setOnMapClickListener(this);
         // 绘制一个长方形
         aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.205725,
-                118.361903), 12));//设置中心点
-//        LatLngBounds bounds = new LatLngBounds.Builder()
-//                .include(new LatLng(39.213080, 118.342089))
-//                .include(new LatLng(39.162971, 118.389145)).build();
-//                LatLngBounds bounds = new LatLngBounds.Builder()
-//                .include(new LatLng(38.005855,114.598082))
-//                .include(new LatLng(38.029191, 114.618307)).build();
-//        aMap.addGroundOverlay(new GroundOverlayOptions()
-//                .image(BitmapDescriptorFactory
-//                        .fromResource(R.mipmap.groundoverlay))
-//                .positionFromBounds(bounds));
+                118.361903), 13));//设置中心点
         Addground();
         PolygonOptions pOption = new PolygonOptions();
         pOption.add(new LatLng(39.213080, 118.342089));
         pOption.add(new LatLng(39.162971, 118.389145));
-//                pOption.add(new LatLng(38.005855,114.598082));
-//        pOption.add(new LatLng(38.029191, 114.618307));
-        polygon = aMap.addPolygon(pOption.strokeWidth(0));//114.608082,38.017855   114.608307,38.019191
+
+        polygon = aMap.addPolygon(pOption.strokeWidth(0));
 
 
     }
 
-//    private int[] R_map1 = {R.drawable.lpcniu_0
-//            , R.drawable.lpcniu_1, R.drawable.lpcniu_2, R.drawable.lpcniu_3, R.drawable.lpcniu_4, R.drawable.lpcniu_5, R.drawable.lpcniu_6,
-//            R.drawable.lpcniu_7, R.drawable.lpcniu_8, R.drawable.lpcniu_9
-//    };
-//    //
-//    private int[] R_map2 = {R.drawable.lpcniu_10
-//            , R.drawable.lpcniu_11, R.drawable.lpcniu_12, R.drawable.lpcniu_13, R.drawable.lpcniu_14, R.drawable.lpcniu_15, R.drawable.lpcniu_16,
-//            R.drawable.lpcniu_17, R.drawable.lpcniu_18, R.drawable.lpcniu_19};
-private int[] R_map1 = {R.drawable.lpcniu_0
-        , R.drawable.lpcniu_1, R.drawable.lpcniu_2, R.drawable.lpcniu_3, R.drawable.lpcniu_4
-};
+    private int[] R_map1 = {R.drawable.lpcniu_0
+            , R.drawable.lpcniu_1, R.drawable.lpcniu_2, R.drawable.lpcniu_3, R.drawable.lpcniu_4
+    };
     //
-    private int[] R_map2 = { R.drawable.lpcniu_5, R.drawable.lpcniu_6,
+    private int[] R_map2 = {R.drawable.lpcniu_5, R.drawable.lpcniu_6,
             R.drawable.lpcniu_7, R.drawable.lpcniu_8, R.drawable.lpcniu_9};
+
     /**
      * 添加瓦片图层
      **/
     public void Addground() {
 
 
-        for (int i = 0; i <R_map1.length; i++) {
-//            LatLngBounds bounds = new LatLngBounds.Builder()
-//                    .include(new LatLng(39.26975243, 118.41303362 - ((19 - i) * 0.00489666)))     5  0.019586626000000003
-//                    .include(new LatLng(39.15506772 + (0.11468471 / 2), 118.31510049 + (i * 0.00489666))).build();  10  0.010337393333333333
+        for (int i = 0; i < R_map1.length; i++) {
             LatLngBounds bounds = new LatLngBounds.Builder()
                     .include(new LatLng(39.26975243, 118.41303362 - ((4 - i) * 0.019586626000000003)))
                     .include(new LatLng(39.15506772 + (0.11468471 / 2), 118.31510049 + (i * 0.019586626000000003))).build();
@@ -650,8 +573,7 @@ private int[] R_map1 = {R.drawable.lpcniu_0
 
         }
 
-        for (int i = 0; i <R_map2.length; i++) {
-
+        for (int i = 0; i < R_map2.length; i++) {
             LatLngBounds bounds = new LatLngBounds.Builder()
                     .include(new LatLng(39.26975243 - (0.11468471 / 2), 118.41303362 - ((4 - i) * 0.019586626000000003)))
                     .include(new LatLng(39.15506772, 118.31510049 + (i * 0.019586626000000003))).build();
@@ -783,8 +705,8 @@ private int[] R_map1 = {R.drawable.lpcniu_0
             ss.pauseSpeaking();
             ss.destroy();
         }
-        R_map2=null;
-        R_map1=null;
+        R_map2 = null;
+        R_map1 = null;
 //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         Logout();
 //
@@ -826,8 +748,7 @@ private int[] R_map1 = {R.drawable.lpcniu_0
                     if (!noinflag) {
                         read("您没有在景区内,请移步到景区内");
                         noinflag = true;
-                        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.205725,
-                                118.361903), 12));//设置中心点
+                        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.205725, 118.361903), 13));//设置中心点
 //                        llRecommend.setVisibility(View.INVISIBLE);
 //                        llSearch.setVisibility(View.INVISIBLE);
                     }

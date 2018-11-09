@@ -40,6 +40,7 @@ import com.demo.mall.adapter.TcHomeGridViewAdapter;
 import com.demo.mall.bean.SelectRecommendBean;
 import com.demo.monitor.RealPlayActivity;
 import com.demo.monitor.TestDpsdkCoreActivity;
+import com.demo.monitor.VideoListActivity;
 import com.demo.my.activity.Activity_MyWallet;
 import com.demo.my.activity.Activity_ShoppingCart;
 import com.demo.my.activity.Activity_ToEvaluate;
@@ -92,7 +93,6 @@ import butterknife.OnClick;
  * Created by Administrator on 2016/7/20 0020.
  */
 public class HomeFragment extends Fragment {
-
 
     @Bind(R.id.banner)
     Banner banner;
@@ -268,7 +268,7 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
                         break;
                     case 9://实时动态
-                        intent.setClass(getActivity(), TestDpsdkCoreActivity.class);
+                        intent.setClass(getActivity(), VideoListActivity.class);
                         startActivity(intent);
 //                        ToastUtil.show(getContext(), "实时动态");
                         break;

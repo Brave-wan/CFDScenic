@@ -125,7 +125,6 @@ public class ChoseDateActivity extends FragmentActivity {
             // 提交事务
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.frag_chosedate, restaurantfragment).commit();
-
             // 记录当前Fragment
             currentFragment = restaurantfragment;
 
