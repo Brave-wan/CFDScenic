@@ -59,7 +59,7 @@ public class NewsMustknowActivity extends Activity implements XListView.IXListVi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(NewsMustknowActivity.this, NewsDetailsActivity.class);
-                intent.putExtra("id", rowsBean.get(position-1).getId()+"");
+                intent.putExtra("id", rowsBean.get(position - 1).getId() + "");
                 startActivity(intent);
             }
         });
@@ -77,12 +77,13 @@ public class NewsMustknowActivity extends Activity implements XListView.IXListVi
         params.addQueryStringParameter("page", mPage + "");
         params.addQueryStringParameter("rows", 10 + "");
         HttpUtils http = new HttpUtils();
-        http.configCurrentHttpCacheExpiry(0*1000);//设置缓存时间
+        http.configCurrentHttpCacheExpiry(0 * 1000);//设置缓存时间
         http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
         http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
         http.send(HttpRequest.HttpMethod.GET, URL.pressList, params,
                 new RequestCallBack<String>() {
-                    DialogProgressbar dialogProgressbar=new DialogProgressbar(NewsMustknowActivity.this,R.style.AlertDialogStyle);
+                    DialogProgressbar dialogProgressbar = new DialogProgressbar(NewsMustknowActivity.this, R.style.AlertDialogStyle);
+
                     @Override
                     public void onStart() {
                         super.onStart();

@@ -90,6 +90,7 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
     SpeechSynthesizer ss;
     List<WayInfoBean.DataBean> list = new ArrayList<>();
     private UiSettings mUiSettings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,17 +125,19 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
 
             @Override
             public void onCameraChangeFinish(CameraPosition cameraPosition) {
-                if(aMap.getCameraPosition().zoom>15.6f)  aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
+                if (aMap.getCameraPosition().zoom > 15.6f)
+                    aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
             }
         });
 
         aMap.setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
             @Override
             public void onMapLoaded() {
-                if(aMap.getCameraPosition().zoom>15.6f)  aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
+                if (aMap.getCameraPosition().zoom > 15.6f)
+                    aMap.moveCamera(CameraUpdateFactory.zoomTo(15.6f));
             }
         });
-        mEndPoint = new LatLonPoint(getIntent().getDoubleExtra("lng",39.205725),getIntent().getDoubleExtra("lat",118.361903));
+        mEndPoint = new LatLonPoint(getIntent().getDoubleExtra("lng", 39.205725), getIntent().getDoubleExtra("lat", 118.361903));
         isInMap();
 
 
@@ -179,7 +182,7 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
     private void isInMap() {
         // 绘制一个长方形
         aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.205725,
-                118.361903), 12));//设置中心点
+                118.361903), 14));//设置中心点
 //        LatLngBounds bounds = new LatLngBounds.Builder()
 //                .include(new LatLng(39.213080, 118.342089))
 //                .include(new LatLng(39.162971, 118.389145)).build();
@@ -201,7 +204,7 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
             , R.drawable.lpcniu_1, R.drawable.lpcniu_2, R.drawable.lpcniu_3, R.drawable.lpcniu_4
     };
     //
-    private int[] R_map2 = { R.drawable.lpcniu_5, R.drawable.lpcniu_6,
+    private int[] R_map2 = {R.drawable.lpcniu_5, R.drawable.lpcniu_6,
             R.drawable.lpcniu_7, R.drawable.lpcniu_8, R.drawable.lpcniu_9};
 
     /**
@@ -210,7 +213,7 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
     public void Addground() {
 
 
-        for (int i = 0; i <R_map1.length; i++) {
+        for (int i = 0; i < R_map1.length; i++) {
 //            LatLngBounds bounds = new LatLngBounds.Builder()
 //                    .include(new LatLng(39.26975243, 118.41303362 - ((19 - i) * 0.00489666)))     5  0.019586626000000003
 //                    .include(new LatLng(39.15506772 + (0.11468471 / 2), 118.31510049 + (i * 0.00489666))).build();  10  0.010337393333333333
@@ -218,13 +221,12 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
                     .include(new LatLng(39.26975243, 118.41303362 - ((4 - i) * 0.019586626000000003)))
                     .include(new LatLng(39.15506772 + (0.11468471 / 2), 118.31510049 + (i * 0.019586626000000003))).build();
             aMap.addGroundOverlay(new GroundOverlayOptions()
-                    .image(BitmapDescriptorFactory
-                            .fromResource(R_map1[i]))
+                    .image(BitmapDescriptorFactory.fromResource(R_map1[i]))
                     .positionFromBounds(bounds));
 
         }
 
-        for (int i = 0; i <R_map2.length; i++) {
+        for (int i = 0; i < R_map2.length; i++) {
 
             LatLngBounds bounds = new LatLngBounds.Builder()
                     .include(new LatLng(39.26975243 - (0.11468471 / 2), 118.41303362 - ((4 - i) * 0.019586626000000003)))
@@ -261,15 +263,6 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
         });
     }
 
-//    public void searchRouteResult(int routeType, int mode) {
-//        final RouteSearch.FromAndTo fromAndTo = new RouteSearch.FromAndTo(
-//                mStartPoint, mEndPoint);
-//        if (routeType == ROUTE_TYPE_DRIVE) {// 驾车路径规划
-//            RouteSearch.DriveRouteQuery query = new RouteSearch.DriveRouteQuery(fromAndTo, mode, null,
-//                    null, "");// 第一个参数表示路径规划的起点和终点，第二个参数表示驾车模式，第三个参数表示途经点，第四个参数表示避让区域，第五个参数表示避让道路
-//            mRouteSearch.calculateDriveRouteAsyn(query);// 异步路径规划驾车模式查询
-//        }
-//    }
 
     /**
      * 方法必须重写
@@ -359,21 +352,6 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
                     int dis = (int) drivePath.getDistance();
                     int dur = (int) drivePath.getDuration();
                     String des = AMapUtil.getFriendlyTime(dur) + "(" + AMapUtil.getFriendlyLength(dis) + ")";
-//                    mRotueTimeDes.setText(des);
-//                    mRouteDetailDes.setVisibility(View.VISIBLE);
-//                    int taxiCost = (int) mDriveRouteResult.getTaxiCost();
-//                    mRouteDetailDes.setText("打车约"+taxiCost+"元");
-//                    mBottomLayout.setOnClickListener(new OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            Intent intent = new Intent(mContext,
-//                                    DriveRouteDetailActivity.class);
-//                            intent.putExtra("drive_path", drivePath);
-//                            intent.putExtra("drive_result",
-//                                    mDriveRouteResult);
-//                            startActivity(intent);
-//                        }
-//                    });
 
                 } else if (driveRouteResult != null && driveRouteResult.getPaths() == null) {
                     ToastUtil.show(this, "driveRouteResult");
@@ -464,15 +442,15 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
                         read("您没有在景区内,请移步到景区内");
                         noinflag = true;
                         aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.205725,
-                                118.361903), 12));//设置中心点
+                                118.361903), 14));//设置中心点
                     }
 
                 } else if (AMapUtils.calculateLineDistance(latLng, new LatLng(mEndPoint.getLatitude(), mEndPoint.getLongitude())) < 20) {
-                    injingdian=true;
+                    injingdian = true;
 
-                } else if(!injingdian){
+                } else if (!injingdian) {
 
-                    if (mDriveRouteResult == null){
+                    if (mDriveRouteResult == null) {
                         setfromandtoMarker();
                         final RouteSearch.FromAndTo fromAndTo = new RouteSearch.FromAndTo(
                                 mStartPoint, mEndPoint);
@@ -500,12 +478,9 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
                         }
 
 
+                        for (int i = 0; i < mDriveRouteResult.getPaths().get(0).getSteps().size(); i++) {
 
-                        for (int i = 0; i < mDriveRouteResult.getPaths()
-                                .get(0).getSteps().size(); i++) {
-
-
-                            LatLng temp = new LatLng(Double.parseDouble(list.get(i).getLatitude()),Double.parseDouble(list.get(i).getLongitude()));
+                            LatLng temp = new LatLng(Double.parseDouble(list.get(i).getLatitude()), Double.parseDouble(list.get(i).getLongitude()));
                             if (AMapUtils.calculateLineDistance(latLng, temp) < 20) {
 
                                 list.get(i).setBobaoflag(1);
@@ -514,13 +489,9 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
 //
                                 return;
                             }
-
                         }
 
-
                     }
-
-
                 }
 
 
@@ -579,7 +550,6 @@ public class MapTwoPointActivity extends Activity implements AMap.OnMarkerClickL
         public void onEvent(int arg0, int arg1, int arg2, Bundle arg3) {
         }
     };
-
 
 
 }

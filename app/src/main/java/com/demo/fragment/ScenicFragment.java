@@ -57,7 +57,7 @@ public class ScenicFragment extends Fragment implements XListView.IXListViewList
     CarouselImgBean carouselImgBean;
     int mPage = 1;//页数
     boolean judge_Refresh = true;
-    Intent intent=new Intent();
+    Intent intent = new Intent();
     HomeSeienceListViewadapter homeSeienceListViewadapter;
     NoScrollGridView gdScenic;
     Banner banner;
@@ -88,7 +88,6 @@ public class ScenicFragment extends Fragment implements XListView.IXListViewList
         lvHomefragScienceHotspot.setPullLoadEnable(true);
         //启用或禁用下拉刷新功能。
         lvHomefragScienceHotspot.setPullRefreshEnable(true);
-
         lvHomefragScienceHotspot.setXListViewListener(this);
 
 
@@ -115,9 +114,9 @@ public class ScenicFragment extends Fragment implements XListView.IXListViewList
                         if (lvHomefragScienceHotspot.getLastVisiblePosition() == (lvHomefragScienceHotspot.getCount() - 1)) {
                         }
                         // 判断滚动到顶部
-                        if(lvHomefragScienceHotspot.getFirstVisiblePosition() == 0){
+                        if (lvHomefragScienceHotspot.getFirstVisiblePosition() == 0) {
                             ivFragScienceTop.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             ivFragScienceTop.setVisibility(View.VISIBLE);
                         }
 
@@ -324,7 +323,6 @@ public class ScenicFragment extends Fragment implements XListView.IXListViewList
         lvHomefragScienceHotspot.stopRefresh();
         lvHomefragScienceHotspot.stopLoadMore();
     }
-
 
 
 }

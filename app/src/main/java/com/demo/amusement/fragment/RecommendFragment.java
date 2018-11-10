@@ -52,15 +52,15 @@ import butterknife.ButterKnife;
 public class RecommendFragment extends Fragment implements XListView.IXListViewListener {
 
 
-    RecommendAdapter adapter;
-    GoBean goBean = new GoBean();
-    int mPage = 1;//页数
-    boolean judge_Refresh = true;
+    private RecommendAdapter adapter;
+    private GoBean goBean = new GoBean();
+    private int mPage = 1;//页数
+    private boolean judge_Refresh = true;
 
-    List<GoBean.DataBean.RowsBean> list;
+    private List<GoBean.DataBean.RowsBean> list;
 
-    NoScrollViewListView slv_head;
-    ThreeBridBean brid;
+    private NoScrollViewListView slv_head;
+    private ThreeBridBean brid;
     Intent intent = new Intent();
     @Bind(R.id.lv_fragmentonlylist)
     XListView lvFragmentonlylist;
@@ -71,14 +71,12 @@ public class RecommendFragment extends Fragment implements XListView.IXListViewL
         View view = inflater.inflate(R.layout.fragment_onlylist, null);
         ButterKnife.bind(this, view);
         setHeader();
-//        lvFragmentAll.setAdapter(new RecommendAdapter(getContext()));
-
         lvFragmentonlylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), Activity_ActivityDetailsTj.class);
-                Log.i("DDDDD", position+"");
-                intent.putExtra("id", goBean.getData().getRows().get(position-brid.getData().size()).getId() + "");
+                Log.i("DDDDD", position + "");
+                intent.putExtra("id", goBean.getData().getRows().get(position - brid.getData().size()).getId() + "");
                 startActivity(intent);
             }
         });
