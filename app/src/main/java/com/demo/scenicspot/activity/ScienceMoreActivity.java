@@ -133,14 +133,15 @@ public class ScienceMoreActivity extends FragmentActivity implements GradationSc
     SpeechSynthesizer mTts;
     private int height;
     DialogProgressbar dialogProgressbar;
-    FindAtlasByVisitorsIdBean findAtlasByVisitorsIdBean=new FindAtlasByVisitorsIdBean();
+    FindAtlasByVisitorsIdBean findAtlasByVisitorsIdBean = new FindAtlasByVisitorsIdBean();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sciencemore);
         ButterKnife.bind(this);
 
-        dialogProgressbar=new DialogProgressbar(ScienceMoreActivity.this,R.style.AlertDialogStyle);
+        dialogProgressbar = new DialogProgressbar(ScienceMoreActivity.this, R.style.AlertDialogStyle);
         //播报用   APPID需要更换  已改
         SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID + "=57d8b737");
         //1.创建 SpeechSynthesizer 对象, 第二个参数：本地合成时传 InitListener
@@ -163,9 +164,9 @@ public class ScienceMoreActivity extends FragmentActivity implements GradationSc
             mTts.pauseSpeaking();
             mTts.destroy();
         }
-        if (dialogProgressbar!=null){
+        if (dialogProgressbar != null) {
             dialogProgressbar.dismiss();
-            dialogProgressbar=null;
+            dialogProgressbar = null;
         }
     }
 
@@ -206,8 +207,8 @@ public class ScienceMoreActivity extends FragmentActivity implements GradationSc
                 break;
             case R.id.rl_sciencemore_location://地图导游
                 intent.setClass(ScienceMoreActivity.this, MapTwoPointActivity.class);
-                intent.putExtra("lat",bean.getData().getLatitude());
-                intent.putExtra("lng",bean.getData().getLongitude());
+                intent.putExtra("lat", bean.getData().getLatitude());
+                intent.putExtra("lng", bean.getData().getLongitude());
                 startActivity(intent);
                 break;
             case R.id.ll_sciencemore_more:
@@ -248,7 +249,7 @@ public class ScienceMoreActivity extends FragmentActivity implements GradationSc
                     Bundle bundle = new Bundle();
                     bundle.putString("id", bean.getData().getId() + "");
                     bundle.putString("num", bean.getData().getCommentCount() + "");
-                    bundle.putString("good",bean.getData().getSatisfaction());
+                    bundle.putString("good", bean.getData().getSatisfaction());
                     commentFragment.setArguments(bundle);
                 }
                 addOrShowFragment(getSupportFragmentManager().beginTransaction(), commentFragment);
@@ -398,7 +399,8 @@ public class ScienceMoreActivity extends FragmentActivity implements GradationSc
                 });
 
     }
-    private void findAtlasByVisitorsId(){
+
+    private void findAtlasByVisitorsId() {
         RequestParams params = new RequestParams();
         params.addQueryStringParameter("visitorsId", id);
         HttpUtils http = new HttpUtils();
@@ -408,19 +410,19 @@ public class ScienceMoreActivity extends FragmentActivity implements GradationSc
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         try {
-                            findAtlasByVisitorsIdBean =new Gson().fromJson(responseInfo.result,FindAtlasByVisitorsIdBean.class);
-                            int i=findAtlasByVisitorsIdBean.getHeader().getStatus();
-                            if(i==0){
-                                if(findAtlasByVisitorsIdBean.getData().size()==0||findAtlasByVisitorsIdBean.getData()==null){
-                                }else{
+                            findAtlasByVisitorsIdBean = new Gson().fromJson(responseInfo.result, FindAtlasByVisitorsIdBean.class);
+                            int i = findAtlasByVisitorsIdBean.getHeader().getStatus();
+                            if (i == 0) {
+                                if (findAtlasByVisitorsIdBean.getData().size() == 0 || findAtlasByVisitorsIdBean.getData() == null) {
+                                } else {
                                     ImageLoader.getInstance().displayImage(findAtlasByVisitorsIdBean.getData().get(0), ivSciencemoreBigpic);
                                 }
 
-                            }else {
+                            } else {
                                 ToastUtil.show(getApplicationContext(), findAtlasByVisitorsIdBean.getHeader().getMsg());
                             }
                         } catch (Exception e) {
-                            ToastUtil.show(getApplicationContext(),"解析数据错误");
+                            ToastUtil.show(getApplicationContext(), "解析数据错误");
                         }
 
                     }
@@ -492,15 +494,15 @@ public class ScienceMoreActivity extends FragmentActivity implements GradationSc
         // TODO Auto-generated method stub
         if (y <= 0) {   //设置标题的背景颜色
             llTitle.setBackgroundColor(Color.argb((int) 0, 255, 255, 255));
-            tvBottomline.setBackgroundColor(Color.argb((int) 0, 205 , 205 , 205 ));
+            tvBottomline.setBackgroundColor(Color.argb((int) 0, 205, 205, 205));
             tvGoodTitle.setTextColor(Color.argb((int) 0, 51, 51, 51));
             ivBack.setAlpha((int) 0);
         } else if (y > 0 && y <= height) { //滑动距离小于banner图的高度时，设置背景和字体颜色颜色透明度渐变
             float scale = (float) y / height;
             float alpha = (255 * scale);
-            tvGoodTitle.setTextColor(Color.argb((int) alpha, 51 , 51 , 51 ));
+            tvGoodTitle.setTextColor(Color.argb((int) alpha, 51, 51, 51));
             llTitle.setBackgroundColor(Color.argb((int) alpha, 255, 255, 255));
-            tvBottomline.setBackgroundColor(Color.argb((int) alpha, 205 , 205 , 205 ));
+            tvBottomline.setBackgroundColor(Color.argb((int) alpha, 205, 205, 205));
             ivBack.setAlpha((int) alpha);
         } else {    //滑动到banner下面设置普通颜色
             llTitle.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));

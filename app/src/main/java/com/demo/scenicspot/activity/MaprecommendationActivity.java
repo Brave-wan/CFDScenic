@@ -214,6 +214,7 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
                                             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.datouzhen));
 //                                            markerOptions.title(monitorBean.getData().get(index).getName());
                                             Marker marker = aMap.addMarker(markerOptions);
+                                            marker.setObject(monitorBean.getData().getRows());
                                             saveMarkerList.add(marker);
 
                                         }
@@ -366,10 +367,6 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
     public class LoginTask extends AsyncTask<Void, Integer, Integer> {
         @Override
         protected Integer doInBackground(Void... arg0) {               //在此处处理UI会导致异常
-//			if (mloginHandle != 0) {
-//	    		IDpsdkCore.DPSDK_Logout(m_loginHandle, 30000);
-//        		m_loginHandle = 0;
-//	    	}
             Login_Info_t loginInfo = new Login_Info_t();
             Integer error = Integer.valueOf(0);
             loginInfo.szIp = ip.getBytes();
@@ -604,47 +601,48 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
     @Override
     public boolean onMarkerClick(Marker marker) {
         intent = new Intent(MaprecommendationActivity.this, RealPlayActivity.class);
+        MonitorBean.DataBean.RowsBean bean = (MonitorBean.DataBean.RowsBean) marker.getObject();
         double latitude = marker.getPosition().latitude;
         double longitude = marker.getPosition().longitude;
-        int pos = 0;
-        for (int i = 0; i < monitorBean.getData().getRows().size(); i++) {
-            double latitude1 = 0, longitude1 = 0;
-            String aa = "", bb = "";
-            try {
-                latitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getY_point());
-                longitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getX_point());
-                DecimalFormat df = new DecimalFormat("######0.000000");
-                aa = df.format(latitude1);
-                bb = df.format(longitude1);
-            } catch (Exception e) {
+//        int pos = 0;
+//        for (int i = 0; i < monitorBean.getData().getRows().size(); i++) {
+//            double latitude1 = 0, longitude1 = 0;
+//            String aa = "", bb = "";
+//            try {
+//                latitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getY_point());
+//                longitude1 = Double.parseDouble(monitorBean.getData().getRows().get(i).getX_point());
+//                DecimalFormat df = new DecimalFormat("######0.000000");
+//                aa = df.format(latitude1);
+//                bb = df.format(longitude1);
+//            } catch (Exception e) {
+//
+//            }
+//
+//            if (latitude == Double.parseDouble(aa) && Double.parseDouble(bb) == longitude) {
+//                pos = i;
+//                break;
+//            }
+//        }
 
-            }
+//        if (root == null) {
+//            ToastUtil.show(MaprecommendationActivity.this, "未知异常");
+//            return false;
+//        }
+//        String channelId = null;
+//        for (int ii = 0; ii < root.getChildren().size(); ii++) {
+//            if (root.getChildren().get(ii).getValue().equals(monitorBean.getData().getRows().get(pos).getCode())) {
+//                channelId = root.getChildren().get(ii).getChildren().get(0).getValue();
+//
+//            }
+//        }
+//        if (channelId == null) {
+//            ToastUtil.show(MaprecommendationActivity.this, "未找到摄像头");
+//            return false;
+//        }
 
-            if (latitude == Double.parseDouble(aa) && Double.parseDouble(bb) == longitude) {
-                pos = i;
-                break;
-            }
-        }
-
-        if (root == null) {
-            ToastUtil.show(MaprecommendationActivity.this, "未知异常");
-            return false;
-        }
-        String channelId = null;
-        for (int ii = 0; ii < root.getChildren().size(); ii++) {
-            if (root.getChildren().get(ii).getValue().equals(monitorBean.getData().getRows().get(pos).getCode())) {
-                channelId = root.getChildren().get(ii).getChildren().get(0).getValue();
-
-            }
-        }
-        if (channelId == null) {
-            ToastUtil.show(MaprecommendationActivity.this, "未找到摄像头");
-            return false;
-        }
-
-        intent.putExtra("channelId", channelId);
-        intent.putExtra("name", monitorBean.getData().getRows().get(pos).getName());
-        intent.putExtra("conn", monitorBean.getData().getRows().get(pos).getContent());
+        intent.putExtra("channelId", "");
+        intent.putExtra("name", bean.getName());
+        intent.putExtra("conn", bean.getContent());
         startActivity(intent);
         return false;
     }
@@ -866,7 +864,7 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
         }
 
         //缓冲进度回调
-//percent为缓冲进度0~100，beginPos为缓冲音频在文本中开始位置，endPos表示缓冲音频在文本中结束位置，info为附加信息。
+        //percent为缓冲进度0~100，beginPos为缓冲音频在文本中开始位置，endPos表示缓冲音频在文本中结束位置，info为附加信息。
         public void onBufferProgress(int percent, int beginPos, int endPos, String info) {
         }
 
@@ -880,7 +878,7 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
 
 
         //播放进度回调
-//percent为播放进度0~100,beginPos为播放音频在文本中开始位置，endPos表示播放音频在文本中结束位置.
+        //percent为播放进度0~100,beginPos为播放音频在文本中开始位置，endPos表示播放音频在文本中结束位置.
         public void onSpeakProgress(int percent, int beginPos, int endPos) {
         }
 
