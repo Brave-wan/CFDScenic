@@ -2,6 +2,7 @@ package com.demo.monitor;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -67,20 +68,24 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
+                mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+                    @Override
+                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
+                        if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+                            videoView.setBackgroundColor(Color.TRANSPARENT);
+                        }
+                        ToastUtil.show(HKPlayActivity.this, "success");
+                        if (dialog != null) {
+                            dialog.dismiss();
+                        }
+
+                        return true;
+                    }
+                });
                 mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
             }
         });
 
-        videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-            @Override
-            public boolean onInfo(MediaPlayer mediaPlayer, int what, int extra) {
-                if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
-                } else {
-                    dialog.dismiss();
-                }
-                return true;
-            }
-        });
     }
 
     private void initView() {
