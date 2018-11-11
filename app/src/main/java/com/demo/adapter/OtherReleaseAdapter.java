@@ -51,7 +51,6 @@ import java.util.List;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
@@ -426,38 +425,7 @@ public class OtherReleaseAdapter extends BaseAdapter {
                     mPopWindow.dismiss();
                     break;
                 case R.id.ll_share_weibo://微博
-                    SinaWeibo.ShareParams sp1 = new SinaWeibo.ShareParams();
-                    sp1.setTitle(list.get(pos).getTitle());
-                    sp1.setText(list.get(pos).getContent());
-                    if(list.get(pos).getTravel_type()==2){//图片
-                        // 标题的超链接
-                        sp1.setTitleUrl(URL.circleSharePoint+"?headImg="+list.get(pos).getHead_img()+"&name="+list.get(pos).getNick_name()+"&date="+s+"&title="+list.get(pos).getTitle()+"&content="+list.get(pos).getContent()+"&pic="+picUrl+"&shareType="+"0");
-                        sp1.setImageUrl(list.get(pos).getPicList().get(0));
-                        sp1.setSiteUrl(URL.circleSharePoint+"?headImg="+list.get(pos).getHead_img()+"&name="+list.get(pos).getNick_name()+"&date="+s+"&title="+list.get(pos).getTitle() +"&content="+list.get(pos).getContent()+"&pic="+picUrl+"&shareType="+"0");
-                    }else if(list.get(pos).getTravel_type()==1){
-                        sp1.setTitleUrl(URL.circleSharePoint+"?headImg="+list.get(pos).getHead_img()+"&name="+list.get(pos).getNick_name()+"&date="+s+"&title="+list.get(pos).getTitle()+"&content="+list.get(pos).getContent()+"&video="+list.get(pos).getTravel_video()+"&shareType="+"1");
-                        sp1.setImageUrl(list.get(pos).getTravel_img());
-                        sp1.setSiteUrl(URL.circleSharePoint+"?headImg="+list.get(pos).getHead_img()+"&name="+list.get(pos).getNick_name()+"&date="+s+"&title="+list.get(pos).getTitle()+"&content="+list.get(pos).getContent()+"&video="+list.get(pos).getTravel_video()+"&shareType="+"1");
-                    }
-                    sp1.setSite("智慧湿地游");
-                    Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
-                    weibo.setPlatformActionListener(new PlatformActionListener() {
-                        @Override
-                        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-                            initShare(pos,cyzMode);
-                        }
 
-                        @Override
-                        public void onError(Platform platform, int i, Throwable throwable) {
-                            ToastUtil.show(mContext, "分享失败");
-                        }
-
-                        @Override
-                        public void onCancel(Platform platform, int i) {
-                            ToastUtil.show(mContext, "取消分享");
-                        }
-                    });
-                    weibo.share(sp1);
                     mPopWindow.dismiss();
                     break;
                 case R.id.ll_share_pengyouquan://朋友圈

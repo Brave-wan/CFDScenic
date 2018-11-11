@@ -59,7 +59,6 @@ import butterknife.OnClick;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
@@ -437,39 +436,39 @@ public class Activity_AllComments_ylq extends Activity  {
                     mPopWindow.dismiss();
                     break;
                 case R.id.ll_share_weibo:
-                    SinaWeibo.ShareParams sp1 = new SinaWeibo.ShareParams();
-                    sp1.setTitle(getIntent().getStringExtra("title"));
-                    sp1.setText(getIntent().getStringExtra("content"));
-                    sp1.setTitleUrl("https://www.baidu.com/"); // 标题的超链接
-                    sp1.setSite("智慧湿地游");
-                    if (getIntent().getStringExtra("type").equals("1")) {//视频
-                        sp1.setImageUrl(getIntent().getStringExtra("videoimg"));
-                        sp1.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1"); // 标题的超链接
-                        sp1.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1");
-                        sp1.setShareType(Platform.SHARE_VIDEO);
-                    } else if (getIntent().getStringExtra("type").equals("2")) {
-                        sp1.setImageUrl(getIntent().getStringExtra("img"));
-                        sp1.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0"); // 标题的超链接
-                        sp1.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0");
-                    }
-                    Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
-                    weibo.setPlatformActionListener(new PlatformActionListener() {
-                        @Override
-                        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-                            initShare();
-                        }
-
-                        @Override
-                        public void onError(Platform platform, int i, Throwable throwable) {
-                            ToastUtil.show(Activity_AllComments_ylq.this, "分享失败");
-                        }
-
-                        @Override
-                        public void onCancel(Platform platform, int i) {
-                            ToastUtil.show(Activity_AllComments_ylq.this, "取消分享");
-                        }
-                    });
-                    weibo.share(sp1);
+//                    SinaWeibo.ShareParams sp1 = new SinaWeibo.ShareParams();
+//                    sp1.setTitle(getIntent().getStringExtra("title"));
+//                    sp1.setText(getIntent().getStringExtra("content"));
+//                    sp1.setTitleUrl("https://www.baidu.com/"); // 标题的超链接
+//                    sp1.setSite("智慧湿地游");
+//                    if (getIntent().getStringExtra("type").equals("1")) {//视频
+//                        sp1.setImageUrl(getIntent().getStringExtra("videoimg"));
+//                        sp1.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1"); // 标题的超链接
+//                        sp1.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1");
+//                        sp1.setShareType(Platform.SHARE_VIDEO);
+//                    } else if (getIntent().getStringExtra("type").equals("2")) {
+//                        sp1.setImageUrl(getIntent().getStringExtra("img"));
+//                        sp1.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0"); // 标题的超链接
+//                        sp1.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0");
+//                    }
+//                    Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
+//                    weibo.setPlatformActionListener(new PlatformActionListener() {
+//                        @Override
+//                        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+//                            initShare();
+//                        }
+//
+//                        @Override
+//                        public void onError(Platform platform, int i, Throwable throwable) {
+//                            ToastUtil.show(Activity_AllComments_ylq.this, "分享失败");
+//                        }
+//
+//                        @Override
+//                        public void onCancel(Platform platform, int i) {
+//                            ToastUtil.show(Activity_AllComments_ylq.this, "取消分享");
+//                        }
+//                    });
+//                    weibo.share(sp1);
                     mPopWindow.dismiss();
                     break;
                 case R.id.ll_share_pengyouquan:

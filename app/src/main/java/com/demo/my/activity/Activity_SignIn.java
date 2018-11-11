@@ -49,7 +49,6 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.PlatformDb;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
 import android.os.Handler.Callback;
@@ -164,14 +163,14 @@ public class Activity_SignIn extends Activity implements Callback,
                 // qq.authorize();//只是单独授权登录
                 break;
             case R.id.iv_weibo:
-                so=3;
-                Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
-                weibo.setPlatformActionListener(this);
-                weibo.authorize();//单独授权
-                weibo.showUser(null);//授权并获取用户信息
-                //authorize与showUser单独调用一个即可
-                //移除授权
-                //weibo.removeAccount(true);
+//                so=3;
+//                Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
+//                weibo.setPlatformActionListener(this);
+//                weibo.authorize();//单独授权
+//                weibo.showUser(null);//授权并获取用户信息
+//                //authorize与showUser单独调用一个即可
+//                //移除授权
+//                //weibo.removeAccount(true);
                 break;
         }
     }

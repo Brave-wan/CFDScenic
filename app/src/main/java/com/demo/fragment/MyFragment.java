@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.demo.demo.myapplication.R;
 import com.demo.my.activity.Activity_MyCollection;
@@ -56,7 +57,7 @@ import butterknife.OnClick;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
@@ -153,7 +154,6 @@ public class MyFragment extends Fragment {
         }
 
 
-
         //判断男女
        /* if (SpUtil.getString(getActivity(), SpName.Gender, "").equals("0")) {
             ivGender.setVisibility(View.VISIBLE);
@@ -177,7 +177,7 @@ public class MyFragment extends Fragment {
     public void onClick(View view) {
         if (SpUtil.getString(getContext(), SpName.token, "").equals("")) {
             intent.setClass(getContext(), Activity_SignIn.class);
-            intent.putExtra("index",1);
+            intent.putExtra("index", 1);
             startActivityForResult(intent, 0x001);
             return;
         }
@@ -275,8 +275,8 @@ public class MyFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==0x001&&resultCode==0x001){
-            if (data.getBooleanExtra("ok",true)){
+        if (requestCode == 0x001 && resultCode == 0x001) {
+            if (data.getBooleanExtra("ok", true)) {
                 getDatum();
             }
         }
@@ -315,7 +315,7 @@ public class MyFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            ShareSDK.initSDK(getActivity());
+//            ShareSDK.initSDK(getActivity());
             switch (v.getId()) {
                 case R.id.ll_share_qq://qq
                     QQ.ShareParams sp = new QQ.ShareParams();
@@ -346,41 +346,16 @@ public class MyFragment extends Fragment {
                     mPopWindow.dismiss();
                     break;
                 case R.id.ll_share_weibo://微博
-                    SinaWeibo.ShareParams sp1 = new SinaWeibo.ShareParams();
-                    sp1.setTitle("下载智慧湿地游，畅游曹妃甸");
-                    sp1.setTitleUrl("http://139.129.167.238:88/app/downLoad.jsp"); // 标题的超链接
-                    sp1.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");
-                    sp1.setImageUrl("http://139.129.167.238:88/app/logo.png");//分享网络图片
-                    sp1.setSite("智慧湿地游");
-                    sp1.setSiteUrl("http://139.129.167.238:88/app/downLoad.jsp");
-                    Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
-                    weibo.setPlatformActionListener(new PlatformActionListener() {
-                        @Override
-                        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-//                            initShare();
-                        }
-
-                        @Override
-                        public void onError(Platform platform, int i, Throwable throwable) {
-                            ToastUtil.show(getActivity(), "分享失败");
-                        }
-
-                        @Override
-                        public void onCancel(Platform platform, int i) {
-                            ToastUtil.show(getActivity(), "取消分享");
-                        }
-                    });
-                    weibo.share(sp1);
                     break;
                 case R.id.ll_share_weixin://微信
                     Wechat.ShareParams sp2 = new Wechat.ShareParams();
                     sp2.setTitle("下载智慧湿地游，畅游曹妃甸");
-                    sp2.setTitleUrl("http://139.129.167.238:88/app/downLoad.jsp"); // 标题的超链接
+                    sp2.setTitleUrl("http://sharesdk.cn");
                     sp2.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");
-                    sp2.setImageUrl("http://139.129.167.238:88/app/logo.png");//分享网络图片
-                    sp2.setUrl("http://139.129.167.238:88/app/downLoad.jsp");
+                    sp2.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
+                    sp2.setUrl("http://sharesdk.cn");
                     sp2.setSite("智慧湿地游");
-                    sp2.setSiteUrl("http://139.129.167.238:88/app/downLoad.jsp");
+                    sp2.setSiteUrl("http://sharesdk.cn");
                     sp2.setShareType(Platform.SHARE_WEBPAGE);
                     Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
                     wechat.setPlatformActionListener(new PlatformActionListener() {
@@ -400,16 +375,17 @@ public class MyFragment extends Fragment {
                         }
                     });
                     wechat.share(sp2);
+
                     break;
                 case R.id.ll_share_pengyouquan://朋友圈
                     WechatMoments.ShareParams sp3 = new WechatMoments.ShareParams();
                     sp3.setTitle("下载智慧湿地游，畅游曹妃甸");
-                    sp3.setTitleUrl("hhttp://139.129.167.238:88/app/downLoad.jsp"); // 标题的超链接
+                    sp3.setTitleUrl("http://sharesdk.cn");
                     sp3.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");
-                    sp3.setImageUrl("http://139.129.167.238:88/app/logo.png");//分享网络图片
-                    sp3.setUrl("http://139.129.167.238:88/app/downLoad.jsp");
+                    sp3.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
+                    sp3.setUrl("http://sharesdk.cn");
                     sp3.setSite("智慧湿地游");
-                    sp3.setSiteUrl("http://139.129.167.238:88/app/downLoad.jsp");
+                    sp3.setSiteUrl("http://sharesdk.cn");
                     sp3.setShareType(Platform.SHARE_WEBPAGE);
                     Platform wechatmoments = ShareSDK.getPlatform(WechatMoments.NAME);
                     wechatmoments.setPlatformActionListener(new PlatformActionListener() {
@@ -489,7 +465,7 @@ public class MyFragment extends Fragment {
         RequestParams params = new RequestParams();
         params.addHeader("Authorization", SpUtil.getString(getActivity(), SpName.token, ""));
         HttpUtils http = new HttpUtils();
-        http.configCurrentHttpCacheExpiry(0*1000);//设置缓存时间
+        http.configCurrentHttpCacheExpiry(0 * 1000);//设置缓存时间
         http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
         http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
         http.send(HttpRequest.HttpMethod.POST, URL.getDatum, params,
@@ -505,8 +481,8 @@ public class MyFragment extends Fragment {
                      @Override
                      public void onSuccess(ResponseInfo<String> responseInfo) {
                          dialogProgressbar.dismiss();*/
-                        @Override
-                        public void onSuccess(ResponseInfo<String> responseInfo) {
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
                         try {
                             GetDatum getDatum = new Gson().fromJson(responseInfo.result, GetDatum.class);
                             int i = getDatum.getHeader().getStatus();

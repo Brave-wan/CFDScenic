@@ -28,6 +28,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import java.util.concurrent.TimeUnit;
 
 import cn.jpush.android.api.JPushInterface;
+import cn.sharesdk.framework.ShareSDK;
 import okhttp3.OkHttpClient;
 
 /**
@@ -57,6 +58,7 @@ public class MyApplication extends Application {
         super.onCreate();
         _instance = this;
         configImageLoader();
+        ShareSDK.initSDK(this);
 
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);

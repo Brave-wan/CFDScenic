@@ -61,22 +61,23 @@ public class ChoseDateActivity extends FragmentActivity {
     LinearLayout llAtyChosedateFandian;
     @Bind(R.id.frag_chosedate)
     FrameLayout fragChosedate;
-    Intent intent=new Intent();
-    private Fragment currentFragment,hotelfragment,restaurantfragment;
+    Intent intent = new Intent();
+    private Fragment currentFragment, hotelfragment, restaurantfragment;
     int type;
     int types;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mall_activity_chosedate);
         ButterKnife.bind(this);
-        type=getIntent().getIntExtra("type",1);
-        if(type==1){
+        type = getIntent().getIntExtra("type", 1);
+        if (type == 1) {
             initTab();
-            types=3;
-        }else {
+            types = 3;
+        } else {
             init();
-            types=4;
+            types = 4;
         }
 
         getPhotoOfHomePage();
@@ -94,7 +95,7 @@ public class ChoseDateActivity extends FragmentActivity {
                 if (hotelfragment == null) {
                     hotelfragment = new HotelFragment();
                 }
-                types=3;
+                types = 3;
                 getPhotoOfHomePage();
                 addOrShowFragment(getSupportFragmentManager().beginTransaction(), hotelfragment);
                 break;
@@ -106,12 +107,13 @@ public class ChoseDateActivity extends FragmentActivity {
                 if (restaurantfragment == null) {
                     restaurantfragment = new RestaurantFragment();
                 }
-                types=4;
+                types = 4;
                 getPhotoOfHomePage();
                 addOrShowFragment(getSupportFragmentManager().beginTransaction(), restaurantfragment);
                 break;
         }
     }
+
     private void init() {
         ivAtyChosedateJiudian.setImageResource(R.mipmap.jiudianhui);
         tvAtyChosedateJiudian.setTextColor(Color.parseColor("#333333"));
@@ -174,11 +176,11 @@ public class ChoseDateActivity extends FragmentActivity {
     }
 
 
-    private void getPhotoOfHomePage(){
+    private void getPhotoOfHomePage() {
         RequestParams params = new RequestParams();
-        params.addQueryStringParameter("type",types+"");
+        params.addQueryStringParameter("type", types + "");
         HttpUtils http = new HttpUtils();
-        http.configCurrentHttpCacheExpiry(0*1000);
+        http.configCurrentHttpCacheExpiry(0 * 1000);
         http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
         http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
         http.send(HttpRequest.HttpMethod.GET, URL.getPhotoOfHomePage, params,
@@ -186,17 +188,17 @@ public class ChoseDateActivity extends FragmentActivity {
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         try {
-                            JSONObject jsonObject=new JSONObject(responseInfo.result);
-                            JSONObject header=jsonObject.getJSONObject("header");
-                            int i=header.getInt("status");
-                            if(i==0) {
-                                if(jsonObject.getString("data")!=null){
-                                    ImageLoader.getInstance().displayImage(jsonObject.getString("data"),ivAtyChosedate);
+                            JSONObject jsonObject = new JSONObject(responseInfo.result);
+                            JSONObject header = jsonObject.getJSONObject("header");
+                            int i = header.getInt("status");
+                            if (i == 0) {
+                                if (jsonObject.getString("data") != null) {
+                                    ImageLoader.getInstance().displayImage(jsonObject.getString("data"), ivAtyChosedate);
                                 }
-                            }else {
+                            } else {
                             }
                         } catch (Exception e) {
-                            ToastUtil.show(getApplication(),"解析数据失败");
+                            ToastUtil.show(getApplication(), "解析数据失败");
                         }
 
                     }

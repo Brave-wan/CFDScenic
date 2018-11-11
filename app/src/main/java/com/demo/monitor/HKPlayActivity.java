@@ -74,7 +74,6 @@ public class HKPlayActivity extends Activity implements View.OnClickListener {
                         if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
                             videoView.setBackgroundColor(Color.TRANSPARENT);
                         }
-                        ToastUtil.show(HKPlayActivity.this, "success");
                         if (dialog != null) {
                             dialog.dismiss();
                         }
