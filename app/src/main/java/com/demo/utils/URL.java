@@ -125,7 +125,10 @@ public class URL {
     public static final String saveExpressOfUser = IP + "interFace/orderDetail/saveExpressOfUser";
     //我的 - 第三方登陆
     public static final String thirdLoginin = IP + "consumerUser/loginOther";
-    //我的 - 关于我们
+    //我的 - 关于我们Midea/美的 BCD-230WTM(E)风冷无霜节能冰箱 家用小型三门三开门
+    //【仅限0-15点】立减100到手1799 咨询有惊喜
+    //
+    //承诺送货入户，未履约赔付10000积分?
     public static final String getAboutUs = IP + "shopUser/getAboutUs";
     //我的 -消息中心
     public static final String messageCenter = IP + "shopUser/myMessage";

@@ -4,7 +4,7 @@ package com.demo.bean;
  * 作者：sonnerly on 2016/10/7 0007 14:35
  */
 public class ThirdLoginBean {
-
+//"{\"data\":{\"userId\":\"1811050930589898\",\"token\":\"4cbd6818-4f9f-47b2-8b5d-c7f30c8110ec\"},\"header\":{\"msg\":\"成功\",\"status\":0}}"
     /**
      * token : 7df9a3b3-8c4d-4549-8940-d59d23d27a37
      * userId : 1610070220276060

@@ -179,8 +179,7 @@ public class Activity_SignIn extends Activity implements Callback,
         switch (msg.arg1) {
             case 1: {
                 // 成功
-                Toast.makeText(Activity_SignIn.this, "登录成功", Toast.LENGTH_SHORT)
-                        .show();
+                Toast.makeText(Activity_SignIn.this, "登录成功", Toast.LENGTH_SHORT).show();
 
                 Intent intent=new Intent();
                 intent.putExtra("ok",true);
@@ -288,6 +287,7 @@ public class Activity_SignIn extends Activity implements Callback,
 
                     @Override
                     public void onFailure(HttpException e, String s) {
+                        Log.i("wan",s);
                         ToastUtil.show(Activity_SignIn.this, e.getMessage());
                     }
                 });
