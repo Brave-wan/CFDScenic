@@ -320,11 +320,11 @@ public class MyFragment extends Fragment {
                 case R.id.ll_share_qq://qq
                     QQ.ShareParams sp = new QQ.ShareParams();
                     sp.setTitle("下载智慧湿地游，畅游曹妃甸");
-                    sp.setTitleUrl("http://139.129.167.238:88/app/downLoad.jsp"); // 标题的超链接
+                    sp.setTitleUrl("https://www.pgyer.com/cfdsd"); // 标题的超链接
                     sp.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");
                     sp.setImageUrl("http://139.129.167.238:88/app/logo.png");
                     sp.setSite("智慧湿地游");
-                    sp.setSiteUrl("http://139.129.167.238:88/app/downLoad.jsp");
+                    sp.setSiteUrl("https://www.pgyer.com/cfdsd");
                     Platform qq = ShareSDK.getPlatform(QQ.NAME);
                     qq.setPlatformActionListener(new PlatformActionListener() {
                         @Override
@@ -348,44 +348,35 @@ public class MyFragment extends Fragment {
                 case R.id.ll_share_weibo://微博
                     break;
                 case R.id.ll_share_weixin://微信
-                    Wechat.ShareParams sp2 = new Wechat.ShareParams();
-                    sp2.setTitle("下载智慧湿地游，畅游曹妃甸");
-                    sp2.setTitleUrl("http://sharesdk.cn");
-                    sp2.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");
-                    sp2.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
-                    sp2.setUrl("http://sharesdk.cn");
-                    sp2.setSite("智慧湿地游");
-                    sp2.setSiteUrl("http://sharesdk.cn");
-                    sp2.setShareType(Platform.SHARE_WEBPAGE);
-                    Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
-                    wechat.setPlatformActionListener(new PlatformActionListener() {
-                        @Override
-                        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-//                            initShare();
-                        }
 
-                        @Override
-                        public void onError(Platform platform, int i, Throwable throwable) {
-                            ToastUtil.show(getActivity(), "分享失败");
-                        }
+                    OnekeyShare oks = new OnekeyShare();
+                    oks.disableSSOWhenAuthorize();//关闭sso授权
+//                    oks.setTitle("下载智慧湿地游，畅游曹妃甸");
+//                    oks.setUrl("http://www.pgyer.com/cfdsd");
+//                    oks.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");
+////                    oks.setImageUrl("http://sdy.cfdsd.com/cdfImage/logo.png");
+//                    oks.setSiteUrl("https://www.pgyer.com/cfdsd");
+//                    oks.setTitleUrl("http://sharesdk.cn");
 
-                        @Override
-                        public void onCancel(Platform platform, int i) {
-                            ToastUtil.show(getActivity(), "取消分享");
-                        }
-                    });
-                    wechat.share(sp2);
-
+                    oks.setTitle("下载智慧湿地游，畅游曹妃甸");
+                    oks.setTitleUrl("https://www.pgyer.com/cfdsd");
+                    oks.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");
+                    oks.setImageUrl("http://sdy.cfdsd.com/cfdImage/logo.png");
+                    oks.setUrl("https://www.pgyer.com/cfdsd");
+                    oks.setSite("智慧湿地游");
+                    oks.setSiteUrl("https://www.pgyer.com/cfdsd");
+                    oks.setPlatform(Wechat.NAME);
+                    oks.show(getActivity());
                     break;
                 case R.id.ll_share_pengyouquan://朋友圈
                     WechatMoments.ShareParams sp3 = new WechatMoments.ShareParams();
                     sp3.setTitle("下载智慧湿地游，畅游曹妃甸");
-                    sp3.setTitleUrl("http://sharesdk.cn");
+                    sp3.setTitleUrl("https://www.pgyer.com/cfdsd");
                     sp3.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");
-                    sp3.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
-                    sp3.setUrl("http://sharesdk.cn");
+                    sp3.setImageUrl("http://sdy.cfdsd.com/cfdImage/logo.png");
+                    sp3.setUrl("https://www.pgyer.com/cfdsd");
                     sp3.setSite("智慧湿地游");
-                    sp3.setSiteUrl("http://sharesdk.cn");
+                    sp3.setSiteUrl("https://www.pgyer.com/cfdsd");
                     sp3.setShareType(Platform.SHARE_WEBPAGE);
                     Platform wechatmoments = ShareSDK.getPlatform(WechatMoments.NAME);
                     wechatmoments.setPlatformActionListener(new PlatformActionListener() {
