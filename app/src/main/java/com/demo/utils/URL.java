@@ -293,4 +293,5 @@ public class URL {
     public static final String threePic = IP + "advertisement/getCarouselImg";
     //获取摄像头视频流
     public static final String monitorVideos = IP + "monitorVideos/getPreviewXml";
+
 }

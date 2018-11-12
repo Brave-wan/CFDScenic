@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:numColumns="5"></com.demo.view.NoScrollGridView>
+                android:numColumns="5"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                     android:horizontalSpacing="10.0px"
                     android:numColumns="3"
                     android:scrollbars="none"
-                    android:verticalSpacing="1.0px"></GridView>
+                    android:verticalSpacing="1.0px" />
 
                 <HorizontalScrollView
                     android:id="@+id/content"

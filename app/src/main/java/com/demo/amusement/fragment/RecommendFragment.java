@@ -76,7 +76,8 @@ public class RecommendFragment extends Fragment implements XListView.IXListViewL
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), Activity_ActivityDetailsTj.class);
                 Log.i("DDDDD", position + "");
-                intent.putExtra("id", goBean.getData().getRows().get(position - brid.getData().size()).getId() + "");
+//                GoBean bean = (GoBean) adapter.getItem(position);
+                intent.putExtra("id", goBean.getData().getRows().get(0).getId() + "");
                 startActivity(intent);
             }
         });

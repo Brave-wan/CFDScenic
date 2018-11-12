@@ -1,27 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/beijing">
+    android:layout_height="match_parent">
 
     <com.demo.view.MyTopBar
+        android:id="@+id/seearound_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         app:tb_centerTv="查看周边"
         app:tb_leftImClick="true"
         app:tb_leftImVisibility="true"
-        app:tb_rightTvVisibility="false"
-        />
+        app:tb_rightTvVisibility="false" />
 
-    <WebView
-        android:id="@+id/webView_see"
+    <EditText
+        android:id="@+id/search_edit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <ImageView
-        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/seearound_title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_toLeftOf="@+id/search_button"
+        android:background="@drawable/shap_edit_brod_bg"
+        android:hint="输入关键字"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textSize="14sp" />
+
+    <Spinner
+        android:id="@+id/juli"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/the_end"/>
-</LinearLayout>
+        android:layout_above="@+id/map"
+        android:layout_toEndOf="@+id/search_button"
+        android:visibility="gone">
+
+    </Spinner>
+
+    <TextView
+        android:id="@+id/search_button"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/search_edit"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shap_txt_sear_bg"
+        android:gravity="center"
+        android:text="搜索"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="下一页（笔者该功能未实现）"
+        android:visibility="gone" />
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignEnd="@+id/next"
+        android:layout_below="@+id/search_button" />
+
+</RelativeLayout>
