@@ -1,6 +1,7 @@
 package com.demo.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -181,7 +182,10 @@ public class ScenicFragment extends Fragment implements XListView.IXListViewList
                         startActivity(intent);
                         break;
                     case 3://湿地简介
-                        intent.setClass(getContext(), BriefIntroductionActivity.class);
+//                        intent.setClass(getContext(), BriefIntroductionActivity.class);
+//                        startActivity(intent);
+                        Uri uri = Uri.parse("https://720yun.com/t/793jeOhvza8");
+                        intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
                 }

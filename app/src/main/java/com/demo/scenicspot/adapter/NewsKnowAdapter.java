@@ -66,7 +66,7 @@ public class NewsKnowAdapter extends BaseAdapter{
         cyzMode.tv_adp_newsknow_connent.setText(rowsBean.get(position).getNews_describe());
         cyzMode.tv_name.setText(rowsBean.get(position).getCreator());
         String time=rowsBean.get(position).getCreate_time();
-        cyzMode.tv_date.setText(time.substring(0,9));
+        cyzMode.tv_date.setText(time.substring(0,10));
 
         return convertView;
     }
