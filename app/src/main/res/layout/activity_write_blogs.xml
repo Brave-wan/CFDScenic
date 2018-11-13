@@ -9,8 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
 
         <TextView
@@ -44,10 +43,12 @@
             android:textColor="#fff"
             android:textSize="13sp" />
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#cbcbcb" />
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -56,8 +57,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/et_write_title"
@@ -65,10 +65,10 @@
                 android:layout_height="wrap_content"
                 android:background="#fff"
                 android:hint="标题"
-                android:textColorHint="@color/grayHint"
-                android:textColor="@color/text_black"
                 android:padding="10dp"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/grayHint" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,19 +81,19 @@
                 android:layout_height="100dp"
                 android:background="#fff"
                 android:gravity="top"
-                android:textColorHint="@color/grayHint"
-                android:textColor="@color/text_black"
                 android:hint="记录下你想说的..."
                 android:paddingLeft="10dp"
-                android:paddingTop="10dp" />
+                android:paddingTop="10dp"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/grayHint" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
-                android:paddingBottom="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
 
 
                 <!--<FrameLayout
@@ -101,86 +101,90 @@
                     android:layout_height="90dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp">-->
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <com.demo.view.NoScrollGridView
-        android:id="@+id/gv_write_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginLeft="5dp"
-        android:horizontalSpacing="3dp"
-        android:numColumns="5"
-        android:scrollbars="none"
-        android:verticalSpacing="5dp"
-        >
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-    </com.demo.view.NoScrollGridView>
-    <RelativeLayout
-        android:id="@+id/rl_select"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/iv_selectVideo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@mipmap/paizhaoand"
-            android:scaleType="fitXY"
-            android:layout_marginLeft="5dp"/>
-        <ImageView
-            android:id="@+id/iv_selactplay"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/bofang"
-            android:layout_centerVertical="true"
-            android:layout_alignRight="@+id/iv_selectVideo"
-            android:layout_alignEnd="@+id/iv_selectVideo"
-            android:layout_marginRight="28dp"
-            android:layout_marginEnd="28dp" />
-    </RelativeLayout>
+                    <com.demo.view.NoScrollGridView
+                        android:id="@+id/gv_write_pic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="5dp"
+                        android:horizontalSpacing="3dp"
+                        android:numColumns="5"
+                        android:scrollbars="none"
+                        android:verticalSpacing="5dp">
 
-</RelativeLayout>
+                    </com.demo.view.NoScrollGridView>
 
-                   <!-- <ImageView
-                        android:id="@+id/iv_write_camera"
+                    <RelativeLayout
+                        android:id="@+id/rl_select"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ylq_xiangkuang" />-->
+                        android:visibility="gone">
 
-                    <!--<ImageView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_gravity="center"-->
-                        <!--android:src="@mipmap/ylq_xiangji" />-->
-               <!-- </FrameLayout>-->
+                        <ImageView
+                            android:id="@+id/iv_selectVideo"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginLeft="5dp"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/paizhaoand" />
+
+                        <ImageView
+                            android:id="@+id/iv_selactplay"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignEnd="@+id/iv_selectVideo"
+                            android:layout_alignRight="@+id/iv_selectVideo"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="28dp"
+                            android:layout_marginRight="28dp"
+                            android:src="@mipmap/bofang" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <!-- <ImageView
+                     android:id="@+id/iv_write_camera"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@mipmap/ylq_xiangkuang" />-->
+
+                <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:src="@mipmap/ylq_xiangji" />-->
+                <!-- </FrameLayout>-->
 
                 <TextView
                     android:id="@+id/tv_write_prompt"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
                     android:gravity="bottom"
                     android:text="（照片最多上传9张，每张5M以内；视频20M以内!）"
                     android:textColor="@color/text_gray"
-                    android:textSize="10sp"
-                    android:layout_marginTop="10dp"/>
+                    android:textSize="10sp" />
 
             </LinearLayout>
-<!--<ImageView
-    android:id="@+id/iv_mivideoview"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@mipmap/gouwuche_kong"/>-->
+            <!--<ImageView
+                android:id="@+id/iv_mivideoview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/gouwuche_kong"/>-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="#eff2f7" />
+
             <LinearLayout
                 android:id="@+id/view_ll_riqi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:background="#fff"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
@@ -194,15 +198,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:textColor="@color/text_black"
                     android:gravity="center_vertical"
-                    android:text="旅行日期" />
+                    android:text="旅行日期"
+                    android:textColor="@color/text_black" />
+
                 <TextView
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    />
+                    android:layout_marginRight="10dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -231,16 +235,17 @@
                 android:layout_height="wrap_content"
                 android:background="#fff"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:paddingBottom="10dp">
-<com.demo.view.NoScrollViewListView
-    android:id="@+id/slv_write_blogs"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:divider="@null"
-    android:paddingLeft="15dp">
+                android:paddingBottom="10dp"
+                android:visibility="gone">
 
-</com.demo.view.NoScrollViewListView>
+                <com.demo.view.NoScrollViewListView
+                    android:id="@+id/slv_write_blogs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    android:paddingLeft="15dp">
+
+                </com.demo.view.NoScrollViewListView>
                 <!--<com.demo.view.MyRadioButton
                     android:id="@+id/view_yugu"
                     android:layout_width="wrap_content"
@@ -307,8 +312,7 @@
                 app:bottomLine="false"
                 app:leftImage="@mipmap/ylq_tubiao_leixing"
                 app:leftImageVisibility="true"
-                app:leftText="游记类型"
-                />
+                app:leftText="游记类型" />
 
             <LinearLayout
                 android:id="@+id/ll_layout3"
@@ -317,40 +321,40 @@
                 android:background="#fff"
                 android:orientation="vertical"
                 android:paddingBottom="10dp"
-                 android:visibility="gone">
+                android:visibility="gone">
 
                 <com.demo.view.MyRadioButton
                     android:id="@+id/view_shipin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
                     app:rb_Display_Status="false"
                     app:rb_TextView="视频攻略"
                     app:rb_True_ImageView="@mipmap/bt_cheng_yuan_true"
-                    app:rb_false_ImageView="@mipmap/bt_cheng_yuan_false"
-                    android:layout_marginLeft="15dp"/>
+                    app:rb_false_ImageView="@mipmap/bt_cheng_yuan_false" />
 
                 <com.demo.view.MyRadioButton
                     android:id="@+id/view_jingcai"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
                     app:rb_Display_Status="false"
                     app:rb_TextView="精彩游记"
                     app:rb_True_ImageView="@mipmap/bt_cheng_yuan_true"
-                    app:rb_false_ImageView="@mipmap/bt_cheng_yuan_false"
-                    android:layout_marginLeft="15dp"/>
+                    app:rb_false_ImageView="@mipmap/bt_cheng_yuan_false" />
 
                 <com.demo.view.MyRadioButton
                     android:id="@+id/view_biqu"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
                     app:rb_Display_Status="false"
                     app:rb_TextView="必去清单"
                     app:rb_True_ImageView="@mipmap/bt_cheng_yuan_true"
-                    app:rb_false_ImageView="@mipmap/bt_cheng_yuan_false"
-                    android:layout_marginLeft="15dp"/>
+                    app:rb_false_ImageView="@mipmap/bt_cheng_yuan_false" />
             </LinearLayout>
 
             <TextView

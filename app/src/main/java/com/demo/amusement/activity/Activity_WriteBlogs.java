@@ -100,16 +100,6 @@ public class Activity_WriteBlogs extends Activity implements SelectImagePopupWin
     LinearLayout viewLlRiqi;
     @Bind(R.id.view_ll_youwan)
     MyLinearLayoutItem viewLlYouwan;
-    /* @Bind(R.id.view_yugu)
-     MyRadioButton viewYugu;
-     @Bind(R.id.view_zhongxin)
-     MyRadioButton viewZhongxin;
-     @Bind(R.id.view_gongyuan)
-     MyRadioButton viewGongyuan;
-     @Bind(R.id.view_julebu)
-     MyRadioButton viewJulebu;
-     @Bind(R.id.view_chanyeyuan)
-     MyRadioButton viewChanyeyuan;*/
     @Bind(R.id.ll_layout1)
     LinearLayout llLayout1;
     @Bind(R.id.view_ll_youji)

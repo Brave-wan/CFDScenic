@@ -349,15 +349,15 @@ public class MyFragment extends Fragment {
                     break;
                 case R.id.ll_share_weixin://微信
 
-                    OnekeyShare oks = new OnekeyShare();
-                    oks.disableSSOWhenAuthorize();//关闭sso授权
+
 //                    oks.setTitle("下载智慧湿地游，畅游曹妃甸");
 //                    oks.setUrl("http://www.pgyer.com/cfdsd");
 //                    oks.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");
 ////                    oks.setImageUrl("http://sdy.cfdsd.com/cdfImage/logo.png");
 //                    oks.setSiteUrl("https://www.pgyer.com/cfdsd");
 //                    oks.setTitleUrl("http://sharesdk.cn");
-
+                    OnekeyShare oks = new OnekeyShare();
+                    oks.disableSSOWhenAuthorize();//关闭sso授权
                     oks.setTitle("下载智慧湿地游，畅游曹妃甸");
                     oks.setTitleUrl("https://www.pgyer.com/cfdsd");
                     oks.setText("我最近在使用“智慧湿地游”客户端。你也来看看吧！");

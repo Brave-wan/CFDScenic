@@ -2,19 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="1dp"
+    android:background="@color/white"
     android:orientation="vertical"
     android:paddingBottom="10dp"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp"
     android:paddingTop="10dp">
 
     <ImageView
         android:id="@+id/img_video"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:background="@color/blue" />
+        android:background="@drawable/icon_video_list_item" />
 
     <TextView
         android:id="@+id/tx_video_title"
@@ -33,6 +33,6 @@
         android:layout_alignLeft="@+id/tx_video_title"
         android:layout_below="@+id/tx_video_title"
         android:layout_marginTop="10dp"
-        android:text="曹妃甸"
+        android:text="曹妃甸湿地公园"
         android:textColor="@color/black" />
 </RelativeLayout>
