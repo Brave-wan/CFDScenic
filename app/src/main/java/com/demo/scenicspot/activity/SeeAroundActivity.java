@@ -194,7 +194,6 @@ public class SeeAroundActivity extends AppCompatActivity implements LocationSour
         if (mapLocationClient == null) {
             //初始化AMapLocationClient，并绑定监听
             mapLocationClient = new AMapLocationClient(getApplicationContext());
-
             //初始化定位参数
             mapLocationClientOption = new AMapLocationClientOption();
             //设置定位精度
@@ -335,7 +334,7 @@ public class SeeAroundActivity extends AppCompatActivity implements LocationSour
                     + cities.get(i).getCityCode() + "城市编码:"
                     + cities.get(i).getAdCode() + "\n";
         }
-        Toast.makeText(SeeAroundActivity.this, infomation, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(SeeAroundActivity.this, infomation, Toast.LENGTH_SHORT).show();
 
     }
 

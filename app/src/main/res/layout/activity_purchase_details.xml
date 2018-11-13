@@ -14,36 +14,38 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="200dp">
-    <ImageView
-        android:id="@+id/ll_back"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/zhanwei" />
-    <TextView
-        android:id="@+id/tv_purchase_ylq"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#90000000"
-        android:gravity="center"
-        android:text="图集"
-        android:textColor="#fff"
-        android:textSize="13sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
-</RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <ImageView
+                        android:id="@+id/ll_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/zhanwei" />
+
+                    <TextView
+                        android:id="@+id/tv_purchase_ylq"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="#90000000"
+                        android:gravity="center"
+                        android:text="图集"
+                        android:textColor="#fff"
+                        android:textSize="13sp" />
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,8 +105,8 @@
                     android:id="@+id/ll_Number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="#fff"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -227,8 +229,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:padding="10dp"
-        android:visibility="gone"
-        android:src="@mipmap/gouwuchehui" />
+        android:src="@mipmap/gouwuchehui"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/iv_return"
@@ -262,6 +264,7 @@
             android:text="商品详情"
             android:textColor="#00000000"
             android:textSize="18sp" />
+
         <ImageView
             android:id="@+id/iv_right_cart"
             android:layout_width="wrap_content"
@@ -269,8 +272,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:visibility="gone"
-            android:src="@mipmap/gouwuchecheng" />
+            android:src="@mipmap/gouwuchecheng"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_bottomline"

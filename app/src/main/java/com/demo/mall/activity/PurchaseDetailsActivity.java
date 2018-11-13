@@ -191,7 +191,7 @@ public class PurchaseDetailsActivity extends Activity implements GradationScroll
         }
     }
 
-    @OnClick({R.id.ll_shop, R.id.ll_Collection, R.id.tv_car, R.id.tv_purchase, R.id.ll_Number, R.id.iv_return, R.id.iv_purchase_chart,R.id.tv_purchase_ylq})
+    @OnClick({R.id.ll_shop, R.id.ll_Collection, R.id.tv_car, R.id.tv_purchase, R.id.ll_Number, R.id.iv_return, R.id.iv_purchase_chart, R.id.tv_purchase_ylq})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -214,11 +214,11 @@ public class PurchaseDetailsActivity extends Activity implements GradationScroll
                     MainActivity.state_Three(PurchaseDetailsActivity.this);
                     return;
                 }
-                if (tvNum.getText().toString().equals("")) {
-                    show_popupWindow();
-                    return;
-                }
-                saveShopCart(PurchaseDetailsActivity.this, shopInformationId, num + "", id);
+//                if (tvNum.getText().toString().equals("")) {
+                show_popupWindow();
+//                    return;
+//                }
+
                 break;
             case R.id.tv_purchase://立即购买
                 if (SpUtil.getString(getApplication(), SpName.token, "").equals("")) {
@@ -259,23 +259,23 @@ public class PurchaseDetailsActivity extends Activity implements GradationScroll
                 startActivity(intent);
                 break;
             case R.id.tv_purchase_ylq:
-                if(SpUtil.getString(getApplication(), SpName.token, "").equals("")){//未登陆状态
+                if (SpUtil.getString(getApplication(), SpName.token, "").equals("")) {//未登陆状态
                     intent = new Intent(PurchaseDetailsActivity.this, Activity_AmusementGraphic.class);
-                    String[] array=new String[findDetailByGoodsIdBean.getData().getPic().size()];
-                    for (int index=0;index<findDetailByGoodsIdBean.getData().getPic().size();index++){
-                        array[index]=findDetailByGoodsIdBean.getData().getPic().get(index);
+                    String[] array = new String[findDetailByGoodsIdBean.getData().getPic().size()];
+                    for (int index = 0; index < findDetailByGoodsIdBean.getData().getPic().size(); index++) {
+                        array[index] = findDetailByGoodsIdBean.getData().getPic().get(index);
                     }
-                    intent.putExtra("array",array);
+                    intent.putExtra("array", array);
                     startActivity(intent);
 
-                }else{//登陆状态
-                        intent = new Intent(PurchaseDetailsActivity.this, Activity_AmusementGraphic.class);
-                        String[] array=new String[fidDetailBean.getData().getPic().size()];
-                        for (int index=0;index<fidDetailBean.getData().getPic().size();index++){
-                            array[index]=fidDetailBean.getData().getPic().get(index);
-                        }
-                        intent.putExtra("array",array);
-                        startActivity(intent);
+                } else {//登陆状态
+                    intent = new Intent(PurchaseDetailsActivity.this, Activity_AmusementGraphic.class);
+                    String[] array = new String[fidDetailBean.getData().getPic().size()];
+                    for (int index = 0; index < fidDetailBean.getData().getPic().size(); index++) {
+                        array[index] = fidDetailBean.getData().getPic().get(index);
+                    }
+                    intent.putExtra("array", array);
+                    startActivity(intent);
                 }
                 break;
         }
@@ -364,6 +364,7 @@ public class PurchaseDetailsActivity extends Activity implements GradationScroll
                 case R.id.tv_Determine:
                     num = countNum;
                     tvNum.setText(num + "");
+                    saveShopCart(PurchaseDetailsActivity.this, shopInformationId, num + "", id);
                     mPopWindow.dismiss();
                     break;
                 case R.id.ll_popup:
@@ -659,7 +660,6 @@ public class PurchaseDetailsActivity extends Activity implements GradationScroll
                             int i = header.getInt("status");
                             if (i == 0) {
                                 ToastUtil.show(mContext, "添加成功");
-                                //shopCart();
                             } else if (i == 3) {
                                 //异地登录对话框，必须传.this  不能传Context
                                 MainActivity.state_Three(mContext);
