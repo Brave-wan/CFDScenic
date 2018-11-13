@@ -167,7 +167,7 @@ public class HomeFragment extends Fragment {
         banner.setOnBannerClickListener(new Banner.OnBannerClickListener() {
             @Override
             public void OnBannerClick(View view, int position) {
-                //1酒店，2饭店，3特产，4小吃，5景点详情，6景区详情
+                //1酒店，2饭店，3特产，4小吃，5景点详情，6景区详情，7观鸟景区，8,湿地保护，9招商信息
                 if (carouselImgBean.getData().get(position - 1).getAdvertisement_type() == 1) {
                     Date date = new Date();
                     DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
