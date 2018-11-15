@@ -75,9 +75,9 @@ public class RecommendFragment extends Fragment implements XListView.IXListViewL
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), Activity_ActivityDetailsTj.class);
-                Log.i("DDDDD", position + "");
-//                GoBean bean = (GoBean) adapter.getItem(position);
-                intent.putExtra("id", goBean.getData().getRows().get(0).getId() + "");
+                Log.i("DDDDD", position - 1 + "");
+                GoBean.DataBean.RowsBean bean = list.get(position - 1);
+                intent.putExtra("id", bean.getId() + "");
                 startActivity(intent);
             }
         });
@@ -100,7 +100,7 @@ public class RecommendFragment extends Fragment implements XListView.IXListViewL
 
     private void setHeader() {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_listlist, null);
-        lvFragmentonlylist.addHeaderView(view);
+//        lvFragmentonlylist.addHeaderView(view);
         slv_head = (NoScrollViewListView) view.findViewById(R.id.slv_frag_list);
         RequestParams params = new RequestParams();
         HttpUtils http = new HttpUtils();
