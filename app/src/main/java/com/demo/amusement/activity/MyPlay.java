@@ -32,7 +32,6 @@ public class MyPlay extends Activity {
         // TODO Auto-generated method stub
 
         super.onCreate(savedInstanceState);
-//		Vitamio.isInitialized(getApplicationContext());
         setContentView(R.layout.myplayer);
         ButterKnife.bind(this);
         path = this.getIntent().getStringExtra("uri");
@@ -47,9 +46,6 @@ public class MyPlay extends Activity {
         //显示加载框
         final ProgressBar mProgress = (ProgressBar) findViewById(R.id.mProgressBar);
         mProgress.setVisibility(View.VISIBLE);
-
-//        mVideo = (VideoView) findViewById(R.id.myVideoView);
-        //Create media controller，组件可以控制视频的播放，暂停，回复，seek等操作，不需要你实现
         mMediaController = new MediaController(this);
         myVideoView.setMediaController(mMediaController);
         // Play Video
