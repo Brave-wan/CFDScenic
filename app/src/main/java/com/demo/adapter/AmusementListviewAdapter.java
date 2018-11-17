@@ -446,12 +446,16 @@ public class AmusementListviewAdapter extends BaseAdapter {
                     if (bean.get(pos).getTravel_type() == 2) {//图片
                         // 标题的超链接
                         sp.setTitleUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&pic=" + picUrl + "&shareType=" + "0");
+                        sp.setUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&pic=" + picUrl + "&shareType=" + "0");
                         sp.setImageUrl(bean.get(pos).getPicList().get(0));
                         sp.setSiteUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&pic=" + picUrl + "&shareType=" + "0");
+//                        sp.setUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&pic=" + picUrl + "&shareType=" + "0");
+
                     } else if (bean.get(pos).getTravel_type() == 1) {
                         sp.setTitleUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&video=" + bean.get(pos).getTravel_video() + "&shareType=" + "1");
                         sp.setImageUrl(bean.get(pos).getTravel_img());
                         sp.setSiteUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&video=" + bean.get(pos).getTravel_video() + "&shareType=" + "1");
+                        sp.setUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&video=" + bean.get(pos).getTravel_video() + "&shareType=" + "1");
                     }
                     sp.setSite("智慧湿地游");
                     Platform qq = ShareSDK.getPlatform(QZone.NAME);
@@ -487,12 +491,14 @@ public class AmusementListviewAdapter extends BaseAdapter {
                         sp3.setTitleUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&pic=" + picUrl + "&shareType=" + "0");
                         sp3.setImageUrl(bean.get(pos).getPicList().get(0));//分享网络图片
                         sp3.setSiteUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&pic=" + picUrl + "&shareType=" + "0");
+                        sp3.setUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&pic=" + picUrl + "&shareType=" + "0");
+
                     } else if (bean.get(pos).getTravel_type() == 1) {
                         sp3.setTitleUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&video=" + bean.get(pos).getTravel_video() + "&shareType=" + "1");
                         sp3.setImageUrl(bean.get(pos).getTravel_img());
                         sp3.setSiteUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&video=" + bean.get(pos).getTravel_video() + "&shareType=" + "1");
+                        sp3.setUrl(URL.circleSharePoint + "?headImg=" + bean.get(pos).getHead_img() + "&name=" + bean.get(pos).getNick_name() + "&date=" + s + "&title=" + bean.get(pos).getTitle() + "&content=" + bean.get(pos).getContent() + "&video=" + bean.get(pos).getTravel_video() + "&shareType=" + "1");
                     }
-                    sp3.setUrl("https://www.baidu.com/");
                     sp3.setSite("智慧湿地游");
                     sp3.setShareType(Platform.SHARE_WEBPAGE);
                     Platform wechatmoments = ShareSDK.getPlatform(WechatMoments.NAME);

@@ -235,7 +235,7 @@ public class MyWonderfulTravelsAdapter extends BaseAdapter {
                     intent.putExtra("title", list.get(position).getTitle());
                     intent.putExtra("content", list.get(position).getContent());
                     intent.putExtra("location", list.get(position).getTravel_name());
-                    intent.putExtra("zan", list.get(position).getFavorCount() + "");
+                    intent.putExtra("zan", cyzMode.tv_zan.getText().toString().trim());
                     intent.putExtra("cocount", list.get(position).getCommentCount() + "");
                     intent.putExtra("sharecount", list.get(position).getShareCount() + "");
                     intent.putExtra("favor", list.get(position).getIsFavor());
@@ -334,7 +334,9 @@ public class MyWonderfulTravelsAdapter extends BaseAdapter {
                             if (dataBean.getHeader().getStatus() == 0) {
                                 if (dataBean.getData() == 0) {
                                     cyzMode.iv_zan.setImageResource(R.mipmap.dianzan_false);
-                                    cyzMode.tv_zan.setText((Integer.parseInt(cyzMode.tv_zan.getText().toString()) - 1) + "");
+                                    int num = (Integer.parseInt(cyzMode.tv_zan.getText().toString()));
+                                    cyzMode.tv_zan.setText(num > 0 ? num - 1 + "" : num + "");
+//                                    cyzMode.tv_zan.setText((Integer.parseInt(cyzMode.tv_zan.getText().toString()) - 1) + "");
                                     list.get(pos).setIsFavor(0);
                                 } else {
                                     cyzMode.iv_zan.setImageResource(R.mipmap.dianzan_true);

@@ -66,7 +66,7 @@ import cn.sharesdk.wechat.moments.WechatMoments;
  * 全部评论--游乐圈
  * Created by Administrator on 2016/8/2 0002.
  */
-public class Activity_AllComments_ylq extends Activity  {
+public class Activity_AllComments_ylq extends Activity {
 
 
     @Bind(R.id.view_touxiangT_comment)
@@ -115,8 +115,8 @@ public class Activity_AllComments_ylq extends Activity  {
     LinearLayout llFenxiang;
     @Bind(R.id.tv_all_ylq)
     TextView tvAllYlq;
-     @Bind(R.id.lv_all_ylq)
-     NoScrollViewListView lvAllYlq;
+    @Bind(R.id.lv_all_ylq)
+    NoScrollViewListView lvAllYlq;
     @Bind(R.id.sv_all)
     ScrollView svAll;
     @Bind(R.id.et_comment)
@@ -302,7 +302,8 @@ public class Activity_AllComments_ylq extends Activity  {
                             if (dataBean.getHeader().getStatus() == 0) {
                                 if (dataBean.getData() == 0) {
                                     ivZan.setImageResource(R.mipmap.dianzan_false);
-                                    tvZan.setText((Integer.parseInt(tvZan.getText().toString()) - 1) + "");
+                                    int num = (Integer.parseInt(tvZan.getText().toString()));
+                                    tvZan.setText(num > 0 ? num - 1 + "" : num + "");
 //                                    bean.get(pos).setIsFavor(0);
                                 } else {
                                     ivZan.setImageResource(R.mipmap.dianzan_true);
@@ -407,13 +408,15 @@ public class Activity_AllComments_ylq extends Activity  {
                     sp.setSite("智慧湿地游");
                     if (getIntent().getStringExtra("type").equals("1")) {//视频
                         sp.setImageUrl(getIntent().getStringExtra("videoimg"));
-                        sp.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1"); // 标题的超链接
-                        sp.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1");
+                        sp.setTitleUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&video=" + getIntent().getStringExtra("video") + "&shareType=" + "1"); // 标题的超链接
+                        sp.setSiteUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&video=" + getIntent().getStringExtra("video") + "&shareType=" + "1");
+                        sp.setUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&video=" + getIntent().getStringExtra("video") + "&shareType=" + "1");
                         sp.setShareType(Platform.SHARE_VIDEO);
                     } else if (getIntent().getStringExtra("type").equals("2")) {
                         sp.setImageUrl(getIntent().getStringExtra("img"));
-                        sp.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0"); // 标题的超链接
-                        sp.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0");
+                        sp.setTitleUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&pic=" + getIntent().getStringExtra("img") + "&shareType=" + "0"); // 标题的超链接
+                        sp.setSiteUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&pic=" + getIntent().getStringExtra("img") + "&shareType=" + "0");
+                        sp.setUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&pic=" + getIntent().getStringExtra("img") + "&shareType=" + "0");
                     }
                     Platform qq = ShareSDK.getPlatform(QZone.NAME);
                     qq.setPlatformActionListener(new PlatformActionListener() {
@@ -435,55 +438,21 @@ public class Activity_AllComments_ylq extends Activity  {
                     qq.share(sp);
                     mPopWindow.dismiss();
                     break;
-                case R.id.ll_share_weibo:
-//                    SinaWeibo.ShareParams sp1 = new SinaWeibo.ShareParams();
-//                    sp1.setTitle(getIntent().getStringExtra("title"));
-//                    sp1.setText(getIntent().getStringExtra("content"));
-//                    sp1.setTitleUrl("https://www.baidu.com/"); // 标题的超链接
-//                    sp1.setSite("智慧湿地游");
-//                    if (getIntent().getStringExtra("type").equals("1")) {//视频
-//                        sp1.setImageUrl(getIntent().getStringExtra("videoimg"));
-//                        sp1.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1"); // 标题的超链接
-//                        sp1.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1");
-//                        sp1.setShareType(Platform.SHARE_VIDEO);
-//                    } else if (getIntent().getStringExtra("type").equals("2")) {
-//                        sp1.setImageUrl(getIntent().getStringExtra("img"));
-//                        sp1.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0"); // 标题的超链接
-//                        sp1.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0");
-//                    }
-//                    Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
-//                    weibo.setPlatformActionListener(new PlatformActionListener() {
-//                        @Override
-//                        public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-//                            initShare();
-//                        }
-//
-//                        @Override
-//                        public void onError(Platform platform, int i, Throwable throwable) {
-//                            ToastUtil.show(Activity_AllComments_ylq.this, "分享失败");
-//                        }
-//
-//                        @Override
-//                        public void onCancel(Platform platform, int i) {
-//                            ToastUtil.show(Activity_AllComments_ylq.this, "取消分享");
-//                        }
-//                    });
-//                    weibo.share(sp1);
-                    mPopWindow.dismiss();
-                    break;
                 case R.id.ll_share_pengyouquan:
                     WechatMoments.ShareParams sp3 = new WechatMoments.ShareParams();
                     sp3.setTitle(getIntent().getStringExtra("title"));
                     sp3.setText(getIntent().getStringExtra("content"));
                     if (getIntent().getStringExtra("type").equals("1")) {//视频
                         sp3.setImageUrl(getIntent().getStringExtra("videoimg"));
-                        sp3.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1"); // 标题的超链接
-                        sp3.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&video="+getIntent().getStringExtra("video")+"&shareType="+"1");
+                        sp3.setTitleUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&video=" + getIntent().getStringExtra("video") + "&shareType=" + "1"); // 标题的超链接
+                        sp3.setSiteUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&video=" + getIntent().getStringExtra("video") + "&shareType=" + "1");
+                        sp3.setUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&video=" + getIntent().getStringExtra("video") + "&shareType=" + "1");
                         sp3.setShareType(Platform.SHARE_VIDEO);
                     } else if (getIntent().getStringExtra("type").equals("2")) {
                         sp3.setImageUrl(getIntent().getStringExtra("img"));
-                        sp3.setTitleUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0"); // 标题的超链接
-                        sp3.setSiteUrl(URL.circleSharePoint+"?headImg="+getIntent().getStringExtra("head_img")+"&name="+getIntent().getStringExtra("nickname")+"&date="+getIntent().getStringExtra("date")+"&title="+getIntent().getStringExtra("title")+"&content="+getIntent().getStringExtra("content")+"&pic="+getIntent().getStringExtra("img")+"&shareType="+"0");
+                        sp3.setTitleUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&pic=" + getIntent().getStringExtra("img") + "&shareType=" + "0"); // 标题的超链接
+                        sp3.setSiteUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&pic=" + getIntent().getStringExtra("img") + "&shareType=" + "0");
+                        sp3.setUrl(URL.circleSharePoint + "?headImg=" + getIntent().getStringExtra("head_img") + "&name=" + getIntent().getStringExtra("nickname") + "&date=" + getIntent().getStringExtra("date") + "&title=" + getIntent().getStringExtra("title") + "&content=" + getIntent().getStringExtra("content") + "&pic=" + getIntent().getStringExtra("img") + "&shareType=" + "0");
                         sp3.setShareType(Platform.SHARE_WEBPAGE);
                     }
                     sp3.setSite("智慧湿地游");

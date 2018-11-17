@@ -64,7 +64,8 @@ public class MyRecreationJcFragment extends Fragment implements XListView.IXList
         list = new ArrayList<>();
         adapter = new MyWonderfulTravelsAdapter(getActivity(), list);
         lvFragmentAll.setAdapter(adapter);
-        getTraveLogs();
+//        list.clear();
+//        getTraveLogs();
         //lvFragmentAll.setAdapter(new MyRecreationJcAdapter(getContext()));
 
         //启用或禁用上拉加载更多功能。
@@ -97,7 +98,8 @@ public class MyRecreationJcFragment extends Fragment implements XListView.IXList
         http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
         http.send(HttpRequest.HttpMethod.GET, URL.circle_wondertravel, params,
                 new RequestCallBack<String>() {
-                    DialogProgressbar dialogProgressbar=new DialogProgressbar(getActivity(),R.style.AlertDialogStyle);
+                    DialogProgressbar dialogProgressbar = new DialogProgressbar(getActivity(), R.style.AlertDialogStyle);
+
                     @Override
                     public void onStart() {
                         super.onStart();
@@ -170,6 +172,13 @@ public class MyRecreationJcFragment extends Fragment implements XListView.IXList
             onLoad();
             lvFragmentAll.setFooterTextView("已加载显示完全部内容");
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        list.clear();
+        getTraveLogs();
     }
 
     private void onLoad() {

@@ -235,9 +235,6 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
                         break;
                     case 2://虚拟游
-//                        intent.setClass(getActivity(), VirtualTourActivity.class);
-//                        startActivity(intent);
-                        //34c1fb9d5fb73db9800143babcdeb153
                         Uri uri = Uri.parse("https://720yun.com/t/793jeOhvza8");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);

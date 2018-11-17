@@ -95,6 +95,8 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
     private SelectImagePopupWindow SelectphotoPPW;
     ImageBean imageBean = new ImageBean();
     PermissionsChecker mPermissionsChecker;
+    DialogProgressbar dialogProgressbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +104,7 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
         ButterKnife.bind(this);
         mPermissionsChecker = new PermissionsChecker(this);
         SelectphotoPPW = new SelectImagePopupWindow(this);
+        dialogProgressbar = new DialogProgressbar(Activity_PersonalData.this, R.style.AlertDialogStyle);
         SelectphotoPPW.addOnCompleteListener(this);
         getDatum();
         intent = new Intent();
@@ -124,12 +127,12 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
                 show_gender();
                 break;
             case R.id.ll_personaldata_telephone:
-                if (!getDatum.getData().getOpenId().equals("")){
-                    if (getDatum.getData().getMobileNo().equals("")){
+                if (!getDatum.getData().getOpenId().equals("")) {
+                    if (getDatum.getData().getMobileNo().equals("")) {
                         intent.setClass(getApplicationContext(), Activity_ContactPhone.class);
                         intent.putExtra("ppp", tvTelephone.getText().toString());
                         startActivityForResult(intent, 22222);
-                    }else{
+                    } else {
                         ToastUtil.show(Activity_PersonalData.this, "已绑定的手机号不可修改");
                     }
 
@@ -185,8 +188,6 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
 
             try {
                 ImageLoader.getInstance().displayImage(geturi(urlist.get(i)), viewImageView);
-//                    pathlist.set(0, FileTools.getRealFilePath(this, urlist.get(i)) + ".jpg");
-//                    listbitmap.set(0, image);
                 pathlist.set(0, urlist.get(i));
 
             } catch (Exception e) {
@@ -194,21 +195,7 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
             }
         }
 
-//        for (int i=0;i<urlist.size();i++){
-//
-//            try {
-//                Bitmap image = FileTools.getbitmap1(urlist.get(i));
-////                setUri(uri)
-////               filepath = FileTools.getRealFilePath(this, urlist.get(0)) + ".jpg";
-//                filepath=urlist.get(i);
-//                viewImageView.setImageBitmap(image);
-//            } catch (Exception e) {
-////                            KLog.e(e);
-//            }
-//        }
 
-//        filepath = FileTools.getRealFilePath(this, SelectphotoPPW.getUri()) + ".jpg";
-//        imDataPersonal.setImageBitmap(bitmap);
     }
 
     @Override
@@ -232,13 +219,14 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
             if (data == null)
                 return;
             tvTelephone.setText(data.getStringExtra("phone"));
-        }else if (requestCode == REQUEST_CODE) {
+        } else if (requestCode == REQUEST_CODE) {
             // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
             if (resultCode == PermissionsActivity.PERMISSIONS_DENIED)
                 finish();
         } else
-        SelectphotoPPW.onActivityResult(requestCode, resultCode, data);
+            SelectphotoPPW.onActivityResult(requestCode, resultCode, data);
     }
+
     // 所需权限
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
@@ -257,6 +245,7 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
     private void startPermissionsActivity() {
         PermissionsActivity.startActivityForResult(this, REQUEST_CODE, PERMISSIONS);
     }
+
     public String geturi(String path) {
 
         Uri uri = null;
@@ -332,17 +321,16 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
         RequestParams params = new RequestParams();
         params.addHeader("Authorization", SpUtil.getString(Activity_PersonalData.this, SpName.token, ""));
         HttpUtils http = new HttpUtils();
-        http.configCurrentHttpCacheExpiry(0*1000);//设置缓存时间
+        http.configCurrentHttpCacheExpiry(0 * 1000);//设置缓存时间
         http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
         http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
         http.send(HttpRequest.HttpMethod.POST, URL.getDatum, params,
                 new RequestCallBack<String>() {
-                    DialogProgressbar dialogProgressbar=new DialogProgressbar(Activity_PersonalData.this,R.style.AlertDialogStyle);
+
                     @Override
                     public void onStart() {
                         super.onStart();
-                        dialogProgressbar.setCancelable(false);//点击对话框以外的地方不关闭  把返回键禁止了
-                        dialogProgressbar.show();
+
                     }
 
                     @Override
@@ -383,8 +371,10 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
 
     }
 
+
     //修改
     private void editDatum() {
+        dialogProgressbar.show();
         if (pathlist.size() == 0) {
             hahah("");
         } else {
@@ -399,6 +389,7 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
                         @Override
                         public void onError(Call call, Exception e, int i) {
                             ToastUtil.show(Activity_PersonalData.this, e.getMessage());
+                            dialogProgressbar.dismiss();
                         }
 
                         @Override
@@ -409,10 +400,12 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
                                     hahah(imageBean.getData().get(0));
                                 } else {
                                     ToastUtil.show(Activity_PersonalData.this, imageBean.getHeader().getMsg());
+                                    dialogProgressbar.dismiss();
                                 }
 
                             } catch (Exception e) {
                                 ToastUtil.show(Activity_PersonalData.this, e.getMessage());
+                                dialogProgressbar.dismiss();
                             }
 
                         }
@@ -435,17 +428,17 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
         params.addQueryStringParameter("mobileNo", tvTelephone.getText().toString());
         params.addQueryStringParameter("openId", getDatum.getData().getOpenId());
         HttpUtils http = new HttpUtils();
-        http.configCurrentHttpCacheExpiry(0*1000);//设置缓存时间
+        http.configCurrentHttpCacheExpiry(0 * 1000);//设置缓存时间
         http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
         http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
         http.send(HttpRequest.HttpMethod.GET, URL.editDatum, params,
                 new RequestCallBack<String>() {
-                    DialogProgressbar dialogProgressbar=new DialogProgressbar(Activity_PersonalData.this,R.style.AlertDialogStyle);
+
                     @Override
                     public void onStart() {
                         super.onStart();
-                        dialogProgressbar.setCancelable(false);//点击对话框以外的地方不关闭  把返回键禁止了
-                        dialogProgressbar.show();
+//                        dialogProgressbar.setCancelable(false);//点击对话框以外的地方不关闭  把返回键禁止了
+//                        dialogProgressbar.show();
                     }
 
                     @Override
@@ -457,25 +450,25 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
                             int i = header.getInt("status");
                             if (i == 0) {
 //                                SpUtil.putString(Activity_PersonalData.this, SpName.headimg, getDatum.getData().getHeadImg());
-                                Intent intent=new Intent();
-                                intent.putExtra("ok",true);
-                                setResult(0x001,intent);
+                                Intent intent = new Intent();
+                                intent.putExtra("ok", true);
+                                setResult(0x001, intent);
                                 finish();
-                            } else if (i==3){
+                            } else if (i == 3) {
                                 ToastUtil.show(Activity_PersonalData.this, header.getString("msg"));
-                            } else if (i==5){
+                            } else if (i == 5) {
                                 ToastUtil.show(Activity_PersonalData.this, header.getString("msg"));
-                                Intent intent=new Intent();
-                                intent.putExtra("ok",true);
-                                setResult(0x001,intent);
+                                Intent intent = new Intent();
+                                intent.putExtra("ok", true);
+                                setResult(0x001, intent);
                                 finish();
-                            } else if (i==6){
+                            } else if (i == 6) {
                                 ToastUtil.show(Activity_PersonalData.this, header.getString("msg"));
-                                Intent intent=new Intent();
-                                intent.putExtra("ok",true);
-                                setResult(0x001,intent);
+                                Intent intent = new Intent();
+                                intent.putExtra("ok", true);
+                                setResult(0x001, intent);
                                 finish();
-                            }else {
+                            } else {
                                 ToastUtil.show(Activity_PersonalData.this, header.getString("msg"));
                             }
                         } catch (Exception e) {
@@ -487,6 +480,7 @@ public class Activity_PersonalData extends Activity implements SelectImagePopupW
                     @Override
                     public void onFailure(HttpException e, String s) {
                         ToastUtil.show(Activity_PersonalData.this, "连接网络失败");
+                        dialogProgressbar.dismiss();
                     }
                 });
 
