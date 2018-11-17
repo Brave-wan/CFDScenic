@@ -252,7 +252,9 @@
         <activity android:name="com.demo.amusement.activity.Activity_VideoStrategy" />
         <activity android:name="com.demo.amusement.activity.Activity_WonderfulTravels" />
         <activity android:name="com.demo.amusement.activity.Activity_DetailedList" />
-        <activity android:name="com.demo.amusement.activity.MyPlay" />
+        <activity
+            android:name="com.demo.amusement.activity.MyPlay"
+            android:screenOrientation="landscape" />
         <activity android:name="com.demo.my.activity.Activity_SetPaymentPassword" />
         <activity android:name="com.demo.amusement.activity.Activity_ActivityDetailsTj" />
         <activity android:name="com.demo.amusement.activity.Activity_ActivityDetailsJb" />
