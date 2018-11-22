@@ -89,8 +89,6 @@ public class GoAdapter extends BaseAdapter {
                 cyzMode.iv_Prompt.setVisibility(View.GONE);
             }
         }
-
-
         return convertView;
     }
 
@@ -105,6 +103,5 @@ public class GoAdapter extends BaseAdapter {
         TextView tv_End;
         TextView tv_present;
         TextView tv_primary;
-
     }
 }

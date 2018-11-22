@@ -231,7 +231,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:text="热门景点"
+                    android:text="景点"
                     android:textColor="@color/yellow"
                     android:textSize="15dp" />
 

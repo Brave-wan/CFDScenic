@@ -86,7 +86,7 @@ public class Activity_ActivityDetailsTj extends Activity {
                             if (activityMoreBean.getHeader().getStatus() == 0) {
                                 ImageLoader.getInstance().displayImage(activityMoreBean.getData().getHead_img(), ivImage);
 //                                ivImage.setImageResource(R.mipmap.ceshi_fengjing);
-                                ivImage.setImageResource(R.mipmap.ceshi_fengjing);
+//                                ivImage.setImageResource(R.mipmap.ceshi_fengjing);
                                 tvActivityTitle.setText(activityMoreBean.getData().getName());
                                 tvScenicSpot.setText("活动景点："+activityMoreBean.getData().getAddress());
                                 String[] b = activityMoreBean.getData().getStart_valid().split(" ");

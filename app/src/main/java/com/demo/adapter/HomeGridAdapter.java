@@ -17,7 +17,7 @@ public class HomeGridAdapter extends BaseAdapter {
     private Context mContext;
     private int[] mImageArray=new int[]{R.mipmap.tubiao1_jingdian,R.mipmap.tubiao2_huodong,R.mipmap.tubiao3_xuniyou,R.mipmap.tubiao4_techan
             ,R.mipmap.tubiao5_qianbao,R.mipmap.tubiao6_daoyou,R.mipmap.tubiao7_zhoubian,R.mipmap.tubiao8_goupiao,R.mipmap.tubiao9_guihua,R.mipmap.tubiao10_dongtai};
-    private String[] mTextArray=new String[]{"特色景点","景区活动","虚拟游","商城特产","我的钱包","智能导游","查看周边","在线购票","路线规划","实时动态"};
+    private String[] mTextArray=new String[]{"特色景点","景区活动","虚拟游","本地特产","我的钱包","智能导游","查看周边","在线购票","路线规划","实时动态"};
 
     public HomeGridAdapter(Context context) {
         this.mContext = context;

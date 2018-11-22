@@ -10,7 +10,7 @@
     <com.demo.view.MyTopBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tb_centerTv="景区活动"
+        app:tb_centerTv="基础活动"
         app:tb_leftImClick="true"
         app:tb_leftImVisibility="true"
         app:tb_rightTvVisibility="false" />
