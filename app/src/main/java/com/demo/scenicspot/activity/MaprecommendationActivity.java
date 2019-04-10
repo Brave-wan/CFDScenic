@@ -460,7 +460,7 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
         // 设置定位的类型为定位模式 ，可以由定位、跟随或地图根据面向方向旋转几种
         aMap.setMyLocationType(AMap.LOCATION_TYPE_LOCATE);
 
-        aMap.moveCamera(CameraUpdateFactory.zoomTo(13));
+        aMap.moveCamera(CameraUpdateFactory.zoomTo(14));
         aMap.setOnMarkerClickListener(this);
 
         //自定义infowindows
@@ -535,7 +535,7 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
         aMap.setOnMapClickListener(this);
         // 绘制一个长方形
         aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.205725,
-                118.361903), 13));//设置中心点
+                118.361903), 14));//设置中心点
         Addground();
         PolygonOptions pOption = new PolygonOptions();
         pOption.add(new LatLng(39.213080, 118.342089));
@@ -746,7 +746,7 @@ public class MaprecommendationActivity extends Activity implements LocationSourc
                     if (!noinflag) {
                         read("您没有在景区内,请移步到景区内");
                         noinflag = true;
-                        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.205725, 118.361903), 13));//设置中心点
+                        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(39.205725, 118.361903), 14));//设置中心点
 //                        llRecommend.setVisibility(View.INVISIBLE);
 //                        llSearch.setVisibility(View.INVISIBLE);
                     }

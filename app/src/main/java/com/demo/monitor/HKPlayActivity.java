@@ -8,10 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -24,6 +27,10 @@ import com.demo.utils.ToastUtil;
 import com.demo.utils.URL;
 import com.demo.view.CustomVideoView;
 import com.google.gson.Gson;
+import com.hikvision.sdk.RealPlayManagerEx;
+import com.hikvision.sdk.consts.SDKConstant;
+import com.hikvision.sdk.net.business.OnVMSNetSDKBusiness;
+import com.hikvision.sdk.utils.FileUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -33,114 +40,86 @@ import com.lidroid.xutils.http.client.HttpRequest;
 
 import org.apache.http.protocol.HTTP;
 
-public class HKPlayActivity extends Activity implements View.OnClickListener {
-    CustomVideoView videoView;
-    ImageView hk_play_back;
-    TextView tx_play_title;
-
-    String name;
-    String id;
-    ProgressDialog dialog;
+public class HKPlayActivity extends Activity implements View.OnClickListener, SurfaceHolder.Callback {
+    protected SurfaceView surfaceView;
+    protected Button captureView;
+    protected Button recordView;
+    protected Button soundView;
+    /* 是否正在录像     */
+    private boolean mIsRecord;
+    /*音频是否开启 */
+    private boolean mIsAudioOpen;
+    /**
+     * 播放窗口1
+     */
+    private int PLAY_WINDOW_ONE = 1;
+    private String playUrl = "rtsp://222.180.169.101:554/pag://192.168.128.3:7302:858369ac56754528925d191e448b0688:0:SUB:TCP?streamform=rtp";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hk_play);
         initView();
-        hk_play_back.setOnClickListener(this);
-        dialog = new ProgressDialog(this);
-        dialog.setMessage("正在解析视频,请稍后");
-        dialog.show();
-    }
-
-    public void initVideos(String url) {
-//        videoView.setMediaController(new MediaController(this));
-        videoView.setVideoURI(Uri.parse(url));
-        videoView.start();
-
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        //等待surfaceview创建完毕
+        surfaceView.post(new Runnable() {
             @Override
-            public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(HKPlayActivity.this, "视频解析失败，请重试!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+            public void run() {
+                RealPlayManagerEx.getInstance().startRealPlay(PLAY_WINDOW_ONE, playUrl, surfaceView, new OnVMSNetSDKBusiness() {
                     @Override
-                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                        if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-                            videoView.setBackgroundColor(Color.TRANSPARENT);
-                        }
-                        if (dialog != null) {
-                            dialog.dismiss();
-                        }
+                    public void onFailure() {
+                        super.onFailure();
+                        Toast.makeText(HKPlayActivity.this, "播放失败！", Toast.LENGTH_SHORT).show();
+                    }
 
-                        return true;
+                    @Override
+                    public void onStatusCallback(int status) {
+                        super.onStatusCallback(status);
+                    }
+
+                    @Override
+                    public void onSuccess(Object obj) {
+                        super.onSuccess(obj);
+                        Toast.makeText(HKPlayActivity.this, "播放成功！", Toast.LENGTH_SHORT).show();
                     }
                 });
-                mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
 
     }
 
     private void initView() {
-        name = getIntent().getStringExtra("name");
-        id = getIntent().getStringExtra("id");
-        hk_play_back = (ImageView) findViewById(R.id.hk_play_back);
-        videoView = (CustomVideoView) findViewById(R.id.big_screen);
-        tx_play_title = (TextView) findViewById(R.id.tx_play_title);
-        tx_play_title.setText(name);
-        getMonitorVideos();
-    }
-
-    public void getMonitorVideos() {
-        RequestParams params = new RequestParams();
-        params.addBodyParameter("cameraUuid", id);
-        HttpUtils http = new HttpUtils();
-        http.configResponseTextCharset(HTTP.UTF_8);
-        http.configCurrentHttpCacheExpiry(0 * 1000);
-        http.send(HttpRequest.HttpMethod.POST, URL.monitorVideos, params,
-                new RequestCallBack<String>() {
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
-                        Log.i("1111", responseInfo.result);
-                        try {
-                            MonitorVideosBean monitorBean = new Gson().fromJson(responseInfo.result, MonitorVideosBean.class);
-                            int i = monitorBean.getHeader().getStatus();
-                            if (i == 0) {
-                                initVideos(monitorBean.getData().getUrl());
-                            } else {
-                                ToastUtil.show(HKPlayActivity.this, monitorBean.getHeader().getMsg());
-                            }
-                        } catch (Exception e) {
-                            ToastUtil.show(HKPlayActivity.this, e.getMessage());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(HttpException e, String s) {
-                        ToastUtil.show(HKPlayActivity.this, e.getMessage());
-                    }
-                });
+        //初始化view
+        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
+        captureView = (Button) findViewById(R.id.capture_view);
+        captureView.setOnClickListener(HKPlayActivity.this);
+        recordView = (Button) findViewById(R.id.record_view);
+        recordView.setOnClickListener(HKPlayActivity.this);
+        soundView = (Button) findViewById(R.id.sound_view);
+        soundView.setOnClickListener(HKPlayActivity.this);
+        surfaceView.getHolder().addCallback(this);
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.hk_play_back:
-                finish();
-                videoView.destroyDrawingCache();
-                break;
+    public void surfaceCreated(SurfaceHolder holder) {
+
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        //页面销毁时停止预览
+        boolean stopLiveResult = RealPlayManagerEx.getInstance().stopRealPlay(PLAY_WINDOW_ONE);
+        if (stopLiveResult) {
+                ToastUtil.show(this, "live_stop_success");
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        videoView.destroyDrawingCache();
-    }
 }

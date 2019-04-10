@@ -15,6 +15,10 @@ import com.dh.DpsdkCore.RingInfo_t;
 import com.dh.DpsdkCore.fDPSDKInviteVtCallParamCallBack;
 import com.dh.DpsdkCore.fDPSDKRingInfoCallBack;
 import com.dh.DpsdkCore.fDPSDKStatusCallback;
+import com.hik.mcrsdk.MCRSDK;
+import com.hik.mcrsdk.rtsp.RtspClient;
+import com.hik.mcrsdk.talk.TalkClientSDK;
+import com.hikvision.sdk.VMSNetSDK;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -155,6 +159,15 @@ public class MyApplication extends Application {
         };
         //x5内核初始化接口
         QbSdk.initX5Environment(getApplicationContext(),  cb);
+
+        MCRSDK.init();
+        // 初始化RTSP
+        RtspClient.initLib();
+        MCRSDK.setPrint(1, null);
+        // 初始化语音对讲
+        TalkClientSDK.initLib();
+        // SDK初始化
+        VMSNetSDK.init(this);
     }
 
 

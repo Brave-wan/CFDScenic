@@ -9,8 +9,8 @@ android {
         applicationId "com.demo.demo.myapplication"
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.3"
         multiDexEnabled true
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
@@ -75,4 +75,8 @@ dependencies {
     compile 'com.tencent.sonic:sdk:3.0.0'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+
+    configurations {
+        all*.exclude group: 'com.google.code.gson'
+    }
 }
