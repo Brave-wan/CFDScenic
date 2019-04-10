@@ -45,6 +45,7 @@ public class HKPlayActivity extends Activity implements View.OnClickListener, Su
     protected Button captureView;
     protected Button recordView;
     protected Button soundView;
+    private ImageView back;
     /* 是否正在录像     */
     private boolean mIsRecord;
     /*音频是否开启 */
@@ -61,10 +62,13 @@ public class HKPlayActivity extends Activity implements View.OnClickListener, Su
         setContentView(R.layout.activity_hk_play);
         initView();
         //等待surfaceview创建完毕
+    }
+
+    public void initVideos(final String url) {
         surfaceView.post(new Runnable() {
             @Override
             public void run() {
-                RealPlayManagerEx.getInstance().startRealPlay(PLAY_WINDOW_ONE, playUrl, surfaceView, new OnVMSNetSDKBusiness() {
+                RealPlayManagerEx.getInstance().startRealPlay(PLAY_WINDOW_ONE, url, surfaceView, new OnVMSNetSDKBusiness() {
                     @Override
                     public void onFailure() {
                         super.onFailure();
@@ -88,19 +92,31 @@ public class HKPlayActivity extends Activity implements View.OnClickListener, Su
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
+        }
 
     }
 
+    String name;
+    String id;
+
     private void initView() {
         //初始化view
+        name = getIntent().getStringExtra("name");
+        id = getIntent().getStringExtra("id");
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
         captureView = (Button) findViewById(R.id.capture_view);
         captureView.setOnClickListener(HKPlayActivity.this);
         recordView = (Button) findViewById(R.id.record_view);
         recordView.setOnClickListener(HKPlayActivity.this);
         soundView = (Button) findViewById(R.id.sound_view);
+        findViewById(R.id.back).setOnClickListener(this);
         soundView.setOnClickListener(HKPlayActivity.this);
         surfaceView.getHolder().addCallback(this);
+        getMonitorVideos();
     }
 
     @Override
@@ -118,8 +134,39 @@ public class HKPlayActivity extends Activity implements View.OnClickListener, Su
         //页面销毁时停止预览
         boolean stopLiveResult = RealPlayManagerEx.getInstance().stopRealPlay(PLAY_WINDOW_ONE);
         if (stopLiveResult) {
-                ToastUtil.show(this, "live_stop_success");
+            ToastUtil.show(this, "live_stop_success");
         }
+    }
+
+    public void getMonitorVideos() {
+        RequestParams params = new RequestParams();
+        params.addBodyParameter("cameraUuid", id);
+        HttpUtils http = new HttpUtils();
+        http.configResponseTextCharset(HTTP.UTF_8);
+        http.configCurrentHttpCacheExpiry(0 * 1000);
+        http.send(HttpRequest.HttpMethod.POST, URL.monitorVideos, params,
+                new RequestCallBack<String>() {
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        Log.i("1111", responseInfo.result);
+                        try {
+                            MonitorVideosBean monitorBean = new Gson().fromJson(responseInfo.result, MonitorVideosBean.class);
+                            int i = monitorBean.getHeader().getStatus();
+                            if (i == 0) {
+                                initVideos(monitorBean.getData().getUrl());
+                            } else {
+                                ToastUtil.show(HKPlayActivity.this, monitorBean.getHeader().getMsg());
+                            }
+                        } catch (Exception e) {
+                            ToastUtil.show(HKPlayActivity.this, e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(HttpException e, String s) {
+                        ToastUtil.show(HKPlayActivity.this, e.getMessage());
+                    }
+                });
     }
 
 }

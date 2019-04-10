@@ -242,7 +242,7 @@ public class TestDpsdkCoreActivity extends Activity implements AMap.OnMarkerClic
             MarkerOptions markerOptions = new MarkerOptions();
             Double accuracy = Double.parseDouble(String.valueOf(dataBean.getPosition_x()));
             Double latitude = Double.parseDouble(String.valueOf(dataBean.getPosition_y()));
-            markerOptions.position(new LatLng(latitude,accuracy));
+            markerOptions.position(new LatLng(latitude, accuracy));
             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.mipmap.datouzhen));
             Marker marker = aMap.addMarker(markerOptions);
             marker.setObject(dataBean);
