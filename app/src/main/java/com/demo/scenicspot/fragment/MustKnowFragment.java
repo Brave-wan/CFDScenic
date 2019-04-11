@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 
 import com.demo.demo.myapplication.R;
 import com.demo.fragment.MainActivity;
@@ -33,6 +34,8 @@ import butterknife.ButterKnife;
 public class MustKnowFragment extends Fragment {
     @Bind(R.id.webView)
     WebView webView;
+    @Bind(R.id.ll_root)
+    LinearLayout ll_root;
 
     @Nullable
     @Override
@@ -59,17 +62,13 @@ public class MustKnowFragment extends Fragment {
                             int i=header.getInt("status");
                             if(i==0){
                                 //启用支持javascript
+                                ll_root.removeAllViews();
+                                String url=jsonObject.getString("data");
+                                WebView webView=new WebView(getActivity());
                                 WebSettings settings = webView.getSettings();
                                 settings.setJavaScriptEnabled(true);
-                                webView.loadUrl(jsonObject.getString("data"));
-
-                                webView.setWebViewClient(new WebViewClient() {
-                                    @Override
-                                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                                        view.loadUrl(url);
-                                        return true;
-                                    }
-                                });
+                                webView.loadUrl(url);
+                                ll_root.addView(webView);
                             }else if( i== 3){
                                 //异地登录对话框，必须传.this  不能传Context
                                 MainActivity.state_Three(getActivity());

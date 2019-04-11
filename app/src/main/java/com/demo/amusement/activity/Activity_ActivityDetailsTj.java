@@ -8,6 +8,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.demo.amusement.bean.ActivityMoreBean;
@@ -46,7 +47,7 @@ public class Activity_ActivityDetailsTj extends Activity {
     @Bind(R.id.tv_time)
     TextView tvTime;
     @Bind(R.id.webview_recommend)
-    WebView webviewRecommend;
+    LinearLayout webviewRecommend;
     ActivityMoreBean activityMoreBean = new ActivityMoreBean();
 
     @Override
@@ -69,7 +70,8 @@ public class Activity_ActivityDetailsTj extends Activity {
         http.send(HttpRequest.HttpMethod.GET, URL.circleScenicMore, params,
                 new RequestCallBack<String>() {
 
-                    DialogProgressbar dialogProgressbar=new DialogProgressbar(Activity_ActivityDetailsTj.this,R.style.AlertDialogStyle);
+                    DialogProgressbar dialogProgressbar = new DialogProgressbar(Activity_ActivityDetailsTj.this, R.style.AlertDialogStyle);
+
                     @Override
                     public void onStart() {
                         super.onStart();
@@ -85,28 +87,16 @@ public class Activity_ActivityDetailsTj extends Activity {
                             activityMoreBean = new Gson().fromJson(responseInfo.result, ActivityMoreBean.class);
                             if (activityMoreBean.getHeader().getStatus() == 0) {
                                 ImageLoader.getInstance().displayImage(activityMoreBean.getData().getHead_img(), ivImage);
-//                                ivImage.setImageResource(R.mipmap.ceshi_fengjing);
-//                                ivImage.setImageResource(R.mipmap.ceshi_fengjing);
                                 tvActivityTitle.setText(activityMoreBean.getData().getName());
-                                tvScenicSpot.setText("活动景点："+activityMoreBean.getData().getAddress());
+                                tvScenicSpot.setText("活动景点：" + activityMoreBean.getData().getAddress());
                                 String[] b = activityMoreBean.getData().getStart_valid().split(" ");
                                 String[] e = activityMoreBean.getData().getEnd_valid().split(" ");
                                 tvTime.setText("活动时间：" + b[0] + "--" + e[0]);
-                                WebSettings settings = webviewRecommend.getSettings();
+                                WebView webView = new WebView(Activity_ActivityDetailsTj.this);
+                                WebSettings settings = webView.getSettings();
                                 settings.setJavaScriptEnabled(true);
-                        /*//自适应屏幕
-//                                settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//                                settings.setLoadWithOverviewMode(true);
-//                                settings.setBuiltInZoomControls(true);
-//                                settings.setSupportZoom(true);*/
-                                webviewRecommend.loadUrl(activityMoreBean.getData().getDetailUrl());
-                                webviewRecommend.setWebViewClient(new WebViewClient() {
-                                    @Override
-                                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                                        view.loadUrl(url);
-                                        return true;
-                                    }
-                                });
+                                webView.loadUrl(activityMoreBean.getData().getDetailUrl());
+                                webviewRecommend.addView(webView);
                             } else if (activityMoreBean.getHeader().getStatus() == 3) {
                                 //异地登录对话框，必须传.this  不能传Context
                                 MainActivity.state_Three(Activity_ActivityDetailsTj.this);

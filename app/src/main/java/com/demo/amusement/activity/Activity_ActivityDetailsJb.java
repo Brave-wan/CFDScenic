@@ -9,6 +9,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.demo.amusement.bean.ActivityMoreBean;
@@ -61,7 +62,7 @@ public class Activity_ActivityDetailsJb extends Activity {
     @Bind(R.id.iv_Prompt)
     ImageView ivPrompt;//是否售完
     @Bind(R.id.webView_circle)
-    WebView webViewCircle;//加载web
+    LinearLayout webViewCircle;//加载web
     ActivityMoreBean activityMoreBean = new ActivityMoreBean();
     Intent intent = new Intent();
 
@@ -157,21 +158,24 @@ public class Activity_ActivityDetailsJb extends Activity {
                                     }
                                 }
 
-                                WebSettings settings = webViewCircle.getSettings();
+                                WebView webView=new WebView(Activity_ActivityDetailsJb.this);
+                                WebSettings settings = webView.getSettings();
                                 settings.setJavaScriptEnabled(true);
+                                webView.loadUrl(activityMoreBean.getData().getDetailUrl());
+                                webViewCircle.addView(webView);
                         /*//自适应屏幕
 //                                settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 //                                settings.setLoadWithOverviewMode(true);
 //                                settings.setBuiltInZoomControls(true);
 //                                settings.setSupportZoom(true);*/
-                                webViewCircle.loadUrl(activityMoreBean.getData().getDetailUrl());
-                                webViewCircle.setWebViewClient(new WebViewClient() {
-                                    @Override
-                                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                                        view.loadUrl(url);
-                                        return true;
-                                    }
-                                });
+//                                webViewCircle.loadUrl(activityMoreBean.getData().getDetailUrl());
+//                                webViewCircle.setWebViewClient(new WebViewClient() {
+//                                    @Override
+//                                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                                        view.loadUrl(url);
+//                                        return true;
+//                                    }
+//                                });
                             } else if (activityMoreBean.getHeader().getStatus() == 3) {
                                 //异地登录对话框，必须传.this  不能传Context
                                 MainActivity.state_Three(Activity_ActivityDetailsJb.this);

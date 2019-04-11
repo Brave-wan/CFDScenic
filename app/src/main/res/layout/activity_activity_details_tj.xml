@@ -102,12 +102,13 @@
                 android:padding="10dp"
                 android:src="@mipmap/hui_huodongxiangqing" />
 
-            <WebView
+            <LinearLayout
                 android:id="@+id/webview_recommend"
                 android:layout_width="match_parent"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
 
-            </WebView>
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="match_parent"

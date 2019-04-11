@@ -11,6 +11,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.demo.demo.myapplication.R;
 import com.demo.scenicspot.bean.ScenicSpotParticularsBean;
@@ -37,6 +38,8 @@ public class MoreFragment extends Fragment {
     ImageView ivHead;
     @Bind(R.id.webView)
     WebView webView;
+    @Bind(R.id.ll_root)
+    LinearLayout ll_root;
 //    @Bind(R.id.iv_tail)
 //    ImageView ivTail;
 
@@ -70,16 +73,13 @@ public class MoreFragment extends Fragment {
                         int i = bean.getHeader().getStatus();
                         if (i == 0) {
                             //启用支持javascript
+                            ll_root.removeAllViews();
+                            String url=bean.getData().getDetailHtml();
+                            WebView webView=new WebView(getActivity());
                             WebSettings settings = webView.getSettings();
                             settings.setJavaScriptEnabled(true);
-                            webView.loadUrl(bean.getData().getDetailHtml());
-                            webView.setWebViewClient(new WebViewClient() {
-                                @Override
-                                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                                    view.loadUrl(url);
-                                    return true;
-                                }
-                            });
+                            webView.loadUrl(url);
+                            ll_root.addView(webView);
                         } else {
                             ToastUtil.show(getActivity(), bean.getHeader().getMsg());
                         }
