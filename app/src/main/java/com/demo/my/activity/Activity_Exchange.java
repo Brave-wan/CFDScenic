@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.demo.adapter.ExchangeAdapter;
 import com.demo.fragment.MainActivity;
+import com.demo.my.bean.IntegralGoodsDetailBean;
 import com.demo.my.bean.IntegralShopGoodsBean;
 import com.demo.demo.myapplication.R;
 import com.demo.utils.SpName;
@@ -20,6 +24,7 @@ import com.demo.utils.URL;
 import com.demo.view.DialogProgressbar;
 import com.demo.view.MyTopBar;
 import com.google.gson.Gson;
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -50,7 +55,8 @@ public class Activity_Exchange extends Activity {
     int i = 1;//页数
 
     Intent intentGet;
-    String integral="";
+    String integral = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,21 +64,68 @@ public class Activity_Exchange extends Activity {
         ButterKnife.bind(this);
 
 
-
         gvExchange.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), Activity_ExchangeDetails.class);
-                intent.putExtra("id", list.get(position).getId()+"");
-                intent.putExtra("type", list.get(position).getType());
-                intent.putExtra("integral",integralShopGoodsBean.getData().getIntegration()+"");
-                startActivity(intent);
+                String aa = list.get(position).getId() + "";
+                int type = list.get(position).getType();
+                String integral = integralShopGoodsBean.getData().getIntegration() + "";
+                integralGoodsDetail(aa, type, integral);
             }
         });
 
         viewTopbar.setFocusable(true);
         viewTopbar.setFocusableInTouchMode(true);
         viewTopbar.requestFocus();
+
+    }
+
+    private void integralGoodsDetail(final String id, final int type, final String integral) {
+        RequestParams params = new RequestParams();
+        params.addHeader("Authorization", SpUtil.getString(getApplication(), SpName.token, ""));
+        params.addQueryStringParameter("id", id + "");
+        HttpUtils http = new HttpUtils();
+        http.configCurrentHttpCacheExpiry(0 * 1000);//设置缓存时间
+        http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
+        http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
+        http.send(HttpRequest.HttpMethod.GET, URL.integralGoodsDetail, params,
+                new RequestCallBack<String>() {
+                    DialogProgressbar dialogProgressbar = new DialogProgressbar(Activity_Exchange.this, R.style.AlertDialogStyle);
+
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                        dialogProgressbar.setCancelable(false);//点击对话框以外的地方不关闭  把返回键禁止了
+                        dialogProgressbar.show();
+                    }
+
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        dialogProgressbar.dismiss();
+                        try {
+                            IntegralGoodsDetailBean integralGoodsDetailBean = new Gson().fromJson(responseInfo.result, IntegralGoodsDetailBean.class);
+                            int i = integralGoodsDetailBean.getHeader().getStatus();
+                            if (i == 0) {
+                                Intent intent = new Intent(getApplicationContext(), Activity_ExchangeDetails.class);
+                                intent.putExtra("id", id);
+                                intent.putExtra("type", type);
+                                intent.putExtra("integral", integral);
+                                intent.putExtra("url", integralGoodsDetailBean.getData().getHtml_url());
+                                startActivity(intent);
+                            } else {
+                                ToastUtil.show(getApplicationContext(), integralGoodsDetailBean.getHeader().getMsg());
+                            }
+                        } catch (Exception e) {
+                            ToastUtil.show(getApplicationContext(), "解析数据错误");
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(HttpException e, String s) {
+                        ToastUtil.show(getApplicationContext(), s);
+                    }
+                });
 
     }
 
@@ -83,19 +136,19 @@ public class Activity_Exchange extends Activity {
     }
 
 
-
     private void integralShopGoods() {
         RequestParams params = new RequestParams();
         params.addHeader("Authorization", SpUtil.getString(getApplication(), SpName.token, ""));
        /* params.addQueryStringParameter("page", i + "");
         params.addQueryStringParameter("rows", 8 + "");*/
         HttpUtils http = new HttpUtils();
-        http.configCurrentHttpCacheExpiry(0*1000);
+        http.configCurrentHttpCacheExpiry(0 * 1000);
         http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
         http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
         http.send(HttpRequest.HttpMethod.GET, URL.integralShopGoods, params,
                 new RequestCallBack<String>() {
-                    DialogProgressbar dialogProgressbar=new DialogProgressbar(Activity_Exchange.this,R.style.AlertDialogStyle);
+                    DialogProgressbar dialogProgressbar = new DialogProgressbar(Activity_Exchange.this, R.style.AlertDialogStyle);
+
                     @Override
                     public void onStart() {
                         super.onStart();
@@ -110,14 +163,14 @@ public class Activity_Exchange extends Activity {
                             integralShopGoodsBean = new Gson().fromJson(responseInfo.result, IntegralShopGoodsBean.class);
                             int i = integralShopGoodsBean.getHeader().getStatus();
                             if (i == 0) {
-                                if (integralShopGoodsBean.getData().getGoodsList()!=null){
+                                if (integralShopGoodsBean.getData().getGoodsList() != null) {
                                     list = integralShopGoodsBean.getData().getGoodsList();
-                                    if (list.size()>0){
+                                    if (list.size() > 0) {
                                         gvExchange.setAdapter(new ExchangeAdapter(getApplicationContext(), list));
                                     }
                                 }
-                                tvIntegral.setText(integralShopGoodsBean.getData().getIntegration()+"");
-                            }else if(i== 3){
+                                tvIntegral.setText(integralShopGoodsBean.getData().getIntegration() + "");
+                            } else if (i == 3) {
                                 //异地登录对话框，必须传.this  不能传Context
                                 MainActivity.state_Three(Activity_Exchange.this);
                             } else {

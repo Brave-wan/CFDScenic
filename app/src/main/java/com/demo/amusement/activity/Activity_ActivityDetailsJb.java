@@ -64,6 +64,7 @@ public class Activity_ActivityDetailsJb extends Activity {
     WebView webViewCircle;//加载web
     ActivityMoreBean activityMoreBean = new ActivityMoreBean();
     Intent intent = new Intent();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,18 +72,18 @@ public class Activity_ActivityDetailsJb extends Activity {
         ButterKnife.bind(this);
         initGoMore();
 
-                //tvTicket.setVisibility(View.VISIBLE);
-                tvTicket.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+        //tvTicket.setVisibility(View.VISIBLE);
+        tvTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                ToastUtil.show(getApplicationContext(), "在线购票");
 //                intent.putExtra("orderDescribe",activityMoreBean.getData().getVisitors_describe());
-                        if (activityMoreBean.getData().getSoldOut() == 1) {
-                            ToastUtil.show(getApplicationContext(), "票已售完");
-                        }else{
-                            if (activityMoreBean.getData().getDateEnd() == 1) {
-                                ToastUtil.show(getApplicationContext(), "活动已结束");
-                            }else {
+                if (activityMoreBean.getData().getSoldOut() == 1) {
+                    ToastUtil.show(getApplicationContext(), "票已售完");
+                } else {
+                    if (activityMoreBean.getData().getDateEnd() == 1) {
+                        ToastUtil.show(getApplicationContext(), "活动已结束");
+                    } else {
                         intent.setClass(Activity_ActivityDetailsJb.this, SureOrderActivity.class);
                         intent.putExtra("visitorsId", activityMoreBean.getData().getId() + "");
                         intent.putExtra("userId", SpUtil.getString(getApplication(), SpName.userId, ""));
@@ -90,12 +91,10 @@ public class Activity_ActivityDetailsJb extends Activity {
                         intent.putExtra("name", activityMoreBean.getData().getName());
                         intent.putExtra("deliver_fee", activityMoreBean.getData().getDeliver_fee() + "");
                         startActivity(intent);
-                            }
                     }
-                    }
-                });
-
-
+                }
+            }
+        });
 
 
     }
@@ -110,7 +109,8 @@ public class Activity_ActivityDetailsJb extends Activity {
         http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
         http.send(HttpRequest.HttpMethod.GET, URL.circleScenicMore, params,
                 new RequestCallBack<String>() {
-                    DialogProgressbar dialogProgressbar=new DialogProgressbar(Activity_ActivityDetailsJb.this,R.style.AlertDialogStyle);
+                    DialogProgressbar dialogProgressbar = new DialogProgressbar(Activity_ActivityDetailsJb.this, R.style.AlertDialogStyle);
+
                     @Override
                     public void onStart() {
                         super.onStart();
@@ -137,21 +137,21 @@ public class Activity_ActivityDetailsJb extends Activity {
                                 tvPrimary.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                                 tvPurchase.setText(activityMoreBean.getData().getNumber() + "人");
                                 tvEnd.setText("(活动截止人数：" + activityMoreBean.getData().getPersonNumber() + "人)");
-                                if(activityMoreBean.getData().getNew_price()==0){
+                                if (activityMoreBean.getData().getNew_price() == 0) {
                                     tvTicket.setText("参加");
-                                }else{
+                                } else {
                                     tvTicket.setText("在线购票");
                                 }
                                 if (activityMoreBean.getData().getSoldOut() == 1) {
 //                                    tvTicket.setVisibility(View.GONE);
                                     ivPrompt.setVisibility(View.VISIBLE);
                                     ivPrompt.setImageResource(R.mipmap.ylq_yishoukong);
-                                }else{
+                                } else {
                                     if (activityMoreBean.getData().getDateEnd() == 1) {
 //                                        tvTicket.setVisibility(View.GONE);
                                         ivPrompt.setVisibility(View.VISIBLE);
                                         ivPrompt.setImageResource(R.mipmap.ylq_yijieshu);
-                                    }else {
+                                    } else {
                                         //tvTicket.setVisibility(View.VISIBLE);
                                         ivPrompt.setVisibility(View.GONE);
                                     }

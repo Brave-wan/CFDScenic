@@ -154,20 +154,7 @@ public class MyFragment extends Fragment {
         }
 
 
-        //判断男女
-       /* if (SpUtil.getString(getActivity(), SpName.Gender, "").equals("0")) {
-            ivGender.setVisibility(View.VISIBLE);
-            ivGender.setImageResource(R.mipmap.wd1_tubiao_nan);
-        } else if (SpUtil.getString(getActivity(), SpName.Gender, "").equals("1")) {
-            ivGender.setVisibility(View.VISIBLE);
-            ivGender.setImageResource(R.mipmap.wd1_tubiao_nv);
-        } else {
-            ivGender.setVisibility(View.GONE);
-        }*/
-        //下载头像
-        //ImageLoader.getInstance().displayImage(SpUtil.getString(getActivity(), SpName.headimg, ""), imMyTouxiang);
-        //修改昵称
-        //tvNickNameOrSignIn.setText(SpUtil.getString(getContext(), SpName.userName, "去登录"));
+
     }
 
 

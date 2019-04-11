@@ -67,7 +67,11 @@ public class Activity_ExchangeDetails extends Activity {
 
         init();
         integralGoodsDetail();
-
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);
+        String url=getIntent().getStringExtra("url");
+        webView.loadUrl(url);
 
     }
 
@@ -154,9 +158,11 @@ public class Activity_ExchangeDetails extends Activity {
                                 //启用支持javascript
                                 WebSettings settings = webView.getSettings();
                                 settings.setJavaScriptEnabled(true);
+                                String url=integralGoodsDetailBean.getData().getHtml_url();
 
-                                webView.loadUrl(integralGoodsDetailBean.getData().getHtml_url());
-
+                                settings.setJavaScriptEnabled(true);
+                                settings.setDomStorageEnabled(true);
+                                webView.loadUrl(url);
                                 webView.setWebViewClient(new WebViewClient() {
                                     @Override
                                     public boolean shouldOverrideUrlLoading(WebView view, String url) {

@@ -70,7 +70,11 @@ public class NewsDetailsActivity extends Activity implements GradationScrollView
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         pressDetails();
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
 
+        String url=getIntent().getStringExtra("url");
+        webView.loadUrl(url);
         //上滑渐变
         initListeners();
         ivBack.setAlpha(0);
@@ -102,10 +106,7 @@ public class NewsDetailsActivity extends Activity implements GradationScrollView
                                 String time = pressDetailsBean.getData().getCreate_time();
                                 tvCreateTime.setText(time.substring(0, 10));
                                 //启用支持javascript
-                                WebSettings settings = webView.getSettings();
-                                settings.setJavaScriptEnabled(true);
 
-                                webView.loadUrl(pressDetailsBean.getData().getContent_url());
 
                                 webView.setWebViewClient(new WebViewClient() {
                                     @Override

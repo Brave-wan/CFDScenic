@@ -1,9 +1,11 @@
 package com.demo.my.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/8/17 0017.
  */
-public class IntegralGoodsDetailBean {
+public class IntegralGoodsDetailBean  implements Serializable {
 
     /**
      * deliver_fee : 34
@@ -41,7 +43,7 @@ public class IntegralGoodsDetailBean {
         this.header = header;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         private int deliver_fee;
         private String end_valid;
         private String head_img;
@@ -125,7 +127,7 @@ public class IntegralGoodsDetailBean {
         }
     }
 
-    public static class HeaderBean {
+    public static class HeaderBean implements Serializable{
         private String msg;
         private int status;
 

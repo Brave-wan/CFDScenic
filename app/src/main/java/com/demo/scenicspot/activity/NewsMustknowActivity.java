@@ -5,10 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 
 import com.demo.demo.myapplication.R;
 import com.demo.scenicspot.adapter.NewsKnowAdapter;
+import com.demo.scenicspot.bean.PressDetailsBean;
 import com.demo.scenicspot.bean.PressListBean;
 import com.demo.utils.ToastUtil;
 import com.demo.utils.URL;
@@ -21,6 +25,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,9 +63,9 @@ public class NewsMustknowActivity extends Activity implements XListView.IXListVi
         lvNewsknow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(NewsMustknowActivity.this, NewsDetailsActivity.class);
-                intent.putExtra("id", rowsBean.get(position - 1).getId() + "");
-                startActivity(intent);
+
+
+                pressDetails(rowsBean.get(position - 1).getId() + "");
             }
         });
 
@@ -70,6 +75,42 @@ public class NewsMustknowActivity extends Activity implements XListView.IXListVi
         //mListView.setPullRefreshEnable(true);
 
         lvNewsknow.setXListViewListener(this);
+    }
+
+    private void pressDetails(final String id) {
+        RequestParams params = new RequestParams();
+        params.addQueryStringParameter("id", id);
+        HttpUtils http = new HttpUtils();
+        http.configCurrentHttpCacheExpiry(0 * 1000);//设置缓存时间
+        http.configTimeout(15 * 1000);// 连接超时  //指的是连接一个url的连接等待时间。
+        http.configSoTimeout(15 * 1000);// 获取数据超时  //指的是连接上一个url，获取response的返回等待时间
+        http.send(HttpRequest.HttpMethod.GET, URL.pressDetails, params,
+                new RequestCallBack<String>() {
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        try {
+                            PressDetailsBean pressDetailsBean = new Gson().fromJson(responseInfo.result, PressDetailsBean.class);
+                            int i = pressDetailsBean.getHeader().getStatus();
+                            if (i == 0) {
+                                Intent intent = new Intent(NewsMustknowActivity.this, NewsDetailsActivity.class);
+                                intent.putExtra("id", id);
+                                intent.putExtra("url",pressDetailsBean.getData().getContent_url());
+                                startActivity(intent);
+                            } else {
+                                ToastUtil.show(getApplicationContext(), pressDetailsBean.getHeader().getMsg());
+                            }
+
+                        } catch (Exception e) {
+                            ToastUtil.show(getApplicationContext(), "数据解析出错");
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(HttpException e, String s) {
+                        ToastUtil.show(getApplicationContext(), "连接网络失败");
+                    }
+                });
     }
 
     private void pressList() {
