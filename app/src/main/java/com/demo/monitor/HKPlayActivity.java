@@ -142,6 +142,7 @@ public class HKPlayActivity extends Activity implements View.OnClickListener, Su
         RequestParams params = new RequestParams();
         params.addBodyParameter("cameraUuid", id);
         HttpUtils http = new HttpUtils();
+
         http.configResponseTextCharset(HTTP.UTF_8);
         http.configCurrentHttpCacheExpiry(0 * 1000);
         http.send(HttpRequest.HttpMethod.POST, URL.monitorVideos, params,
